@@ -24,6 +24,15 @@ BookTrade是一个用于旧书交易的网站，BS课程项目设计。
 - 然后执行`docker run -d -p 8000:8000 --name mybooktrade booktrade`开启容器，容器中的服务端口映射到本机的`8000`端口，使用`localhost:8000`进行访问即可。
 - 好处：不用自己手动配环境，在docker container当中环境就已经搭建好了。
 
+---
+**云数据库配置：**
+
+- Host：94.191.60.198
+- User：rothyu
+- Password：123456
+- Port：3306
+- Database Name：booktrade
+
 --- 
 
     Author: Huangyifei

@@ -1,0 +1,7 @@
+{
+  "DB_HOST": "94.191.60.198",
+  "DB_USER": "rothyu",
+  "DB_PASS": "123456",
+  "DB_PORT": "3306",
+  "DB_NAME": "booktrade"
+}

@@ -3,6 +3,7 @@ from .models import User
 from django.http import HttpResponse
 from BookTradeWeb.utils import BaseView
 from django.contrib.auth import logout, authenticate, login
+import json
 
 # Create your views here.
 def index(request):
@@ -23,3 +24,18 @@ class UserLoginView(BaseView):
 class UserRegisterView(BaseView):
     def get(self, request):
         return render(request, 'register.html')
+
+    def post(self, request):
+        user = User.objects.filter(username=request.data.get('username'))
+        if user:
+            raise Exception('用户已经存在')
+        if User.objects.filter(email=request.data.get('email')):
+            raise Exception('当前邮箱已经被注册')
+        # all check passed
+        user = User.objects.create_user(
+            username=request.data.get('username'),
+            password=request.data.get('password'),
+            email=request.data.get('email'),
+        )
+        # user.save()
+        return 'success'

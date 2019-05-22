@@ -20,6 +20,8 @@ class BaseView(View):
         elif request.content_type == 'multipart/form-data':
             request.data = request.POST.dict()
             request.data['file'] = request.FILES['file']
+        elif request.content_type == 'application/x-www-form-urlencoded':
+            request.data = request.POST.dict()
         return self.do_dispatch(request, *args, **kwargs)
 
     def do_dispatch(self, *args, **kwargs):

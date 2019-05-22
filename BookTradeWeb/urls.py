@@ -21,5 +21,6 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^auth/', include('useraction.urls')),
+    url(r'^books/', include('books.urls')),
     url(r'^$', TemplateView.as_view(template_name="login.html")),
 ]

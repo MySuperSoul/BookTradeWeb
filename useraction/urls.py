@@ -6,5 +6,6 @@ app_name = 'useraction'
 
 urlpatterns = [
     url(r'^login/$', views.UserLoginView.as_view(), name='login'),
-    url(r'^register/$', views.UserRegisterView.as_view(), name='register')
+    url(r'^register/$', views.UserRegisterView.as_view(), name='register'),
+    url(r'^logout/$', views.UserLogoutView.as_view(), name='logout'),
 ]

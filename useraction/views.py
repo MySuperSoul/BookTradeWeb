@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import User
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from BookTradeWeb.utils import BaseView
 from django.contrib.auth import logout, authenticate, login
 import json
@@ -37,5 +37,10 @@ class UserRegisterView(BaseView):
             password=request.data.get('password'),
             email=request.data.get('email'),
         )
-        # user.save()
-        return 'success'
+        user.save()
+        return 'Success Register, Goto Login!'
+
+class UserLogoutView(BaseView):
+    def post(self, request):
+        logout(request)
+        return

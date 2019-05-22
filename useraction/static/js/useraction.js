@@ -33,9 +33,11 @@ function GetSuccessMessage(message) {
 }
 
 /** * @returns {boolean} */
-function CheckEmpty(username, email, password) {
-    if (username === "" || email === "" || password === "") return false;
-    else return true;
+function CheckEmpty(array) {
+    for(var j = 0; j < array.length; j++){
+        if(array[j] === "") return false;
+    }
+    return true;
 }
 
 function Register() {
@@ -44,7 +46,8 @@ function Register() {
     var password = $("#password").val();
     var second_password = $("#second_password").val();
 
-    if(CheckEmpty(username, email, password) === false){
+    var message_array = new Array(username, email, password);
+    if(CheckEmpty(message_array) === false){
         $("#message-field").html(GetMessage("用户名/邮箱/密码不能为空"));
         return;
     }
@@ -74,6 +77,32 @@ function Register() {
                 $("#message-field").html(GetMessage(data.error));
             else
                 $("#message-field").html(GetSuccessMessage(data.data));
+        }
+    })
+}
+
+function Login() {
+    var username = $("#username_login").val();
+    var password = $("#password_login").val();
+    var myarray = new Array(username, password);
+    console.log(myarray);
+    if(CheckEmpty(myarray) === false){
+        $("#message_login_field").html(GetMessage("用户名/密码不能为空"));
+        return;
+    }
+
+    $.ajax({
+        type: "post",
+        url: "/auth/login/",
+        async: true,
+        data: {
+            username : username,
+            password : password,
+        },
+        dataType: "json",
+        success: function (data) {
+            if (data.code === 1) $("#message_login_field").html(GetMessage(data.error));
+            else window.location.href = "/books/";
         }
     })
 }

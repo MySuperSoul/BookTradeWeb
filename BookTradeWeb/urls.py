@@ -17,10 +17,13 @@ from django.contrib import admin
 from django.conf.urls import url
 from django.urls import path, include
 from django.views.generic import TemplateView
+from BookTradeWeb import settings
+from django.views.static import serve
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^auth/', include('useraction.urls')),
     url(r'^books/', include('books.urls')),
+    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     url(r'^$', TemplateView.as_view(template_name="login.html")),
 ]

@@ -19,7 +19,8 @@ class BaseView(View):
             request.data = json.loads(request.data)
         elif request.content_type == 'multipart/form-data':
             request.data = request.POST.dict()
-            request.data['file'] = request.FILES['file']
+            if not request.FILES == None:
+                request.data['file'] = request.FILES['file']
         elif request.content_type == 'application/x-www-form-urlencoded':
             request.data = request.POST.dict()
         return self.do_dispatch(request, *args, **kwargs)
@@ -31,10 +32,8 @@ class BaseView(View):
         else:
             try:
                 data = handler(*args, **kwargs)
-                if data is None:
-                    data = 'success'
-                if self.request.method == 'GET':
-                    return HttpResponse(data)
+                if self.request.method == 'GET' or data == None or not isinstance(data, dict):
+                    return data
                 else:
                     return JsonResponse({'data': data, 'code': 0})
             except Exception as e:

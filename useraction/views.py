@@ -44,3 +44,7 @@ class UserLogoutView(BaseView):
     def post(self, request):
         logout(request)
         return
+
+    def get(self, request):
+        logout(request)
+        return HttpResponseRedirect('/auth/login/')

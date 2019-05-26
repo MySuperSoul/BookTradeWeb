@@ -20,14 +20,14 @@ function CheckEmail(email) {
 
 /** * @returns {string}*/
 function GetMessage(message) {
-    return "<div class=\"alert alert-danger alert-dismissible\">\n" +
+    return "<div class=\"alert alert-danger alert-dismissible fade show\">\n" +
         "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>\n"+
         message + "</div>";
 }
 
 /** * @returns {string}*/
 function GetSuccessMessage(message) {
-    return "<div class=\"alert alert-success alert-dismissible\">\n" +
+    return "<div class=\"alert alert-success alert-dismissible fade show\">\n" +
         "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>\n"+
         message + "</div>";
 }

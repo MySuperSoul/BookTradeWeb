@@ -54,7 +54,7 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav ml-auto main-nav ">
 							<li class="nav-item active">
-								<a class="nav-link" href="{% url 'books:index' %}">Home</a>
+								<a class="nav-link" href="index.html">Home</a>
 							</li>
 							<li class="nav-item dropdown dropdown-slide">
 								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="">Dashboard<span><i class="fa fa-angle-down"></i></span>
@@ -89,7 +89,7 @@
 							</li>
 							<li class="nav-item dropdown dropdown-slide">
 								<a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Logout <span><i class="fa fa-angle-down"></i></span>
+									Listing <span><i class="fa fa-angle-down"></i></span>
 								</a>
 								<!-- Dropdown list -->
 								<div class="dropdown-menu">
@@ -100,10 +100,10 @@
 						</ul>
 						<ul class="navbar-nav ml-auto mt-10">
 							<li class="nav-item">
-								<a class="nav-link login-button" href="{% url 'useraction:logout' %}">Logout</a>
+								<a class="nav-link login-button" href="login.html">Login</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link text-white add-button" href="{% url 'books:add_list' %}"><i class="fa fa-plus-circle"></i> Add Listing</a>
+								<a class="nav-link text-white add-button" href="ad-listing.html"><i class="fa fa-plus-circle"></i> Add Listing</a>
 							</li>
 						</ul>
 					</div>
@@ -112,118 +112,145 @@
 		</div>
 	</div>
 </section>
-<!--==================================
-=            User Profile            =
-===================================-->
 
-<section class="user-profile section">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-10 offset-md-1 col-lg-3 offset-lg-0">
-				<div class="sidebar">
-					<!-- User Widget -->
-					<div class="widget user">
-						<!-- User Image -->
-						<div class="image d-flex justify-content-center">
-							<img src="{{ user.header_image.url }}" alt="" class="">
-						</div>
-						<!-- User Name -->
-						<h5 class="text-center">{{ user.username }}</h5>
-					</div>
-					<!-- Dashboard Links -->
-					<div class="widget dashboard-links">
-						<ul>
-							<li><a class="my-1 d-inline-block" href="">Savings Dashboard</a></li>
-							<li><a class="my-1 d-inline-block" href="">Saved Offer <span>(5)</span></a></li>
-							<li><a class="my-1 d-inline-block" href="">Favourite Stores <span>(3)</span></a></li>
-							<li><a class="my-1 d-inline-block" href="">Recommended</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-10 offset-md-1 col-lg-9 offset-lg-0">
-				<!-- Edit Personal Info -->
-				<div class="row">
-					<div class="col-lg-6 col-md-6">
-						<div class="widget personal-info">
-							<h3 class="widget-header user">编辑个人信息</h3>
-							<form action="{% url 'books:update_profile' %}" method="post" id="profile_form">
-                                {% csrf_token %}
-								<!-- First Name -->
-								<div class="form-group">
-									<label for="name">用户名</label>
-									<input type="text" class="form-control" name="name" value="{{ user.username }}" id="name">
-								</div>
-								<!-- Last Name -->
-								<div class="form-group">
-									<label for="phone">手机号</label>
-									<input type="text" class="form-control" name="phone" value="{{ user.telephone}}" id="phone">
-								</div>
-								<!-- Comunity Name -->
-								<div class="form-group">
-									<label for="address">收货地址</label>
-									<input type="text" class="form-control" name="address" value="{{ user.address }}" id="address">
-								</div>
-								<div class="form-group">
-									<label for="mail">邮箱</label>
-									<input type="email" class="form-control" name="mail" value="{{ user.email }}" id="mail">
-								</div>
-								<!-- Zip Code -->
-								<div class="form-group">
-									<label for="introduction">个人介绍</label>
-									<textarea class="form-control" id="introduction" name="introduction">{{ user.introduction }}</textarea>
-								</div>
-								<!-- Submit button -->
-								<button class="btn btn-transparent" type="submit">Save My Changes</button>
-							</form>
-						</div>
-					</div>
-					<div class="col-lg-6 col-md-6">
-						<!-- Change Password -->
-					<div class="widget change-password">
-						<h3 class="widget-header user">Edit Password</h3>
-						<form action="{% url 'books:profile' %}" id="password_form">
-                            <!-- Old Password -->
-							<div class="form-group">
-								<label for="old-password">旧密码</label>
-								<input type="password" class="form-control" id="old-password" name="old-password">
-							</div>
-							<!-- New Password -->
-							<div class="form-group">
-								<label for="new-password">新密码</label>
-								<input type="password" class="form-control" id="new-password" name="new-password">
-							</div>
-							<!-- Confirm New Password -->
-							<div class="form-group">
-								<label for="confirm-password">重复密码</label>
-								<input type="password" class="form-control" id="confirm-password" name="confirm-password">
-							</div>
-							<!-- Submit Button -->
-							<button class="btn btn-transparent" type="submit">保存修改</button>
-						</form>
-					</div>
-					</div>
-                    <div class="col-lg-6 col-md-6">
-						<!-- Change Password -->
-					<div class="widget change-password">
-						<h3 class="widget-header user">更改头像</h3>
-						<form action="{% url 'books:update_header' %}" id="header_form" enctype="multipart/form-data" method="post">
-                            {% csrf_token %}
-                            <!-- File chooser -->
-                            <div class="form-group choose-file d-inline-flex">
-                                <i class="fa fa-user text-center px-3"></i>
-                                <input type="file" class="form-control-file mt-2 pt-1" name="file">
-                             </div>
-							<button class="btn btn-transparent" type="submit">保存头像</button>
-						</form>
-					</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<section class="ad-post bg-white bg-gray py-5">
+    <div class="container">
+        <form action="#">
+            <!-- Post Your ad start -->
+            <fieldset class="border bg-white border-gray p-4 mb-5">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h3>发布旧书</h3>
+                        </div>
+                        <div class="col-lg-6">
+                            <h6 class="font-weight-bold pt-4 pb-1">旧书书名</h6>
+                            <input type="text" class="border rounded w-100 p-2 bg-white text-capitalize" placeholder="书名">
+                            <h6 class="font-weight-bold pt-4 pb-1">ISBN</h6>
+                            <input type="text" class="border rounded w-100 p-2 bg-white text-capitalize" placeholder="ISBN">
+                            <h6 class="font-weight-bold pt-4 pb-1">书籍描述</h6>
+                            <textarea name="" id="" class="border rounded p-3 w-100" rows="7" placeholder="描述"></textarea>
+                        </div>
+                        <div class="col-lg-6">
+                            <h6 class="font-weight-bold pt-4 pb-1">旧书种类</h6>
+                            <select name="" id="inputGroupSelect" class="w-100 rounded">
+                                <option value="1">教育</option>
+                                <option value="2">文艺</option>
+                                <option value="3">科技</option>
+                                <option value="4">人文社科</option>
+                                <option value="5">励志</option>
+                                <option value="6">生活</option>
+                                <option value="7">经管</option>
+                                <option value="8">期刊/进口书</option>
+                                <option value="9">音像</option>
+                                <option value="10">童书</option>
+                            </select>
+                            <div class="price">
+                                <h6 class="font-weight-bold pt-4 pb-1">交易价格 (元):</h6>
+                                <div class="row px-3">
+                                    <div class="col-lg-3 mr-lg-4 rounded border border-gray my-2 ">
+                                        <input type="number" name="price" class="border-0 py-2 w-100 price" placeholder="原价"
+                                            id="origin_price">
+                                    </div>
+                                    <div class="col-lg-3 mr-lg-4 rounded border border-gray my-2 ">
+                                        <input type="number" name="price" class="border-0 py-2 w-100 price" placeholder="卖价"
+                                               id="current_price">
+                                    </div>
+                                    <div class="col-lg-3 mr-lg-4 rounded border border-gray my-2 ">
+                                        <input type="number" name="price" class="border-0 py-2 w-100 price" placeholder="库存"
+                                               id="store_num">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="url">
+                                <h6 class="font-weight-bold pt-4 pb-1">当当网链接</h6>
+                                <input type="text" class="border rounded w-100 p-2 bg-white text-capitalize" placeholder="可不填">
+                            </div>
+                            <div class="image">
+                                <h6 class="font-weight-bold pt-4 pb-1">书籍图片</h6>
+                                <label for="file_upload"><span>上传图片</span></label>
+                                <i class="fa fa-image text-center px-3"></i>
+                                <input type="file" id="file_upload" name="file" class="form-control-file video-button mt-2 pt-1">
+                            </div>
+                        </div>
+                    </div>
+            </fieldset>
+            <!-- Post Your ad end -->
+
+            <!-- seller-information start -->
+            <fieldset class="border p-4 my-5 seller-information bg-white">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3>卖家信息确认</h3>
+                    </div>
+                    <div class="col-lg-6">
+                        <h6 class="font-weight-bold rounded pt-4 pb-1">用户名</h6>
+                        <input type="text" value="{{ user.username }}" class="border rounded w-100 p-2">
+                        <h6 class="font-weight-bold rounded pt-4 pb-1">电话</h6>
+                        <input type="text" value="{{ user.telephone }}" class="border rounded w-100 p-2">
+                    </div>
+                    <div class="col-lg-6">
+                        <h6 class="font-weight-bold rounded pt-4 pb-1">邮箱</h6>
+                        <input type="email" value="{{ user.email }}" class="border rounded w-100 p-2">
+                        <h6 class="font-weight-bold rounded pt-4 pb-1">地址</h6>
+                        <input type="text" value="{{ user.address }}" class="border rounded w-100 p-2">
+                    </div>
+                </div>
+            </fieldset>
+            <!-- seller-information end-->
+
+            <!-- ad-feature start -->
+            <fieldset class="border bg-white p-4 my-5 ad-feature bg-gray">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3>配送信息</h3>
+                    </div>
+                    <div class="col-lg-6 my-3">
+                        <span class="mb-3 d-block">配送方式</span>
+                        <ul>
+                            <li>
+                                <input type="radio" id="regular-ad" name="adfeature">
+                                <label for="regular-ad" class="font-weight-bold text-dark py-1">邮寄</label>
+                                <span>线上</span>
+                            </li>
+                            <li>
+                                <input type="radio" id="Featured-Ads" name="adfeature">
+                                <label for="Featured-Ads" class="font-weight-bold text-dark py-1">当面交易</label>
+                                <span>线下</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 my-3">
+                        <span class="mb-3 d-block">支付方式</span>
+                        <ul>
+                            <li>
+                                <input type="radio" id="bank-transfer" name="adfeature">
+                                <label for="bank-transfer" class="font-weight-bold text-dark py-1">Direct Bank Transfer</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="Cheque-Payment" name="adfeature">
+                                <label for="Cheque-Payment" class="font-weight-bold text-dark py-1">Cheque Payment</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="Credit-Card" name="adfeature">
+                                <label for="Credit-Card" class="font-weight-bold text-dark py-1">Credit Card</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </fieldset>
+            <!-- ad-feature start -->
+
+            <!-- submit button -->
+            <div class="checkbox d-inline-flex">
+                <input type="checkbox" id="terms-&-condition" class="mt-1">
+                <label for="terms-&-condition" class="ml-2">By click you must agree with our
+                    <span> <a class="text-success" href="terms-condition.html">Terms & Condition and Posting Rules.</a></span>
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary d-block mt-2">Post Your Ad</button>
+        </form>
+    </div>
 </section>
-
 <!--============================
 =            Footer            =
 =============================-->

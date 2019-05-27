@@ -45,3 +45,6 @@ class UserUpdateHeaderView(BaseView):
         user.save()
         return HttpResponseRedirect('/books/profile/')
 
+class AddListView(BaseView):
+    def get(self, request):
+        return render(request, 'add_list.html', {'user' : request.user})

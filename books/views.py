@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from BookTradeWeb.utils import BaseView
 from useraction.views import User
+from .models import Book
 from django.contrib.auth import authenticate, login
 
 # Create your views here.
@@ -48,3 +49,18 @@ class UserUpdateHeaderView(BaseView):
 class AddListView(BaseView):
     def get(self, request):
         return render(request, 'add_list.html', {'user' : request.user})
+
+    def post(self, request):
+        book = Book.objects.create(book_name=request.data.get('book_name'),
+                                   ISBN=request.data.get('ISBN'),
+                                   book_introduction=request.data.get('book_description'),
+                                   category=request.data.get('book_category'),
+                                   origin_price=int(request.data.get('origin_price')),
+                                   sell_price=int(request.data.get('current_price')),
+                                   store_remain_num=int(request.data.get('store_num')),
+                                   book_url=request.data.get('link'),
+                                   publisher_name=request.user,
+                                   trade_way=request.data.get('trade_way'))
+        book.book_image = request.data.get('file')
+        book.save()
+

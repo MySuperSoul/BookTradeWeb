@@ -17,7 +17,7 @@ class Book(models.Model):
     sell_price = models.IntegerField(default=1, blank=False)
     category = models.CharField(max_length=100, blank=False)
     book_introduction = models.TextField(default='', blank=True)
-    book_image = models.ImageField(upload_to=RenameBookImagePath, storage=OverWriteStorage, default='/headers/default.jpg')
+    book_image = models.ImageField(upload_to=RenameBookImagePath, storage=OverWriteStorage(), default='/headers/default.jpg')
     ISBN = models.CharField(max_length=100, blank=False)
     book_url = models.URLField(max_length=100, blank=True)
     store_remain_num = models.IntegerField(default=0)

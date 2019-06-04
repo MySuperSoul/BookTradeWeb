@@ -8,6 +8,9 @@ from typing import Dict, Any, Callable, List
 def make_errors(msg: str) -> Dict[str, Any]:
     return {'error': msg, 'code': 1}
 
+def make_success(msg: str) -> Dict[str, Any]:
+    return {'success': msg, 'code': 0}
+
 class BaseView(View):
     def dispatch(self, request, *args, **kwargs):
         self.request = request
@@ -32,7 +35,9 @@ class BaseView(View):
         else:
             try:
                 data = handler(*args, **kwargs)
-                if self.request.method == 'GET' or data == None or not isinstance(data, dict):
+                if data == None:
+                    return JsonResponse(make_success('success'))
+                elif self.request.method == 'GET' or not isinstance(data, dict):
                     return data
                 else:
                     return JsonResponse({'data': data, 'code': 0})

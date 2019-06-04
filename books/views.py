@@ -64,3 +64,15 @@ class AddListView(BaseView):
         book.book_image = request.data.get('file')
         book.save()
 
+class UserBooksView(BaseView):
+    def get(self, request):
+        user = request.user
+        books = user.book_set.all()
+        return render(request, 'my_books.html', {
+            'user' : user,
+            'books' : books
+        })
+
+    def post(self, request):
+        pass
+

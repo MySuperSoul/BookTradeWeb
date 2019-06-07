@@ -76,3 +76,12 @@ class UserBooksView(BaseView):
     def post(self, request):
         pass
 
+class SellSingleBookView(BaseView):
+    def get(self, request, book_id):
+        book_id = int(book_id)
+        book = Book.objects.filter(id=book_id)[0]
+        return render(request, 'single_book.html', {
+            'user' : request.user,
+            'single_book' : book
+        })
+

@@ -102,7 +102,7 @@
 								<a class="nav-link login-button" href="login.html">Login</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link text-white add-button" href="ad-listing.html"><i class="fa fa-plus-circle"></i> Add Listing</a>
+								<a class="nav-link text-white add-button" href="{% url 'books:add_list' %}"><i class="fa fa-plus-circle"></i> Add Listing</a>
 							</li>
 						</ul>
 					</div>
@@ -215,7 +215,7 @@
 									<div class="">
 										<ul class="list-inline justify-content-center">
 											<li class="list-inline-item">
-												<a data-toggle="tooltip" data-placement="top" title="View" class="view" href="category.html">
+												<a data-toggle="tooltip" data-placement="top" title="View" class="view" href="{% url 'books:sell_single_book' book.id %}">
 													<i class="fa fa-eye"></i>
 												</a>
 											</li>

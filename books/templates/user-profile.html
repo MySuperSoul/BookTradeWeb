@@ -133,7 +133,7 @@
 					<!-- Dashboard Links -->
 					<div class="widget dashboard-links">
 						<ul>
-							<li><a class="my-1 d-inline-block" href="">Savings Dashboard</a></li>
+							<li><a class="my-1 d-inline-block" href="{% url 'books:user_books' %}">发布的旧书<span>({{ user.book_set.count }})</span></a></li>
 							<li><a class="my-1 d-inline-block" href="">Saved Offer <span>(5)</span></a></li>
 							<li><a class="my-1 d-inline-block" href="">Favourite Stores <span>(3)</span></a></li>
 							<li><a class="my-1 d-inline-block" href="">Recommended</a></li>

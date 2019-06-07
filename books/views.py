@@ -6,6 +6,9 @@ from .models import Book
 from django.contrib.auth import authenticate, login
 
 # Create your views here.
+class Util():
+    max_page_item = 3
+
 class IndexView(BaseView):
     def get(self, request):
         if request.user.is_authenticated:
@@ -67,10 +70,22 @@ class AddListView(BaseView):
 class UserBooksView(BaseView):
     def get(self, request):
         user = request.user
+        if request.data.get('page') == None:
+            page = 1
+        else: page = int(request.data.get('page'))
+
         books = user.book_set.all()
+        start_pos = (page - 1) * Util.max_page_item
+        end_pos = min(page * Util.max_page_item, int(user.book_set.count()))
+        books = books[start_pos:end_pos]
+
+        total_pages = 1 + (int(user.book_set.count() - 1) // Util.max_page_item)
+        pages_list = [i for i in range(1, total_pages + 1)]
         return render(request, 'my_books.html', {
             'user' : user,
-            'books' : books
+            'books' : books,
+            'pages' :  pages_list,
+            'current_page' : page,
         })
 
     def post(self, request):

@@ -1,13 +1,29 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from BookTradeWeb.utils import BaseView
 from useraction.views import User
 from .models import Book
 from django.contrib.auth import authenticate, login
+from bs4 import BeautifulSoup
+import requests
 
 # Create your views here.
 class Util():
     max_page_item = 3
+
+def GetISBNLink(request, ISBN):
+    search_url = 'http://search.dangdang.com/?key={0}&act=input'.format(ISBN)
+    Agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36'
+    headers = {
+        'Host': 'search.dangdang.com',
+        'User-Agent': Agent
+    }
+    res = requests.get(search_url, headers=headers)
+    html = res.text
+    soup = BeautifulSoup(html, 'html.parser')
+    first_hit_book = soup.find_all('li', class_='line1')[0]
+    book_link = first_hit_book.a.get('href')
+    return JsonResponse({'link' : book_link})
 
 class IndexView(BaseView):
     def get(self, request):

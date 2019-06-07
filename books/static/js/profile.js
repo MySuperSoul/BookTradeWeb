@@ -64,3 +64,17 @@ $("#addlist_form").submit(function (evt) {
     });
     evt.preventDefault();
 });
+
+$("#ISBN_link_search_btn").click(function (evt) {
+    var ISBN = $("#ISBN").val();
+    var url = "/books/api/search_link_ISBN/" + ISBN + "/";
+    $.ajax({
+       type : "post",
+       url : url,
+        dataType : "json",
+        success: function (data) {
+            $("#link").val(data.link);
+        }
+    });
+    evt.preventDefault();
+});

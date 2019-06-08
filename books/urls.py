@@ -14,4 +14,5 @@ urlpatterns = [
     url(r'^api/update_profile/$', views.UserUpdateProfileView.as_view(), name='update_profile'),
     url(r'^api/update_header/$', views.UserUpdateHeaderView.as_view(), name='update_header'),
     url(r'^api/search_link_ISBN/(?P<ISBN>[0-9]+)/$', views.GetISBNLink, name='search_link_ISBN'),
+    url(r'^api/submit_comment/(?P<book_id>[0-9]+)/$', views.SubmitCommentView.as_view(), name="submit_comment"),
 ]

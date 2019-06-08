@@ -26,7 +26,26 @@
   <!-- CUSTOM CSS -->
   <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
+  <script type="text/javascript">
+      function DrawStars(star_num, id_num) {
+        var star_html = "<li class=\"list-inline-item\">" +
+            "<i class=\"fa fa-star\"></i>" +
+            "</li>";
+        var not_star_html = "<li class=\"list-inline-item\">" +
+            "<i class=\"fa fa-star-o\"></i>" +
+            "</li>";
+        var html = '';
+        console.log(star_num);
 
+        for (var i = 0; i < Number(star_num); i++){
+            html = html + star_html;
+        }
+        for (var i = 0; i < 5 - Number(star_num); i++){
+            html = html + not_star_html;
+        }
+        document.getElementById('star_lines' + id_num.toString()).innerHTML += html;
+    }
+  </script>
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -169,24 +188,24 @@
 						<ul class="nav nav-pills  justify-content-center" id="pills-tab" role="tablist">
 							<li class="nav-item">
 								<a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home"
-								 aria-selected="true">Description</a>
+								 aria-selected="true">书籍简介</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile"
-								 aria-selected="false">Specifications</a>
+								 aria-selected="false">书籍详细信息</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact"
-								 aria-selected="false">Reviews</a>
+								 aria-selected="false">全部评论</a>
 							</li>
 						</ul>
 						<div class="tab-content" id="pills-tabContent">
 							<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-								<h3 class="tab-title">Product Description</h3>
+								<h3 class="tab-title">书籍描述</h3>
 								<p>{{ single_book.book_introduction }}</p>
 							</div>
 							<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-								<h3 class="tab-title">Product Specifications</h3>
+								<h3 class="tab-title">书籍详细信息</h3>
 								<table class="table table-bordered product-table">
 									<tbody>
 										<tr>
@@ -225,46 +244,35 @@
 								</table>
 							</div>
 							<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-								<h3 class="tab-title">Product Review</h3>
+								<h3 class="tab-title">评论({{ comments.count }})</h3>
 								<div class="product-review">
-									<div class="media">
+                                    {% for comment in comments %}
+                                    <div class="media">
 										<!-- Avater -->
-										<img src="{{ single_book.publisher_name.header_image.url }}" alt="avater">
+										<img src="{{ comment.commenter.header_image.url }}" alt="avater">
 										<div class="media-body">
 											<!-- Ratings -->
 											<div class="ratings">
-												<ul class="list-inline">
-													<li class="list-inline-item">
-														<i class="fa fa-star"></i>
-													</li>
-													<li class="list-inline-item">
-														<i class="fa fa-star"></i>
-													</li>
-													<li class="list-inline-item">
-														<i class="fa fa-star"></i>
-													</li>
-													<li class="list-inline-item">
-														<i class="fa fa-star"></i>
-													</li>
-													<li class="list-inline-item">
-														<i class="fa fa-star"></i>
-													</li>
+												<ul class="list-inline" id="star_lines{{ forloop.counter }}">
+                                                    <script>DrawStars({{ comment.score }}, {{ forloop.counter }});</script>
 												</ul>
 											</div>
 											<div class="name">
-												<h5>Jessica Brown</h5>
+												<h5>{{ comment.commenter.username }}</h5>
 											</div>
 											<div class="date">
-												<p>Mar 20, 2018</p>
+												<p>{{ comment.time }}</p>
 											</div>
 											<div class="review-comment">
 												<p>
-													Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremqe laudant tota rem ape
-													riamipsa eaque.
+													{{ comment.content }}
 												</p>
 											</div>
 										</div>
 									</div>
+                                    {% endfor %}
+
+
 									<div class="review-submission">
 										<h3 class="tab-title">Submit your review</h3>
 										<!-- Rate -->
@@ -272,15 +280,15 @@
 											<div class="starrr"></div>
 										</div>
 										<div class="review-submit">
-											<form action="#" class="row">
+											<form action="" class="row" id="comment_submit_form" type="post">
+                                                {% csrf_token %}
 												<div class="col-lg-6">
-													<input type="text" name="name" id="name" class="form-control" placeholder="Name">
-												</div>
-												<div class="col-lg-6">
-													<input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                                                    <label for="name">Score</label>
+													<input type="number" name="comment_score" id="name" class="form-control" placeholder="1-5" max="5">
 												</div>
 												<div class="col-12">
-													<textarea name="review" id="review" rows="10" class="form-control" placeholder="Message"></textarea>
+                                                    <label for="review">Comment</label>
+													<textarea name="comment_review" id="review" rows="10" class="form-control" placeholder="Message"></textarea>
 												</div>
 												<div class="col-12">
 													<button type="submit" class="btn btn-main">Sumbit</button>
@@ -307,27 +315,25 @@
 						<p class="member-time">上次登录时间：{{ single_book.publisher_name.last_login }}</p>
                         <p class="member-time">联系方式：{{ single_book.publisher_name.telephone }}</p>
                         <p class="member-time">地址：{{ single_book.publisher_name.address }}</p>
-						<a href="">所有发布旧书</a>
+                        {% if not User %}
+                            <a href="{% url 'books:user_books' %}" target="_blank">所有发布旧书</a>
+                        {% else %}
+                            <a href="">所有发布旧书</a>
+                        {% endif %}
+
+                        {% if User %}
 						<ul class="list-inline mt-20">
 							<li class="list-inline-item"><a href="" class="btn btn-contact d-inline-block  btn-primary px-lg-5 my-1 px-md-3">Contact</a></li>
 							<li class="list-inline-item"><a href="" class="btn btn-offer d-inline-block btn-primary ml-n1 my-1 px-lg-4 px-md-3">Make an
 									offer</a></li>
 						</ul>
+                        {% endif %}
 					</div>
 					<!-- Map Widget -->
 					<div class="widget map">
 						<div class="map">
 							<div id="map_canvas"></div>
 						</div>
-					</div>
-					<!-- Rate Widget -->
-					<div class="widget rate">
-						<!-- Heading -->
-						<h5 class="widget-header text-center">What would you rate
-							<br>
-							this product</h5>
-						<!-- Rate -->
-						<div class="starrr"></div>
 					</div>
 					<!-- Safety tips widget -->
 					<div class="widget disclaimer">
@@ -472,6 +478,7 @@
 <!-- google map -->
 <script src="{% static 'js/script.js' %}"></script>
 <script src="{% static 'js/js.cookie-2.2.0.min.js' %}"></script>
+<script src="{% static 'js/profile.js' %}"></script>
 <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.14&key=44698b945dc4c6e200b09ba964960e2d"></script>
 <script type="text/javascript">
     var map = new AMap.Map('map_canvas', {

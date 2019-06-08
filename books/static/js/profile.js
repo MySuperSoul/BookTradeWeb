@@ -41,6 +41,24 @@ $("#password_form").submit(function (e) {
     e.preventDefault();
 });
 
+$("#comment_submit_form").submit(function (evt) {
+    var path_name = window.location.pathname;
+    var book_id = path_name.split('/')[3];
+    
+    var form = $(this);
+    $.ajax({
+        type : "post",
+        url : "/books/api/submit_comment/" + book_id + "/",
+        async : true,
+        data : form.serialize(),
+        dataType : "json",
+        success : function (data) {
+            console.log('success')
+        }
+    });
+    evt.preventDefault();
+});
+
 $("#addlist_form").submit(function (evt) {
     var $form = $("#addlist_form");
     var formdata = new FormData($form[0]);

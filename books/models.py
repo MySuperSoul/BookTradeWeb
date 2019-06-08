@@ -2,7 +2,9 @@ from django.db import models
 from BookTradeWeb.storage import OverWriteStorage
 from useraction.models import User
 from typing import Dict, Any
+from django.utils import timezone
 import os
+
 # Create your models here.
 def RenameBookImagePath(instance, filename):
     upload_path = 'books'
@@ -23,6 +25,9 @@ class Book(models.Model):
     store_remain_num = models.IntegerField(default=0)
     trade_way = models.CharField(max_length=100, default='', blank=False)
 
+    def __str__(self):
+        return self.book_name
+
     def to_dict(self) -> Dict[str, Any]:
         return {
             'id' : self.id,
@@ -34,4 +39,21 @@ class Book(models.Model):
             'book_introduction' : self.book_introduction,
             'ISBN' : self.ISBN,
             'book_url' : self.book_url
+        }
+
+class Comment(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    commenter = models.ForeignKey(User, on_delete=models.CASCADE)
+    time = models.DateTimeField(auto_now_add=True)
+    content = models.TextField(default='', blank=True)
+    score = models.IntegerField(default=0, blank=False)
+
+    def __str__(self):
+        return self.id
+
+    def to_dict(self):
+        return {
+            'id' : self.id,
+            'score' : self.score,
+            'comment' : self.content
         }

@@ -1765,11 +1765,11 @@ ul.pagination .active a {
 }
 
 .widget.map {
-  padding: 10px;
+  padding: 20px;
 }
 
 .widget.map #map_canvas {
-  height: 300px;
+  height: 500px;
 }
 
 .widget.category ul.category-list li {

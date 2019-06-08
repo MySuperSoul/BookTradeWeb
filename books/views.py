@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse
 from BookTradeWeb.utils import BaseView
+from django.urls import reverse
 from useraction.views import User
-from .models import Book
+from .models import Book, Comment
 from django.contrib.auth import authenticate, login
 from bs4 import BeautifulSoup
 import requests
@@ -111,8 +112,30 @@ class SellSingleBookView(BaseView):
     def get(self, request, book_id):
         book_id = int(book_id)
         book = Book.objects.filter(id=book_id)[0]
-        return render(request, 'single_book.html', {
-            'user' : request.user,
-            'single_book' : book
-        })
+        comments = book.comment_set.all()
+
+        data = {
+            'User' : request.user,
+            'single_book' : book,
+            'comments' : comments,
+        }
+        if request.user.id == book.publisher_name_id:
+            data.pop('User')
+
+        return render(request, 'single_book.html', data)
+
+class SubmitCommentView(BaseView):
+    def post(self, request, book_id):
+        user = request.user
+        book = Book.objects.filter(id=int(book_id))[0]
+        score = request.data.get('comment_score')
+        comment = request.data.get('comment_review')
+        comm = Comment.objects.create(
+            commenter=user,
+            book=book,
+            score=score,
+            content=comment
+        )
+        comm.save()
+        return HttpResponseRedirect(reverse('books:sell_single_book', kwargs={'book_id' : book_id}))
 

@@ -3,7 +3,9 @@ from django.http import HttpResponseRedirect, JsonResponse
 from BookTradeWeb.utils import BaseView
 from django.urls import reverse
 from useraction.views import User
-from .models import Book, Comment
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from .models import Book, Comment, ShoppingCar
 from django.contrib.auth import authenticate, login
 from bs4 import BeautifulSoup
 import requests
@@ -33,7 +35,9 @@ class IndexView(BaseView):
         else:
             return HttpResponseRedirect('/auth/login/')
 
+
 class UserProfileView(BaseView):
+    @method_decorator(login_required(login_url='/auth/login/', redirect_field_name='next'))
     def get(self, request):
         return render(request, 'user-profile.html', {'user' : request.user})
 
@@ -138,4 +142,20 @@ class SubmitCommentView(BaseView):
         )
         comm.save()
         return HttpResponseRedirect(reverse('books:sell_single_book', kwargs={'book_id' : book_id}))
+
+class AddToShoppingCarView(BaseView):
+    def post(self, request):
+        book_id = int(request.data.get('book_id'))
+        book = Book.objects.filter(id=book_id)[0]
+        user = User.objects.filter(id=int(request.data.get('user_id')))[0]
+        number = int(request.data.get('number'))
+        shop = ShoppingCar.objects.create(
+            book=book,
+            book_owner=user,
+            added_number=number
+        )
+        shop.save()
+        return {
+            'message' : '添加成功',
+        }
 

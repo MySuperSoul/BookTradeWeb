@@ -96,3 +96,24 @@ $("#ISBN_link_search_btn").click(function (evt) {
     });
     evt.preventDefault();
 });
+
+$("#add_shopping_btn").click(function () {
+   var book_id = $("#book_id_hidden").val();
+   var number = $("#buy_number").val();
+   var user_id = $("#user_id_hidden").val();
+   var url = "/books/api/add_to_shopping_car/";
+   $.ajax({
+       type : "post",
+       url : url,
+       async : true,
+       dataType : "json",
+       data : {
+           book_id : book_id,
+           user_id : user_id,
+           number : number,
+       },
+       success : function (Respon) {
+           alert(Respon.data.message);
+       }
+   })
+});

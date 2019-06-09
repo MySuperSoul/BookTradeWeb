@@ -57,3 +57,8 @@ class Comment(models.Model):
             'score' : self.score,
             'comment' : self.content
         }
+
+class ShoppingCar(models.Model):
+    book_owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='shopping_car')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    added_number = models.IntegerField(default=0, blank=False)

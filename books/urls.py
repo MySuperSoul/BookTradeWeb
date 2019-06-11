@@ -16,4 +16,5 @@ urlpatterns = [
     url(r'^api/search_link_ISBN/(?P<ISBN>[0-9]+)/$', views.GetISBNLink, name='search_link_ISBN'),
     url(r'^api/submit_comment/(?P<book_id>[0-9]+)/$', views.SubmitCommentView.as_view(), name="submit_comment"),
     url(r'^api/add_to_shopping_car/$', views.AddToShoppingCarView.as_view(), name='add_to_shopping_car'),
+    url(r'^show_books/(?P<category>.*)/$', views.ShowBooksByCategoryView.as_view(), name='show_books_by_category'),
 ]

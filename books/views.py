@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse
-from BookTradeWeb.utils import BaseView
+from BookTradeWeb.utils import BaseView, Category
 from django.urls import reverse
 from useraction.views import User
 from django.contrib.auth.decorators import login_required
@@ -13,6 +13,7 @@ import requests
 # Create your views here.
 class Util():
     max_page_item = 3
+    category_max_page_item = 9
 
 def GetISBNLink(request, ISBN):
     search_url = 'http://search.dangdang.com/?key={0}&act=input'.format(ISBN)
@@ -26,12 +27,16 @@ def GetISBNLink(request, ISBN):
     soup = BeautifulSoup(html, 'html.parser')
     first_hit_book = soup.find_all('li', class_='line1')[0]
     book_link = first_hit_book.a.get('href')
+    
     return JsonResponse({'link' : book_link})
 
 class IndexView(BaseView):
     def get(self, request):
         if request.user.is_authenticated:
-            return render(request, 'index.html')
+            books = Book.objects.all()
+            return render(request, 'index.html', {
+                'books' : books
+            })
         else:
             return HttpResponseRedirect('/auth/login/')
 
@@ -158,4 +163,32 @@ class AddToShoppingCarView(BaseView):
         return {
             'message' : '添加成功',
         }
+
+class ShowBooksByCategoryView(BaseView):
+    def get(self, request, category):
+        origin = category
+        if category == 'all':
+            books = Book.objects.all()
+        else:
+            category = Category.GetCategory(category)
+            books = Book.objects.filter(category=category)
+
+        # page is always the last step to filter
+        if request.data.get('page') == None:
+            page = 1
+        else: page = int(request.data.get('page'))
+
+        start_pos = (page - 1) * Util.category_max_page_item
+        end_pos = min(page * Util.category_max_page_item, int(books.count()))
+        books = books[start_pos:end_pos]
+
+        total_pages = 1 + (int(books.count() - 1) // Util.category_max_page_item)
+        pages_list = [i for i in range(1, total_pages + 1)]
+        return render(request, 'category.html', {
+            'books' : books,
+            'category' : category,
+            'origin_category' : origin,
+            'pages' : pages_list,
+            'current_page' : page
+        })
 

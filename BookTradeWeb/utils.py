@@ -44,3 +44,21 @@ class BaseView(View):
             except Exception as e:
                 traceback.print_exc()
                 return JsonResponse(make_errors(str(e)))
+
+class Category():
+    category_dict = {
+        'education' : '教育',
+        'art' : '文艺',
+        'technology' : '科技',
+        'social' : '人文社科',
+        'activate' : '励志',
+        'life' : '生活',
+        'manage' : '经管',
+        'in' : '期刊/进口书',
+        'video' : '音像',
+        'child' : '童书'
+    }
+
+    @classmethod
+    def GetCategory(cls, key):
+        return cls.category_dict.get(key)

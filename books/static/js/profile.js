@@ -76,6 +76,7 @@ $("#addlist_form").submit(function (evt) {
             if(data.code === 1){
                 alert(data.error);
             }else {
+                $('html,body').animate({ scrollTop: 0 }, 500);
                 $("#message_field").html(GetSuccessMessage(data.success));
             }
         }
@@ -113,6 +114,7 @@ $("#add_shopping_btn").click(function () {
            number : number,
        },
        success : function (Respon) {
+           $("#shop_add_modal").modal('hide');
            alert(Respon.data.message);
        }
    })

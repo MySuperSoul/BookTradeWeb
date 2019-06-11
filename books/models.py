@@ -24,6 +24,7 @@ class Book(models.Model):
     book_url = models.URLField(max_length=100, blank=True)
     store_remain_num = models.IntegerField(default=0)
     trade_way = models.CharField(max_length=100, default='', blank=False)
+    publish_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.book_name
@@ -62,3 +63,6 @@ class ShoppingCar(models.Model):
     book_owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='shopping_car')
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     added_number = models.IntegerField(default=0, blank=False)
+
+    def __str__(self):
+        return self.book_owner.username + "_shopping_car"

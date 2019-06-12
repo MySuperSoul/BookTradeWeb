@@ -53,7 +53,8 @@ $("#comment_submit_form").submit(function (evt) {
         data : form.serialize(),
         dataType : "json",
         success : function (data) {
-            console.log('success')
+            console.log('success');
+            window.location.reload();
         }
     });
     evt.preventDefault();

@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load books_filter %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -292,7 +293,7 @@
 								<h4>教育</h4>
 							</div>
 							<ul class="category-list" >
-								<li><a href="{% url 'books:show_books_by_category' 'education' %}">教育 <span>393</span></a></li>
+								<li><a href="{% url 'books:show_books_by_category' 'education' %}">教育 <span>{{ num_dict|GetDictValue:"education" }}</span></a></li>
 							</ul>
 						</div>
 					</div> <!-- /Category List -->
@@ -304,7 +305,7 @@
 								<h4>文艺</h4>
 							</div>
 							<ul class="category-list" >
-								<li><a href="{% url 'books:show_books_by_category' 'art' %}">文艺 <span>93</span></a></li>
+								<li><a href="{% url 'books:show_books_by_category' 'art' %}">文艺 <span>{{ num_dict|GetDictValue:"art" }}</span></a></li>
 							</ul>
 						</div>
 					</div> <!-- /Category List -->
@@ -316,7 +317,7 @@
 								<h4>科技</h4>
 							</div>
 							<ul class="category-list" >
-								<li><a href="{% url 'books:show_books_by_category' 'technology' %}">科技 <span>53</span></a></li>
+								<li><a href="{% url 'books:show_books_by_category' 'technology' %}">科技 <span>{{ num_dict|GetDictValue:"technology" }}</span></a></li>
 							</ul>
 						</div>
 					</div> <!-- /Category List -->
@@ -328,7 +329,7 @@
 								<h4>人文社科</h4>
 							</div>
 							<ul class="category-list" >
-								<li><a href="{% url 'books:show_books_by_category' 'social' %}">人文社科 <span>93</span></a></li>
+								<li><a href="{% url 'books:show_books_by_category' 'social' %}">人文社科 <span>{{ num_dict|GetDictValue:"social" }}</span></a></li>
 							</ul>
 						</div>
 					</div> <!-- /Category List -->
@@ -340,7 +341,7 @@
 								<h4>励志</h4>
 							</div>
 							<ul class="category-list" >
-								<li><a href="{% url 'books:show_books_by_category' 'activate' %}">励志 <span>193</span></a></li>
+								<li><a href="{% url 'books:show_books_by_category' 'activate' %}">励志 <span>{{ num_dict|GetDictValue:"activate" }}</span></a></li>
 							</ul>
 						</div>
 					</div> <!-- /Category List -->
@@ -352,7 +353,7 @@
 								<h4>生活</h4>
 							</div>
 							<ul class="category-list" >
-								<li><a href="{% url 'books:show_books_by_category' 'life' %}">生活 <span>65</span></a></li>
+								<li><a href="{% url 'books:show_books_by_category' 'life' %}">生活 <span>{{ num_dict|GetDictValue:"life" }}</span></a></li>
 							</ul>
 						</div>
 					</div> <!-- /Category List -->
@@ -365,7 +366,7 @@
 								<h4>经管</h4>
 							</div>
 							<ul class="category-list" >
-								<li><a href="{% url 'books:show_books_by_category' 'manage' %}">经管 <span>93</span></a></li>
+								<li><a href="{% url 'books:show_books_by_category' 'manage' %}">经管 <span>{{ num_dict|GetDictValue:"manage" }}</span></a></li>
 							</ul>
 						</div>
 					</div> <!-- /Category List -->
@@ -378,7 +379,7 @@
 								<h4>期刊/进口书</h4>
 							</div>
 							<ul class="category-list" >
-								<li><a href="{% url 'books:show_books_by_category' 'in' %}">期刊/进口书 <span>93</span></a></li>
+								<li><a href="{% url 'books:show_books_by_category' 'in' %}">期刊/进口书 <span>{{ num_dict|GetDictValue:"in" }}</span></a></li>
 							</ul>
 						</div>
 					</div> <!-- /Category List -->
@@ -391,7 +392,7 @@
 								<h4>音像</h4>
 							</div>
 							<ul class="category-list" >
-								<li><a href="{% url 'books:show_books_by_category' 'video' %}">音像 <span>93</span></a></li>
+								<li><a href="{% url 'books:show_books_by_category' 'video' %}">音像 <span>{{ num_dict|GetDictValue:"video" }}</span></a></li>
 							</ul>
 						</div>
 					</div> <!-- /Category List -->
@@ -404,7 +405,7 @@
 								<h4>童书</h4>
 							</div>
 							<ul class="category-list" >
-								<li><a href="{% url 'books:show_books_by_category' 'child' %}">童书 <span>93</span></a></li>
+								<li><a href="{% url 'books:show_books_by_category' 'child' %}">童书 <span>{{ num_dict|GetDictValue:"child" }}</span></a></li>
 							</ul>
 						</div>
 					</div> <!-- /Category List -->

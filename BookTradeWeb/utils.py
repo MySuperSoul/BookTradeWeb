@@ -2,8 +2,10 @@ import json
 import typing
 import traceback
 from django.views.generic import View
+from collections import defaultdict
 from django.http import JsonResponse, HttpResponse
 from typing import Dict, Any, Callable, List
+from books.models import Book
 
 def make_errors(msg: str) -> Dict[str, Any]:
     return {'error': msg, 'code': 1}
@@ -47,6 +49,7 @@ class BaseView(View):
 
 class Category():
     category_dict = {
+        'all' : '所有图书',
         'education' : '教育',
         'art' : '文艺',
         'technology' : '科技',
@@ -62,3 +65,25 @@ class Category():
     @classmethod
     def GetCategory(cls, key):
         return cls.category_dict.get(key)
+
+    @classmethod
+    def GetCategoryBookNumberDict(cls):
+        number_dict = defaultdict(lambda : 0)
+        for (category, dbcategory) in cls.category_dict.items():
+            number_dict[category] = Book.objects.filter(category=dbcategory).count()
+        number_dict['all'] = Book.objects.all().count()
+        return number_dict
+
+class SortingUtil():
+    sorting_dict = {
+        '0' : '默认',
+        '1' : '最近发布',
+        '2' : '评论数升序',
+        '3' : '评论数降序',
+        '4' : '售价升序',
+        '5' : '售价降序'
+    }
+
+    @classmethod
+    def GetSortingDescription(cls, sorting):
+        return cls.sorting_dict.get(str(sorting))

@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse
-from BookTradeWeb.utils import BaseView, Category
+from BookTradeWeb.utils import BaseView, Category, SortingUtil
 from django.urls import reverse
 from useraction.views import User
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .models import Book, Comment, ShoppingCar
+from django.db.models import Count
 from django.contrib.auth import authenticate, login
 from bs4 import BeautifulSoup
 import requests
@@ -27,15 +28,17 @@ def GetISBNLink(request, ISBN):
     soup = BeautifulSoup(html, 'html.parser')
     first_hit_book = soup.find_all('li', class_='line1')[0]
     book_link = first_hit_book.a.get('href')
-    
+
     return JsonResponse({'link' : book_link})
 
 class IndexView(BaseView):
     def get(self, request):
         if request.user.is_authenticated:
             books = Book.objects.all()
+            category_num_dict = dict(Category.GetCategoryBookNumberDict())
             return render(request, 'index.html', {
-                'books' : books
+                'books' : books,
+                'num_dict' : category_num_dict
             })
         else:
             return HttpResponseRedirect('/auth/login/')
@@ -165,6 +168,9 @@ class AddToShoppingCarView(BaseView):
         }
 
 class ShowBooksByCategoryView(BaseView):
+    def GetSortBooks(self, books, sorting):
+        pass
+
     def get(self, request, category):
         origin = category
         if category == 'all':
@@ -172,6 +178,22 @@ class ShowBooksByCategoryView(BaseView):
         else:
             category = Category.GetCategory(category)
             books = Book.objects.filter(category=category)
+
+        if request.data.get('sort') != None:
+            sorting = int(request.data.get('sort'))
+            if sorting == 0:
+                pass
+            elif sorting == 1:
+                books = books.order_by('-publish_time')
+            elif sorting == 2:
+                books = books.annotate(comment_num=Count('comment')).order_by('comment_num')
+            elif sorting == 3:
+                books = books.annotate(comment_num=Count('comment')).order_by('-comment_num')
+            elif sorting == 4:
+                books = books.order_by('sell_price')
+            else:
+                books = books.order_by('-sell_price')
+        else: sorting = 0
 
         # page is always the last step to filter
         if request.data.get('page') == None:
@@ -189,6 +211,8 @@ class ShowBooksByCategoryView(BaseView):
             'category' : category,
             'origin_category' : origin,
             'pages' : pages_list,
-            'current_page' : page
+            'current_page' : page,
+            'sorting' : SortingUtil.GetSortingDescription(sorting),
+            'category_dict' : dict(Category.GetCategoryBookNumberDict())
         })
 

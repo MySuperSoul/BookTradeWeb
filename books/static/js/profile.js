@@ -117,6 +117,7 @@ $("#add_shopping_btn").click(function () {
        success : function (Respon) {
            $("#shop_add_modal").modal('hide');
            alert(Respon.data.message);
+           window.location.reload();
        }
    })
 });

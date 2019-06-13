@@ -66,3 +66,18 @@ class ShoppingCar(models.Model):
 
     def __str__(self):
         return self.book_owner.username + "_shopping_car"
+
+class BookOffer(models.Model):
+    sell_side = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sell_book_side')
+    buy_side = models.ForeignKey(User, on_delete=models.CASCADE, related_name='buy_book_side')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    sell_option = models.TextField(max_length=100, default='', blank=False)
+    post_address = models.TextField(blank=True)
+    post_code = models.TextField(default='', blank=True)
+    status = models.TextField(blank=True)
+    complete_time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.buy_side.username + '_' + self.book.book_name
+
+

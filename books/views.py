@@ -157,12 +157,18 @@ class AddToShoppingCarView(BaseView):
         book = Book.objects.filter(id=book_id)[0]
         user = User.objects.filter(id=int(request.data.get('user_id')))[0]
         number = int(request.data.get('number'))
-        shop = ShoppingCar.objects.create(
-            book=book,
-            book_owner=user,
-            added_number=number
-        )
+        if ShoppingCar.objects.filter(book_id=book_id, book_owner_id=user.id).count() != 0:
+            shop = ShoppingCar.objects.filter(book_id=book_id, book_owner_id=user.id)[0]
+            shop.added_number += number
+        else:
+            shop = ShoppingCar.objects.create(
+                book=book,
+                book_owner=user,
+                added_number=number
+            )
+        book.store_remain_num -= number
         shop.save()
+        book.save()
         return {
             'message' : '添加成功',
         }
@@ -216,3 +222,14 @@ class ShowBooksByCategoryView(BaseView):
             'category_dict' : dict(Category.GetCategoryBookNumberDict())
         })
 
+class MakeOfferView(BaseView):
+    def get(self, request):
+        user = request.user
+        shopping_car_set = ShoppingCar.objects.filter(book_owner_id=user.id)
+        data = {
+            'shopping' : shopping_car_set
+        }
+        return render(request, 'shopping_car.html', data)
+
+    def post(self, request):
+        pass

@@ -65,7 +65,7 @@ class ShoppingCar(models.Model):
     added_number = models.IntegerField(default=0, blank=False)
 
     def __str__(self):
-        return self.book_owner.username + "_shopping_car"
+        return self.book_owner.username + "_shopping_car_" + self.book.book_name
 
 class BookOffer(models.Model):
     sell_side = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sell_book_side')
@@ -76,6 +76,8 @@ class BookOffer(models.Model):
     post_code = models.TextField(default='', blank=True)
     status = models.TextField(blank=True)
     complete_time = models.DateTimeField(auto_now_add=True)
+    complete_book_num = models.IntegerField(default=0, blank=False)
+    complete_price = models.IntegerField(default=0, blank=False)
 
     def __str__(self):
         return self.buy_side.username + '_' + self.book.book_name

@@ -93,7 +93,8 @@ $("#ISBN_link_search_btn").click(function (evt) {
        url : url,
         dataType : "json",
         success: function (data) {
-            $("#link").val(data.link);
+           if (data.code === 1)  $("#link").val(data.error);
+           else $("#link").val(data.link);
         }
     });
     evt.preventDefault();

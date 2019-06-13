@@ -121,7 +121,18 @@
 		<div class="row">
 			<div class="col-md-10 offset-md-1 col-lg-12 offset-lg-0">
 				<!-- Recently Favorited -->
-				<div class="widget dashboard-container my-adslist">
+            <ul class="nav nav-pills  justify-content-center" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home"
+                     aria-selected="true">🛒待交易</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile"
+                     aria-selected="false">已完成订单</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+				<div class="widget dashboard-container my-adslist tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 					<h3 class="widget-header">我的购物车🛒</h3>
 					<table class="table table-responsive product-dashboard-table">
 						<thead>
@@ -162,7 +173,7 @@
 												</a>
 											</li>
 											<li class="list-inline-item">
-												<a data-toggle="tooltip" data-placement="top" title="删除订单" class="delete" href="">
+												<a data-toggle="tooltip" data-placement="top" data-id="{{ shopping_car.id }}" onclick="DeleteView({{ shopping_car.id }});" title="删除订单" class="delete" href="">
 													<i class="fa fa-trash"></i>
 												</a>
 											</li>
@@ -176,14 +187,60 @@
                             <td class="text-center" id="checked-num">0</td>
                             <td class="text-center">购物车总价</td>
                             <td class="text-center" id="checked-price">¥0</td>
-                            <td class="text-center"><button class="btn btn-block btn-danger">购物车结算</button> </td>
+                            <td class="text-center"><button class="btn btn-block btn-danger" id="shopping-car-btn">购物车结算</button> </td>
                         </tr>
 						</tbody>
 					</table>
 
 				</div>
 				<!-- pagination -->
+                <div class="widget dashboard-container my-adslist tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-home-tab">
+					<h3 class="widget-header">已完成订单</h3>
+					<table class="table table-responsive product-dashboard-table">
+						<thead>
+							<tr>
+								<th class="text-center">Image</th>
+								<th class="text-center">Product Title</th>
+								<th class="text-center">Category</th>
+								<th class="text-center">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+                            {% for order in completed_orders %}
+                            <tr>
+                                <td class="product-thumb">
+                                    <img width="150px" height="auto" src="{{ order.book.book_image.url }}" alt="image description">
+                                </td>
+                                <td class="product-details text-center">
+                                    <h3 class="title text-center">{{ order.book.book_name }}</h3>
+                                    <span class="text-center"><strong>出售价格:  {{ order.book.sell_price }}¥</strong> </span>
+                                    <span class="text-center"><strong>购买数量:  {{ order.complete_book_num }}</strong> </span>
+                                    <span class="text-center"><strong>总价:  {{ order.complete_price }}¥</strong></span>
+                                    <span class="status active text-center"><strong>配送方式:  {% if order.book.trade_way == 'online' %}邮寄{% else %}线下交易{% endif %}</strong></span>
+                                </td>
+                                <td class="product-details text-center">
+                                    <span class="text-center">卖家: {{ order.sell_side.username }}</span>
+                                    <span class="text-center">成交时间: {{ order.complete_time|date:"Y-m-d" }}</span>
+                                    <span class="text-center">订单状态: {{ order.status }}</span>
+                                </td>
+                            <td class="action" data-title="Action">
+									<div class="">
+										<ul class="list-inline justify-content-center">
+											<li class="list-inline-item">
+												<a data-toggle="tooltip" data-placement="top" title="查看订单详情" class="view" href="{% url 'books:sell_single_book' order.book.id %}">
+													<i class="fa fa-android"></i>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</td>
+                            </tr>
+                            {% endfor %}
+						</tbody>
+					</table>
 
+				</div>
+            </div>
 			</div>
 		</div>
 		<!-- Row End -->

@@ -5,11 +5,11 @@ from django.urls import reverse
 from useraction.views import User
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .models import Book, Comment, ShoppingCar
+from .models import Book, Comment, ShoppingCar, BookOffer
 from django.db.models import Count
 from django.contrib.auth import authenticate, login
 from bs4 import BeautifulSoup
-import requests
+import requests, json
 
 # Create your views here.
 class Util():
@@ -26,10 +26,15 @@ def GetISBNLink(request, ISBN):
     res = requests.get(search_url, headers=headers)
     html = res.text
     soup = BeautifulSoup(html, 'html.parser')
-    first_hit_book = soup.find_all('li', class_='line1')[0]
-    book_link = first_hit_book.a.get('href')
-
-    return JsonResponse({'link' : book_link})
+    try:
+        first_hit_book = soup.find_all('li', class_='line1')[0]
+        book_link = first_hit_book.a.get('href')
+        return JsonResponse({'link' : book_link})
+    except Exception as e:
+        return JsonResponse({
+            'error' : '暂无商品信息',
+            'code' : 1
+        })
 
 class IndexView(BaseView):
     def get(self, request):
@@ -157,18 +162,12 @@ class AddToShoppingCarView(BaseView):
         book = Book.objects.filter(id=book_id)[0]
         user = User.objects.filter(id=int(request.data.get('user_id')))[0]
         number = int(request.data.get('number'))
-        if ShoppingCar.objects.filter(book_id=book_id, book_owner_id=user.id).count() != 0:
-            shop = ShoppingCar.objects.filter(book_id=book_id, book_owner_id=user.id)[0]
-            shop.added_number += number
-        else:
-            shop = ShoppingCar.objects.create(
-                book=book,
-                book_owner=user,
-                added_number=number
-            )
-        book.store_remain_num -= number
+        shop = ShoppingCar.objects.create(
+            book=book,
+            book_owner=user,
+            added_number=number
+        )
         shop.save()
-        book.save()
         return {
             'message' : '添加成功',
         }
@@ -226,10 +225,47 @@ class MakeOfferView(BaseView):
     def get(self, request):
         user = request.user
         shopping_car_set = ShoppingCar.objects.filter(book_owner_id=user.id)
+        completed_orders = BookOffer.objects.filter(buy_side_id=user.id)
         data = {
-            'shopping' : shopping_car_set
+            'shopping' : shopping_car_set,
+            'completed_orders' : completed_orders
         }
         return render(request, 'shopping_car.html', data)
 
+    # TODO add acount service in
+    def OfferBooks(self, request):
+        shopping_list = json.loads(request.data.get('values'))
+        price = int(request.data.get('price'))
+        for item in shopping_list:
+            id = int(item)
+            shopping_item = ShoppingCar.objects.filter(id=id)[0]
+            order = BookOffer.objects.create(
+                sell_side=shopping_item.book.publisher_name,
+                buy_side=shopping_item.book_owner,
+                book=shopping_item.book,
+                sell_option=shopping_item.book.trade_way,
+                post_address=shopping_item.book_owner.address,
+                status='complete',
+                complete_book_num=shopping_item.added_number,
+                complete_price=price
+            )
+            order.save()
+            shopping_item.delete()
+            book = shopping_item.book
+            book.store_remain_num -= shopping_item.added_number
+            book.save()
+
+        return {
+            'message' : '交易完成'
+        }
+
+    def DeleteShoppingCarItem(self, request):
+        delete_id = int(request.data.get('id'))
+        item = ShoppingCar.objects.filter(id=delete_id)[0]
+        item.delete()
+
     def post(self, request):
-        pass
+        if request.data.get('type') == 'offer':
+            return self.OfferBooks(request)
+        elif request.data.get('type') == 'delete':
+            return self.DeleteShoppingCarItem(request)

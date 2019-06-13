@@ -3,4 +3,5 @@ pymysql==0.9.3
 mysqlclient==1.4.1
 beautifulsoup4==4.7.1
 bs4==0.0.1
-requests=2.21.0
+requests==2.21.0
+Pillow==6.0.0

@@ -3,13 +3,14 @@ version: '3'
 services:
   db:
     image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_general_ci
     ports:
-      - '3306:3306'
+      - '3305:3306'
     environment:
        MYSQL_DATABASE: 'booktrade'
        MYSQL_USER: 'root'
-       MYSQL_PASSWORD: '123456'
-       MYSQL_ROOT_PASSWORD: '123456'
+       MYSQL_PASSWORD: 'Rothyu980908'
+       MYSQL_ROOT_PASSWORD: 'Rothyu980908'
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000

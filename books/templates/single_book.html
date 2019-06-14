@@ -466,8 +466,13 @@
                                         <p class="member-time text-left"><strong>库存：</strong>{{ single_book.store_remain_num }}</p>
                                         <p class="member-time text-left"><strong>服务：</strong>由“{{ single_book.publisher_name.username }}”发货.明日09:15前完成下单，预计明天可送达</p>
                                         <div class="input-group">
-                                            <label for="buy_number" class="input-group-addon"><strong>数量：</strong></label>
                                             <input type="number" class="form-control rounded" id="buy_number" name="buy_number" placeholder="购买数量">
+                                        </div><br>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control rounded" id="buy_address" name="buy_address" placeholder="收货地址">
+                                        </div><br>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control rounded" id="buy_phone" name="buy_phone" placeholder="联系方式">
                                         </div>
                                         <input id="book_id_hidden" value="{{ single_book.id }}" type="hidden">
                                         <input id="user_id_hidden" value="{{ User.id }}" type="hidden">

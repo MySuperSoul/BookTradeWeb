@@ -43,7 +43,8 @@ class IndexView(BaseView):
             category_num_dict = dict(Category.GetCategoryBookNumberDict())
             return render(request, 'index.html', {
                 'books' : books,
-                'num_dict' : category_num_dict
+                'num_dict' : category_num_dict,
+                'user' : request.user
             })
         else:
             return HttpResponseRedirect('/auth/login/')
@@ -162,11 +163,20 @@ class AddToShoppingCarView(BaseView):
         book = Book.objects.filter(id=book_id)[0]
         user = User.objects.filter(id=int(request.data.get('user_id')))[0]
         number = int(request.data.get('number'))
-        shop = ShoppingCar.objects.create(
-            book=book,
-            book_owner=user,
-            added_number=number
-        )
+        address = request.data.get('address')
+        phone = request.data.get('phone')
+
+        if ShoppingCar.objects.filter(book_id=book_id).count() != 0:
+            shop = ShoppingCar.objects.filter(book_id=book_id)[0]
+            shop.added_number += number
+        else:
+            shop = ShoppingCar.objects.create(
+                book=book,
+                book_owner=user,
+                added_number=number,
+                contact_phone=phone,
+                address=address
+            )
         shop.save()
         return {
             'message' : '添加成功',
@@ -176,13 +186,20 @@ class ShowBooksByCategoryView(BaseView):
     def GetSortBooks(self, books, sorting):
         pass
 
-    def get(self, request, category):
+    def get(self, request, category=''):
         origin = category
         if category == 'all':
             books = Book.objects.all()
-        else:
+            category = '所有'
+        elif category != '':
             category = Category.GetCategory(category)
             books = Book.objects.filter(category=category)
+        else:
+            search = request.data.get('q')
+            origin = search
+            books = Book.objects.filter(book_name__contains=search)
+            books = books | Book.objects.filter(ISBN__contains=search)
+            books = books | Book.objects.filter(publisher_name__username__contains=search)
 
         if request.data.get('sort') != None:
             sorting = int(request.data.get('sort'))
@@ -199,6 +216,12 @@ class ShowBooksByCategoryView(BaseView):
             else:
                 books = books.order_by('-sell_price')
         else: sorting = 0
+
+        if request.data.get('min') != None and request.data.get('max') != None:
+            min_price = int(request.data.get('min'))
+            max_price = int(request.data.get('max'))
+            books = Book.objects.filter(sell_price__gte=min_price)
+            books = books & Book.objects.filter(sell_price__lte=max_price)
 
         # page is always the last step to filter
         if request.data.get('page') == None:
@@ -244,10 +267,11 @@ class MakeOfferView(BaseView):
                 buy_side=shopping_item.book_owner,
                 book=shopping_item.book,
                 sell_option=shopping_item.book.trade_way,
-                post_address=shopping_item.book_owner.address,
+                post_address=shopping_item.address,
                 status='complete',
                 complete_book_num=shopping_item.added_number,
-                complete_price=price
+                complete_price=shopping_item.added_number * shopping_item.book.sell_price,
+                contact_phone=shopping_item.contact_phone,
             )
             order.save()
             shopping_item.delete()

@@ -103,6 +103,8 @@ $("#ISBN_link_search_btn").click(function (evt) {
 $("#add_shopping_btn").click(function () {
    var book_id = $("#book_id_hidden").val();
    var number = $("#buy_number").val();
+   var address = $("#buy_address").val();
+   var phone = $("#buy_phone").val();
    var user_id = $("#user_id_hidden").val();
    var url = "/books/api/add_to_shopping_car/";
    $.ajax({
@@ -114,6 +116,8 @@ $("#add_shopping_btn").click(function () {
            book_id : book_id,
            user_id : user_id,
            number : number,
+           address : address,
+           phone : phone
        },
        success : function (Respon) {
            $("#shop_add_modal").modal('hide');

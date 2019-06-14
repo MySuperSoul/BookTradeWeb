@@ -213,6 +213,7 @@
                                 </td>
                                 <td class="product-details text-center">
                                     <h3 class="title text-center">{{ order.book.book_name }}</h3>
+                                    <span class="text-center"><strong>订单号:  {{ order.id }}</strong> </span>
                                     <span class="text-center"><strong>出售价格:  {{ order.book.sell_price }}¥</strong> </span>
                                     <span class="text-center"><strong>购买数量:  {{ order.complete_book_num }}</strong> </span>
                                     <span class="text-center"><strong>总价:  {{ order.complete_price }}¥</strong></span>
@@ -222,6 +223,8 @@
                                     <span class="text-center">卖家: {{ order.sell_side.username }}</span>
                                     <span class="text-center">成交时间: {{ order.complete_time|date:"Y-m-d" }}</span>
                                     <span class="text-center">订单状态: {{ order.status }}</span>
+                                    <span class="text-center">配送地址: {{ order.post_address }}</span>
+                                    <span class="text-center">本人联系电话: {{ order.contact_phone }}</span>
                                 </td>
                             <td class="action" data-title="Action">
 									<div class="">
@@ -361,7 +364,6 @@
 <script src="{% static 'plugins/fancybox/jquery.fancybox.pack.js' %}"></script>
 <script src="{% static 'plugins/smoothscroll/SmoothScroll.min.js' %}"></script>
 <!-- google map -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
 <script src="{% static 'plugins/google-map/gmap.js' %}"></script>
 <script src="{% static 'js/script.js' %}"></script>
 <script src="{% static 'js/js.cookie-2.2.0.min.js' %}"></script>

@@ -38,7 +38,9 @@ class UserRegisterView(BaseView):
             email=request.data.get('email'),
         )
         user.save()
-        return 'Success Register, Goto Login!'
+        return {
+            'message' : 'Success Register, Goto Login!'
+        }
 
 class UserLogoutView(BaseView):
     def post(self, request):

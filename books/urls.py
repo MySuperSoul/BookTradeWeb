@@ -18,4 +18,5 @@ urlpatterns = [
     url(r'^api/add_to_shopping_car/$', views.AddToShoppingCarView.as_view(), name='add_to_shopping_car'),
     url(r'^show_books/(?P<category>.*)/$', views.ShowBooksByCategoryView.as_view(), name='show_books_by_category'),
     url(r'^shopping_car/$', views.MakeOfferView.as_view(), name='shopping_car'),
+    url(r'^search/$', views.ShowBooksByCategoryView.as_view(), name='search_books')
 ]

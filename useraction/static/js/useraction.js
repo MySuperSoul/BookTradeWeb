@@ -75,8 +75,10 @@ function Register() {
         success : function (data) {
             if (data.code === 1)
                 $("#message-field").html(GetMessage(data.error));
-            else
-                $("#message-field").html(GetSuccessMessage(data.data));
+            else {
+                $("#message-field").html(GetSuccessMessage(data.data.message));
+                window.location.href = "/auth/login/";
+            }
         }
     })
 }

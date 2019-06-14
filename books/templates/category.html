@@ -118,23 +118,17 @@
 			<div class="col-md-12">
 				<!-- Advance Search -->
 				<div class="advance-search">
-					<form>
-						<div class="form-row">
-							<div class="form-group col-md-4">
-								<input type="text" class="form-control my-2 my-lg-0" id="inputtext4" placeholder="What are you looking for">
-							</div>
-							<div class="form-group col-md-3">
-								<input type="text" class="form-control my-2 my-lg-0" id="inputCategory4" placeholder="Category">
-							</div>
-							<div class="form-group col-md-3">
-								<input type="text" class="form-control my-2 my-lg-0" id="inputLocation4" placeholder="Location">
-							</div>
-							<div class="form-group col-md-2">
-								
-								<button type="submit" class="btn btn-primary">Search Now</button>
-							</div>
-						</div>
-					</form>
+					<form method="get" action="{% url 'books:search_books' %}">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-group col-md-10">
+                                <input type="text" class="form-control my-2 my-lg-1 rounded" name="q" placeholder="输入关键字搜索，书名、发布者、ISBN">
+                            </div>
+                            <div class="form-group col-md-2 align-self-center">
+                                <button id="search-btn" class="btn btn-success">搜索🔍</button>
+                            </div>
+                        </div>
+                    </form>
 				</div>
 			</div>
 		</div>
@@ -145,8 +139,12 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="search-result bg-gray">
-					<h2>"{{ category }}图书分类如下："</h2>
-					<p>当前分类总计{{ books.count }}本旧书，当前日期：{% now "Y-m-d" %}</p>
+                    {% if category == '' %}
+                        <h2>"{{ origin_category }}搜索结果如下："</h2>
+                    {% else %}
+					    <h2>"{{ category }}图书分类如下："</h2>
+                    {% endif %}
+					<p>当前搜索总计{{ books.count }}本旧书，当前日期：{% now "Y-m-d" %}</p>
 				</div>
 			</div>
 		</div>
@@ -162,55 +160,15 @@
 	</ul>
 </div>
 
-<div class="widget category-list">
-	<h4 class="widget-header">Nearby</h4>
-	<ul class="category-list">
-		<li><a href="category.html">New York <span>93</span></a></li>
-		<li><a href="category.html">New Jersy <span>233</span></a></li>
-		<li><a href="category.html">Florida  <span>183</span></a></li>
-		<li><a href="category.html">California <span>120</span></a></li>
-		<li><a href="category.html">Texas <span>40</span></a></li>
-		<li><a href="category.html">Alaska <span>81</span></a></li>
-	</ul>
-</div>
-
 <div class="widget price-range w-100">
 	<h4 class="widget-header">价格范围</h4>
 	<div class="block">
-						<input class="range-track w-100" type="text" data-slider-min="0" data-slider-max="500" data-slider-step="5"
+						<input class="range-track w-100" type="text" id="price-control" data-slider-min="0" data-slider-max="500" data-slider-step="5"
 						data-slider-value="[0,500]">
 				<div class="d-flex justify-content-between mt-2">
-						<span class="value">$10 - $500</span>
+						<span class="value">¥10 - ¥500</span>
 				</div><br>
         <div align="center"> <button class="btn btn-success btn-block" id="price-filter-btn">filter</button></div>
-	</div>
-</div>
-
-<div class="widget product-shorting">
-	<h4 class="widget-header">By Condition</h4>
-	<div class="form-check">
-	  <label class="form-check-label">
-	    <input class="form-check-input" type="checkbox" value="">
-	    Brand New
-	  </label>
-	</div>
-	<div class="form-check">
-	  <label class="form-check-label">
-	    <input class="form-check-input" type="checkbox" value="">
-	    Almost New
-	  </label>
-	</div>
-	<div class="form-check">
-	  <label class="form-check-label">
-	    <input class="form-check-input" type="checkbox" value="">
-	    Gently New
-	  </label>
-	</div>
-	<div class="form-check">
-	  <label class="form-check-label">
-	    <input class="form-check-input" type="checkbox" value="">
-	    Havely New
-	  </label>
 	</div>
 </div>
 
@@ -438,7 +396,7 @@
 <script src="{% static 'plugins/fancybox/jquery.fancybox.pack.js' %}"></script>
 <script src="{% static 'plugins/smoothscroll/SmoothScroll.min.js' %}"></script>
 <!-- google map -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
+{#<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>#}
 <script src="{% static 'plugins/google-map/gmap.js' %}"></script>
 <script src="{% static 'js/script.js' %}"></script>
 <script src="{% static 'js/js.cookie-2.2.0.min.js' %}"></script>

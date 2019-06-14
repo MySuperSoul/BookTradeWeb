@@ -39,3 +39,21 @@ $("#sorting-select").change(function (e) {
     var sort = $(this).children('option:selected').val();
     window.location.href = current_url + '?sort=' + sort;
 });
+
+$("#price-filter-btn").click(function (w) {
+   var min_price = $("#price-control").val().split(',')[0];
+   var max_price = $("#price-control").val().split(',')[1];
+   current_url = window.location.href;
+   if (current_url.indexOf("min") !== -1){
+       var index = current_url.indexOf("min");
+       var url = current_url.substring(0, Number(index) - 1);
+       current_url = url;
+   }
+
+   if (current_url.indexOf('?') !== -1){
+       current_url += ('&min=' + min_price + '&max=' + max_price);
+   }else {
+       current_url += ('?min=' + min_price + '&max=' + max_price);
+   }
+   window.location.href = current_url;
+});

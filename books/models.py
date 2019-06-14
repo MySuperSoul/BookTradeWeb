@@ -63,6 +63,8 @@ class ShoppingCar(models.Model):
     book_owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='shopping_car')
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     added_number = models.IntegerField(default=0, blank=False)
+    address = models.TextField(blank=True)
+    contact_phone = models.TextField(blank=False, default='')
 
     def __str__(self):
         return self.book_owner.username + "_shopping_car_" + self.book.book_name
@@ -73,6 +75,7 @@ class BookOffer(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     sell_option = models.TextField(max_length=100, default='', blank=False)
     post_address = models.TextField(blank=True)
+    contact_phone = models.TextField(blank=False, default='')
     post_code = models.TextField(default='', blank=True)
     status = models.TextField(blank=True)
     complete_time = models.DateTimeField(auto_now_add=True)

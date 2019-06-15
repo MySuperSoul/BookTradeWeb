@@ -11,7 +11,9 @@ services:
        MYSQL_ROOT_PASSWORD: 'Rothyu980908'
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: ./scripts/start_server.sh
+    entrypoint: ./scripts/docker_entry.sh db 3306
+    restart: always
     ports:
       - "8000:8000"
     depends_on:

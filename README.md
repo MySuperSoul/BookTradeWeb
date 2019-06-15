@@ -29,9 +29,9 @@ BookTrade是一个用于旧书交易的网站，BS课程项目设计。
     `docker-compose -v` 检查是否安装成功
 ```
 
-- 部署方法: `./start_docker.sh`
-- 访问: `Your IP : 8000`,需要保证`8000`和`3305`两个端口不被占用，因为这是两个docker container映射到本机的端口
-- 移除container: `./stop_docker.sh`.
+- 部署方法: `./scripts/start_docker.sh`.可能需要等待20-30秒等待container中的MySQL和server开启。
+- 访问: `Your IP : 8000`,需要保证`8000`和`3000`两个端口不被占用，因为这是两个docker container映射到本机的端口
+- 移除container: `./scripts/stop_docker.sh`.
 
 <br>
 

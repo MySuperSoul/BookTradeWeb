@@ -85,4 +85,12 @@ class BookOffer(models.Model):
     def __str__(self):
         return self.buy_side.username + '_' + self.book.book_name
 
+class CreditAccount(models.Model):
+    account_owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='account')
+    account_money = models.IntegerField(default=100, blank=False)
+    create_time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.account_owner.username + "_credit_account"
+
 

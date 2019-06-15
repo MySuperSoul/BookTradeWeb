@@ -5,7 +5,7 @@ from django.urls import reverse
 from useraction.views import User
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .models import Book, Comment, ShoppingCar, BookOffer
+from .models import Book, Comment, ShoppingCar, BookOffer, CreditAccount
 from django.db.models import Count
 from django.contrib.auth import authenticate, login
 from bs4 import BeautifulSoup
@@ -41,10 +41,11 @@ class IndexView(BaseView):
         if request.user.is_authenticated:
             books = Book.objects.all()
             category_num_dict = dict(Category.GetCategoryBookNumberDict())
+            user = User.objects.filter(id=request.user.id)[0]
             return render(request, 'index.html', {
                 'books' : books,
                 'num_dict' : category_num_dict,
-                'user' : request.user
+                'user' : user
             })
         else:
             return HttpResponseRedirect('/auth/login/')
@@ -255,29 +256,35 @@ class MakeOfferView(BaseView):
         }
         return render(request, 'shopping_car.html', data)
 
-    # TODO add acount service in
     def OfferBooks(self, request):
         shopping_list = json.loads(request.data.get('values'))
         price = int(request.data.get('price'))
-        for item in shopping_list:
-            id = int(item)
-            shopping_item = ShoppingCar.objects.filter(id=id)[0]
-            order = BookOffer.objects.create(
-                sell_side=shopping_item.book.publisher_name,
-                buy_side=shopping_item.book_owner,
-                book=shopping_item.book,
-                sell_option=shopping_item.book.trade_way,
-                post_address=shopping_item.address,
-                status='complete',
-                complete_book_num=shopping_item.added_number,
-                complete_price=shopping_item.added_number * shopping_item.book.sell_price,
-                contact_phone=shopping_item.contact_phone,
-            )
-            order.save()
-            shopping_item.delete()
-            book = shopping_item.book
-            book.store_remain_num -= shopping_item.added_number
-            book.save()
+        account = CreditAccount.objects.filter(account_owner_id=request.user.id)[0]
+        if price > account.account_money:
+            raise Exception("账户余额不足，请及时充值")
+        else:
+            for item in shopping_list:
+                id = int(item)
+                shopping_item = ShoppingCar.objects.filter(id=id)[0]
+                order = BookOffer.objects.create(
+                    sell_side=shopping_item.book.publisher_name,
+                    buy_side=shopping_item.book_owner,
+                    book=shopping_item.book,
+                    sell_option=shopping_item.book.trade_way,
+                    post_address=shopping_item.address,
+                    status='complete',
+                    complete_book_num=shopping_item.added_number,
+                    complete_price=shopping_item.added_number * shopping_item.book.sell_price,
+                    contact_phone=shopping_item.contact_phone,
+                )
+                order.save()
+                shopping_item.delete()
+                book = shopping_item.book
+                book.store_remain_num -= shopping_item.added_number
+                book.save()
+
+                account.account_money -= price
+                account.save()
 
         return {
             'message' : '交易完成'
@@ -293,3 +300,14 @@ class MakeOfferView(BaseView):
             return self.OfferBooks(request)
         elif request.data.get('type') == 'delete':
             return self.DeleteShoppingCarItem(request)
+
+class CreditAddCountMoney(BaseView):
+    def post(self, request):
+        user = request.user
+        add_number = int(request.data.get('number'))
+        account = CreditAccount.objects.filter(account_owner_id=user.id)[0]
+        account.account_money += add_number
+        account.save()
+        return {
+            'number' : account.account_money
+        }

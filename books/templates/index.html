@@ -64,8 +64,33 @@
 								<!-- Dropdown list -->
 								<div class="dropdown-menu">
                                     <a class="dropdown-item" href="{% url 'books:profile' %}">个人中心<img src="{{ user.header_image.url }}" alt="" style="width: 45px;height: 45px;border-radius: 70px;">  </a>
+                                    <button class="dropdown-item" data-toggle="modal" data-target="#account_modal">我的资金账户</button>
 									<a class="dropdown-item" href="{% url 'useraction:logout' %}">退出</a>
 								</div>
+                                <div class="modal fade" id="account_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                 <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">
+                                                我的资金账户
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="member-time text-left" id="account-text"><strong>当前余额为：</strong>{{ user.account.first.account_money }} ¥</p>
+                                                <p class="member-time text-left">账户充值：</p>
+                                                <input type="number" class="form-control rounded" id="buy_number" name="buy_number" placeholder="充值金额">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-warning"
+                                                    data-dismiss="modal">关闭
+                                            </button>
+                                            <button type="button" class="btn btn-primary" id="add_account_btn">
+                                                确认充值
+                                            </button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div>
 							</li>
 							<li class="nav-item dropdown dropdown-slide">
 								<a class="nav-link dropdown-toggle" href="{% url 'books:user_books' %}">
@@ -491,7 +516,29 @@
 <script src="{% static 'plugins/google-map/gmap.js' %}"></script>
 <script src="{% static 'js/script.js' %}"></script>
 <script src="{% static 'js/js.cookie-2.2.0.min.js' %}"></script>
-
+<script type="text/javascript">
+    $("#add_account_btn").click(function (e) {
+       var add_number = $("#buy_number").val();
+       if (add_number === ''){
+           alert('充值金额不能为空');
+       } else {
+           $.ajax({
+               type : "post",
+               url : "/books/api/add_credit_account/",
+               async : true,
+               dataType : "json",
+               data : {
+                   'number' : Number(add_number)
+               },
+               success : function (data) {
+                   var html = "<strong>当前余额为：</strong>" + data.data.number + " ¥";
+                   $("#account-text").html(html);
+                   $("#buy_number").val('充值成功');
+               }
+           })
+       }
+    });
+</script>
 </body>
 
 </html>

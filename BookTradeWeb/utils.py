@@ -6,6 +6,8 @@ from collections import defaultdict
 from django.http import JsonResponse, HttpResponse
 from typing import Dict, Any, Callable, List
 from books.models import Book
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 
 def make_errors(msg: str) -> Dict[str, Any]:
     return {'error': msg, 'code': 1}
@@ -13,6 +15,7 @@ def make_errors(msg: str) -> Dict[str, Any]:
 def make_success(msg: str) -> Dict[str, Any]:
     return {'success': msg, 'code': 0}
 
+@method_decorator(csrf_exempt, name='dispatch')
 class BaseView(View):
     def dispatch(self, request, *args, **kwargs):
         self.request = request

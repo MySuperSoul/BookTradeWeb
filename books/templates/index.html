@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Classimax</title>
+  <title>书店主页</title>
   
   <!-- FAVICON -->
   <link href="{% static 'images/favicon.png' %}" rel="shortcut icon">
@@ -45,9 +45,6 @@
 		<div class="row">
 			<div class="col-md-12">
 				<nav class="navbar navbar-expand-lg navbar-light navigation">
-					<a class="navbar-brand" href="index.html">
-						<img src="{% static 'images/logo.png' %}" alt="">
-					</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -56,6 +53,9 @@
 						<ul class="navbar-nav ml-auto main-nav ">
 							<li class="nav-item active">
 								<a class="nav-link" href="{% url 'books:index' %}">主页</a>
+							</li>
+                            <li class="nav-item">
+								<a class="nav-link" href="{% url 'books:show_books_by_category' 'all' %}">旧书市场</a>
 							</li>
 							<li class="nav-item dropdown dropdown-slide">
 								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="">{{ user.username }}<span><i class="fa fa-angle-down"></i></span>
@@ -98,7 +98,7 @@
 								</a>
 							</li>
                             <li class="nav-item dropdown dropdown-slide">
-								<a class="nav-link dropdown-toggle" href="{% url 'books:user_books' %}">
+								<a class="nav-link dropdown-toggle" data-toggle="modal" data-target="#account_modal">
 									资金账户
 								</a>
 							</li>
@@ -188,7 +188,7 @@
 =            Popular deals section            =
 ============================================-->
 
-<section class="popular-deals section bg-gray">
+<section class="popular-deals section">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -203,14 +203,14 @@
 			<div class="col-lg-12">
 				<div class="trending-ads-slide">
                      {% for book in books%}
-					<div class="col-sm-12 col-lg-4">
+					<div class="col-sm-3 col-lg-3">
 						<!-- product card -->
 <div class="product-item bg-light">
 	<div class="card">
 		<div class="thumb-content">
 			<!-- <div class="price">$200</div> -->
 			<a href="{% url 'books:sell_single_book' book.id %}">
-				<img class="card-img-top img-fluid" src="{{ book.book_image.url }}" alt="Card image cap">
+				<img class="card-img-top img-fluid" style="width: 80%" src="{{ book.book_image.url }}" alt="Card image cap">
 			</a>
 		</div>
 		<div class="card-body">
@@ -221,6 +221,9 @@
 		    	</li>
 		    	<li class="list-inline-item">
 		    		<a href="#"><i class="fa fa-github"></i>{{ book.ISBN }}</a>
+		    	</li>
+                <li class="list-inline-item">
+                    <a href="#"><i class="fa fa-money"></i><strong>{{ book.sell_price }} ¥</strong></a>
 		    	</li>
 		    </ul>
 		    <p class="card-text">{{ book.book_introduction | truncatechars:60 }}</p>
@@ -250,13 +253,100 @@
 	</div>
 </section>
 
+<section class="section bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>最新上架旧书📚</h2>
+                    <p><a href="{% url 'books:show_books_by_category' 'all' %}">更多</a> </p>
+                </div>
+                <div class="row">
+                    {% for book in newest_books %}
+                        <div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
+                            <div class="category-block">
+                                <div class="header">
+                                    <a href="{% url 'books:sell_single_book' book.id %}">
+                                        <img src="{{ book.book_image.url }}" alt="" class="card-img-top img-fluid" style="width: 90%">
+                                    </a>
+                                    <h4><a href="{% url 'books:sell_single_book' book.id %}">{{ book.book_name }}</a></h4>
+                                </div>
+                                <ul class="category-list" >
+                                    <li><a href="" class="text-center">原价：{{ book.origin_price }} ¥&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现价：{{ book.sell_price }} ¥</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>最受欢迎的旧书📖</h2>
+                    <p><a href="{% url 'books:show_books_by_category' 'all' %}">更多</a> </p>
+                </div>
+                <div class="row">
+                    {% for book in popular_books %}
+                        <div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
+                            <div class="category-block">
+                                <div class="header">
+                                    <a href="{% url 'books:sell_single_book' book.id %}">
+                                        <img src="{{ book.book_image.url }}" alt="" class="card-img-top img-fluid" style="width: 90%">
+                                    </a>
+                                    <h4><a href="{% url 'books:sell_single_book' book.id %}">{{ book.book_name }}</a></h4>
+                                </div>
+                                <ul class="category-list" >
+                                    <li><a href="" class="text-center">原价：{{ book.origin_price }} ¥&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现价：{{ book.sell_price }} ¥</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
+<section class="section bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>实惠书籍📚</h2>
+                    <p><a href="{% url 'books:show_books_by_category' 'all' %}">更多</a> </p>
+                </div>
+                <div class="row">
+                    {% for book in cheap_books %}
+                        <div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
+                            <div class="category-block">
+                                <div class="header">
+                                    <a href="{% url 'books:sell_single_book' book.id %}">
+                                        <img src="{{ book.book_image.url }}" alt="" class="card-img-top img-fluid" style="width: 90%">
+                                    </a>
+                                    <h4><a href="{% url 'books:sell_single_book' book.id %}">{{ book.book_name }}</a></h4>
+                                </div>
+                                <ul class="category-list" >
+                                    <li><a href="" class="text-center">原价：{{ book.origin_price }} ¥&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现价：{{ book.sell_price }} ¥</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <!--==========================================
 =            All Category Section            =
 ===========================================-->
 
-<section class=" section">
+<section class="section">
 	<!-- Container Start -->
 	<div class="container">
 		<div class="row">
@@ -427,40 +517,27 @@
         <!-- About -->
         <div class="block about">
           <!-- footer logo -->
-          <img src="images/logo-footer.png" alt="">
           <!-- description -->
-          <p class="alt-color">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-            laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <p class="alt-color">友情相关链接🔗</p>
         </div>
       </div>
       <!-- Link list -->
-      <div class="col-lg-2 offset-lg-1 col-md-3">
+      <div class="col-lg-4 offset-lg-1 col-md-4">
         <div class="block">
-          <h4>Site Pages</h4>
           <ul>
-            <li><a href="#">Boston</a></li>
-            <li><a href="#">How It works</a></li>
-            <li><a href="#">Deals & Coupons</a></li>
-            <li><a href="#">Articls & Tips</a></li>
-            <li><a href="terms-condition.html">Terms & Conditions</a></li>
+            <li><a href="https://github.com" target="_blank"><i class="fa fa-github"></i> Github</a></li>
+            <li><a href="http://www.kongfz.com/" target="_blank"><i class="fa fa-language"></i> 孔夫子旧书网</a></li>
+            <li><a href="https://www.jiushujie.com/home" target="_blank"><i class="fa fa-bank"></i> 旧书街</a></li>
           </ul>
         </div>
       </div>
       <!-- Link list -->
       <div class="col-lg-2 col-md-3 offset-md-1 offset-lg-0">
         <div class="block">
-          <h4>Admin Pages</h4>
           <ul>
-            <li><a href="category.html">Category</a></li>
-            <li><a href="single.html">Single Page</a></li>
-            <li><a href="store.html">Store Single</a></li>
-            <li><a href="single-blog.html">Single Post</a>
-            </li>
-            <li><a href="blog.html">Blog</a></li>
-
-
-
+            <li><a href="http://www.dangdang.com/" target="_blank"><i class="fa fa-male"></i> 当当网</a></li>
+            <li><a href="https://www.jd.com/" target="_blank"><i class="fa fa-bed"></i> 京东</a></li>
+            <li><a href="https://www.amazon.cn/" target="_blank"><i class="fa fa-beer"></i> 亚马逊</a></li>
           </ul>
         </div>
       </div>
@@ -468,7 +545,6 @@
   </div>
   <!-- Container End -->
 </footer>
-<!-- Footer Bottom -->
 <footer class="footer-bottom">
   <!-- Container Start -->
   <div class="container">
@@ -476,19 +552,19 @@
       <div class="col-sm-6 col-12">
         <!-- Copyright -->
         <div class="copyright">
+          <p>Old Books Trade Website for BS course.</p><br>
           <p>Copyright © <script>
               var CurrentYear = new Date().getFullYear();
               document.write(CurrentYear)
-            </script>. All Rights Reserved, theme by <a class="text-primary" href="https://themefisher.com" target="_blank">themefisher.com</a></p>
+            </script>. All Rights Reserved by <strong>Huangyifei</strong>, <br>See my github <a class="text-primary" href="https://github.com/MySuperSoul" target="_blank">Rothyu.</a></p>
         </div>
       </div>
       <div class="col-sm-6 col-12">
         <!-- Social Icons -->
         <ul class="social-media-icons text-right">
-          <li><a class="fa fa-facebook" href="https://www.facebook.com/themefisher" target="_blank"></a></li>
-          <li><a class="fa fa-twitter" href="https://www.twitter.com/themefisher" target="_blank"></a></li>
-          <li><a class="fa fa-pinterest-p" href="https://www.pinterest.com/themefisher" target="_blank"></a></li>
-          <li><a class="fa fa-vimeo" href=""></a></li>
+          <li><a class="fa fa-github" href="https://github.com/MySuperSoul" target="_blank"></a></li>
+          <li><a class="fa fa-wikipedia-w" href="https://mysupersoul.github.io" target="_blank"></a></li>
+          <li><a class="fa fa-envelope" href="mailto:huangyifei0910@gmail.com" target="_blank"></a></li>
         </ul>
       </div>
     </div>

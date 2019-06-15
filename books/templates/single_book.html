@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Classimax</title>
+  <title>{{ single_book.book_name }}</title>
 
   <!-- FAVICON -->
   <link href="{% static 'images/favicon.png' %}" rel="shortcut icon">
@@ -58,128 +58,6 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-
-  <style type="text/css">
-        * {
-            -ms-word-wrap: break-word;
-            word-wrap: break-word;
-        }
-
-        html {
-            -webkit-text-size-adjust: none;
-        }
-
-        html, body {
-            height: 99%;
-            width: 99%;
-        }
-
-        .wrap {
-            width: 464px;
-            height: 34px;
-            margin: 20px auto;
-            border: 0;
-            position: relative;
-        }
-
-        .input {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 457px;
-            margin: 0;
-            padding-left: 5px;
-            height: 30px;
-            line-height: 30px;
-            font-size: 12px;
-            border: 1px solid #c9cacb;
-        }
-
-        s {
-            position: absolute;
-            top: 1px;
-            right: 0;
-            width: 32px;
-            height: 32px;
-            background: url("{% static 'images/arrow.png' %}") no-repeat;
-        }
-
-        ._citys {
-            width: 450px;
-            display: inline-block;
-            border: 2px solid #eee;
-            padding: 5px;
-            position: relative;
-        }
-
-            ._citys span {
-                color: #05920a;
-                height: 15px;
-                width: 15px;
-                line-height: 15px;
-                text-align: center;
-                border-radius: 3px;
-                position: absolute;
-                right: 10px;
-                top: 10px;
-                border: 1px solid #05920a;
-                cursor: pointer;
-            }
-
-        ._citys0 {
-            width: 95%;
-            height: 34px;
-            line-height: 34px;
-            display: inline-block;
-            border-bottom: 2px solid #05920a;
-            padding: 0px 5px;
-            font-size: 14px;
-            font-weight: bold;
-            margin-left: 6px;
-        }
-
-            ._citys0 li {
-                display: inline-block;
-                line-height: 34px;
-                font-size: 15px;
-                color: #888;
-                width: 80px;
-                text-align: center;
-                cursor: pointer;
-            }
-
-        ._citys1 {
-            width: 100%;
-            display: inline-block;
-            padding: 10px 0;
-        }
-
-            ._citys1 a {
-                width: 83px;
-                height: 35px;
-                display: inline-block;
-                background-color: #f5f5f5;
-                color: #666;
-                margin-left: 6px;
-                margin-top: 3px;
-                line-height: 35px;
-                text-align: center;
-                cursor: pointer;
-                font-size: 12px;
-                border-radius: 5px;
-                overflow: hidden;
-            }
-
-                ._citys1 a:hover {
-                    color: #fff;
-                    background-color: #05920a;
-                }
-
-        .AreaS {
-            background-color: #05920a !important;
-            color: #fff !important;
-        }
-    </style>
 </head>
 
 <body class="body-wrapper">
@@ -189,9 +67,6 @@
 		<div class="row">
 			<div class="col-md-12">
 				<nav class="navbar navbar-expand-lg navbar-light navigation">
-					<a class="navbar-brand" href="index.html">
-						<img src="images/logo.png" alt="">
-					</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -199,88 +74,67 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav ml-auto main-nav ">
 							<li class="nav-item active">
-								<a class="nav-link" href="index.html">Home</a>
+								<a class="nav-link" href="{% url 'books:index' %}">主页</a>
+							</li>
+                            <li class="nav-item">
+								<a class="nav-link" href="{% url 'books:show_books_by_category' 'all' %}">旧书市场</a>
 							</li>
 							<li class="nav-item dropdown dropdown-slide">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="">Dashboard<span><i class="fa fa-angle-down"></i></span>
+								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="">{{ user.username }}<span><i class="fa fa-angle-down"></i></span>
 								</a>
 
 								<!-- Dropdown list -->
 								<div class="dropdown-menu">
-									<a class="dropdown-item" href="dashboard.html">Dashboard</a>
-									<a class="dropdown-item" href="dashboard-my-ads.html">Dashboard My Ads</a>
-									<a class="dropdown-item" href="dashboard-favourite-ads.html">Dashboard Favourite Ads</a>
-									<a class="dropdown-item" href="dashboard-archived-ads.html">Dashboard Archived Ads</a>
-									<a class="dropdown-item" href="dashboard-pending-ads.html">Dashboard Pending Ads</a>
+                                    <a class="dropdown-item" href="{% url 'books:profile' %}">个人中心<img src="{{ user.header_image.url }}" alt="" style="width: 45px;height: 45px;border-radius: 70px;">  </a>
+                                    <button class="dropdown-item" data-toggle="modal" data-target="#account_modal">我的资金账户</button>
+									<a class="dropdown-item" href="{% url 'useraction:logout' %}">退出</a>
 								</div>
+                                <div class="modal fade" id="account_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                 <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">
+                                                我的资金账户
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="member-time text-left" id="account-text"><strong>当前余额为：</strong>{{ user.account.first.account_money }} ¥</p>
+                                                <p class="member-time text-left">账户充值：</p>
+                                                <input type="number" class="form-control rounded" id="buy_number" name="buy_number" placeholder="充值金额">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-warning"
+                                                    data-dismiss="modal">关闭
+                                            </button>
+                                            <button type="button" class="btn btn-primary" id="add_account_btn">
+                                                确认充值
+                                            </button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div>
 							</li>
 							<li class="nav-item dropdown dropdown-slide">
-								<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Pages <span><i class="fa fa-angle-down"></i></span>
+								<a class="nav-link dropdown-toggle" href="{% url 'books:user_books' %}">
+									我发布的旧书
 								</a>
-								<!-- Dropdown list -->
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="about-us.html">About Us</a>
-									<a class="dropdown-item" href="contact-us.html">Contact Us</a>
-									<a class="dropdown-item" href="user-profile.html">User Profile</a>
-									<a class="dropdown-item" href="404.html">404 Page</a>
-									<a class="dropdown-item" href="package.html">Package</a>
-									<a class="dropdown-item" href="single.html">Single Page</a>
-									<a class="dropdown-item" href="store.html">Store Single</a>
-									<a class="dropdown-item" href="single-blog.html">Single Post</a>
-									<a class="dropdown-item" href="blog.html">Blog</a>
-
-								</div>
 							</li>
-							<li class="nav-item dropdown dropdown-slide">
-								<a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Listing <span><i class="fa fa-angle-down"></i></span>
+                            <li class="nav-item dropdown dropdown-slide">
+								<a class="nav-link dropdown-toggle" data-toggle="modal" data-target="#account_modal">
+									资金账户
 								</a>
-								<!-- Dropdown list -->
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="category.html">Ad-Gird View</a>
-									<a class="dropdown-item" href="ad-listing-list.html">Ad-List View</a>
-								</div>
 							</li>
 						</ul>
 						<ul class="navbar-nav ml-auto mt-10">
-							<li class="nav-item">
-								<a class="nav-link login-button" href="{% url 'useraction:logout' %}">Logout</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link text-white add-button" href="ad-listing.html"><i class="fa fa-plus-circle"></i> Add Listing</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'books:shopping_car' %}"><i class="fa fa-shopping-cart" style="width: auto"></i>购物车 </a>
+                            </li>
+                            <li class="nav-item">
+								<a class="nav-link login-button rounded-circle" href="{% url 'useraction:logout' %}">注销</a>
 							</li>
 						</ul>
 					</div>
 				</nav>
-			</div>
-		</div>
-	</div>
-</section>
-<section class="page-search">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<!-- Advance Search -->
-				<div class="advance-search">
-					<form>
-						<div class="form-row">
-							<div class="form-group col-md-4">
-								<input type="text" class="form-control my-2 my-lg-0" id="inputtext4" placeholder="What are you looking for">
-							</div>
-							<div class="form-group col-md-3">
-								<input type="text" class="form-control my-2 my-lg-0" id="inputCategory4" placeholder="Category">
-							</div>
-							<div class="form-group col-md-3">
-								<input type="text" class="form-control my-2 my-lg-0" id="inputLocation4" placeholder="Location">
-							</div>
-							<div class="form-group col-md-2">
-
-								<button type="submit" class="btn btn-primary">Search Now</button>
-							</div>
-						</div>
-					</form>
-				</div>
 			</div>
 		</div>
 	</div>
@@ -450,7 +304,7 @@
 
                         {% if User %}
 						<ul class="list-inline mt-20">
-							<li class="list-inline-item"><a href="" class="btn btn-contact d-inline-block  btn-primary px-lg-5 my-1 px-md-3">Contact</a></li>
+							<li class="list-inline-item"><a href="" class="btn btn-contact d-inline-block  btn-primary px-lg-5 my-1 px-md-3">联系他</a></li>
                             <li class="list-inline-item"><button data-toggle="modal" data-target="#shop_add_modal" class="btn btn-offer d-inline-block btn-primary ml-n1 my-1 px-lg-4 px-md-3">添加购物车🛒</button></li>
 						</ul>
                         <div class="modal fade" id="shop_add_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -462,14 +316,14 @@
                                         </h4>
                                     </div>
                                     <div class="modal-body">
-                                        <p class="member-time text-left"><strong>配送方式：</strong>{{ single_book.trade_way }}</p>
+                                        <p class="member-time text-left"><strong>配送方式：</strong>{% if single_book.trade_way == 'online' %}邮寄{% else %}线下交易{% endif %}</p>
                                         <p class="member-time text-left"><strong>库存：</strong>{{ single_book.store_remain_num }}</p>
                                         <p class="member-time text-left"><strong>服务：</strong>由“{{ single_book.publisher_name.username }}”发货.明日09:15前完成下单，预计明天可送达</p>
                                         <div class="input-group">
                                             <input type="number" class="form-control rounded" id="buy_number" name="buy_number" placeholder="购买数量">
                                         </div><br>
                                         <div class="input-group">
-                                            <input type="text" class="form-control rounded" id="buy_address" name="buy_address" placeholder="收货地址">
+                                            <input type="text" class="form-control rounded" id="buy_address" name="buy_address" placeholder="{% if single_book.trade_way == 'online' %}收货地址{% else %}线下交易地址{% endif %}">
                                         </div><br>
                                         <div class="input-group">
                                             <input type="text" class="form-control rounded" id="buy_phone" name="buy_phone" placeholder="联系方式">
@@ -496,26 +350,6 @@
 							<div id="map_canvas"></div>
 						</div>
 					</div>
-					<!-- Safety tips widget -->
-					<div class="widget disclaimer">
-						<h5 class="widget-header">Safety Tips</h5>
-						<ul>
-							<li>Meet seller at a public place</li>
-							<li>Check the item before you buy</li>
-							<li>Pay only after collecting the item</li>
-							<li>Pay only after collecting the item</li>
-						</ul>
-					</div>
-					<!-- Coupon Widget -->
-					<div class="widget coupon text-center">
-						<!-- Coupon description -->
-						<p>Have a great product to post ? Share it with
-							your fellow users.
-						</p>
-						<!-- Submii button -->
-						<a href="" class="btn btn-transparent-white">Submit Listing</a>
-					</div>
-
 				</div>
 			</div>
 
@@ -535,65 +369,34 @@
         <!-- About -->
         <div class="block about">
           <!-- footer logo -->
-          <img src="images/logo-footer.png" alt="">
           <!-- description -->
-          <p class="alt-color">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-            laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <p class="alt-color">友情相关链接🔗</p>
         </div>
       </div>
       <!-- Link list -->
-      <div class="col-lg-2 offset-lg-1 col-md-3">
+      <div class="col-lg-4 offset-lg-1 col-md-4">
         <div class="block">
-          <h4>Site Pages</h4>
           <ul>
-            <li><a href="#">Boston</a></li>
-            <li><a href="#">How It works</a></li>
-            <li><a href="#">Deals & Coupons</a></li>
-            <li><a href="#">Articls & Tips</a></li>
-            <li><a href="terms-condition.html">Terms & Conditions</a></li>
+            <li><a href="https://github.com" target="_blank"><i class="fa fa-github"></i> Github</a></li>
+            <li><a href="http://www.kongfz.com/" target="_blank"><i class="fa fa-language"></i> 孔夫子旧书网</a></li>
+            <li><a href="https://www.jiushujie.com/home" target="_blank"><i class="fa fa-bank"></i> 旧书街</a></li>
           </ul>
         </div>
       </div>
       <!-- Link list -->
       <div class="col-lg-2 col-md-3 offset-md-1 offset-lg-0">
         <div class="block">
-          <h4>Admin Pages</h4>
           <ul>
-            <li><a href="category.html">Category</a></li>
-            <li><a href="single.html">Single Page</a></li>
-            <li><a href="store.html">Store Single</a></li>
-            <li><a href="single-blog.html">Single Post</a>
-            </li>
-            <li><a href="blog.html">Blog</a></li>
-
-
-
+            <li><a href="http://www.dangdang.com/" target="_blank"><i class="fa fa-male"></i> 当当网</a></li>
+            <li><a href="https://www.jd.com/" target="_blank"><i class="fa fa-bed"></i> 京东</a></li>
+            <li><a href="https://www.amazon.cn/" target="_blank"><i class="fa fa-beer"></i> 亚马逊</a></li>
           </ul>
-        </div>
-      </div>
-      <!-- Promotion -->
-      <div class="col-lg-4 col-md-7">
-        <!-- App promotion -->
-        <div class="block-2 app-promotion">
-          <div class="mobile d-flex">
-            <a href="">
-              <!-- Icon -->
-              <img src="images/footer/phone-icon.png" alt="mobile-icon">
-            </a>
-            <p>Get the Dealsy Mobile App and Save more</p>
-          </div>
-          <div class="download-btn d-flex my-3">
-            <a href="#"><img src="images/apps/google-play-store.png" class="img-fluid" alt=""></a>
-            <a href="#" class=" ml-3"><img src="images/apps/apple-app-store.png" class="img-fluid" alt=""></a>
-          </div>
         </div>
       </div>
     </div>
   </div>
   <!-- Container End -->
 </footer>
-<!-- Footer Bottom -->
 <footer class="footer-bottom">
   <!-- Container Start -->
   <div class="container">
@@ -601,19 +404,19 @@
       <div class="col-sm-6 col-12">
         <!-- Copyright -->
         <div class="copyright">
+          <p>Old Books Trade Website for BS course.</p><br>
           <p>Copyright © <script>
-              var CurrentYear = new Date().getFullYear()
+              var CurrentYear = new Date().getFullYear();
               document.write(CurrentYear)
-            </script>. All Rights Reserved, theme by <a class="text-primary" href="https://themefisher.com" target="_blank">themefisher.com</a></p>
+            </script>. All Rights Reserved by <strong>Huangyifei</strong>, <br>See my github <a class="text-primary" href="https://github.com/MySuperSoul" target="_blank">Rothyu.</a></p>
         </div>
       </div>
       <div class="col-sm-6 col-12">
         <!-- Social Icons -->
         <ul class="social-media-icons text-right">
-          <li><a class="fa fa-facebook" href="https://www.facebook.com/themefisher" target="_blank"></a></li>
-          <li><a class="fa fa-twitter" href="https://www.twitter.com/themefisher" target="_blank"></a></li>
-          <li><a class="fa fa-pinterest-p" href="https://www.pinterest.com/themefisher" target="_blank"></a></li>
-          <li><a class="fa fa-vimeo" href=""></a></li>
+          <li><a class="fa fa-github" href="https://github.com/MySuperSoul" target="_blank"></a></li>
+          <li><a class="fa fa-wikipedia-w" href="https://mysupersoul.github.io" target="_blank"></a></li>
+          <li><a class="fa fa-envelope" href="mailto:huangyifei0910@gmail.com" target="_blank"></a></li>
         </ul>
       </div>
     </div>
@@ -656,6 +459,28 @@
         });
         geolocation.getCurrentPosition();
         map.addControl(geolocation);
+    });
+
+    $("#add_account_btn").click(function (e) {
+       var add_number = $("#buy_number").val();
+       if (add_number === ''){
+           alert('充值金额不能为空');
+       } else {
+           $.ajax({
+               type : "post",
+               url : "/books/api/add_credit_account/",
+               async : true,
+               dataType : "json",
+               data : {
+                   'number' : Number(add_number)
+               },
+               success : function (data) {
+                   var html = "<strong>当前余额为：</strong>" + data.data.number + " ¥";
+                   $("#account-text").html(html);
+                   $("#buy_number").val('充值成功');
+               }
+           })
+       }
     });
 </script>
 </body>

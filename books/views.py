@@ -15,6 +15,7 @@ import requests, json
 class Util():
     max_page_item = 3
     category_max_page_item = 9
+    book_show_max_item = 8
 
 def GetISBNLink(request, ISBN):
     search_url = 'http://search.dangdang.com/?key={0}&act=input'.format(ISBN)
@@ -37,6 +38,15 @@ def GetISBNLink(request, ISBN):
         })
 
 class IndexView(BaseView):
+    def GetNewestBooks(self, books):
+        return books.order_by("-publish_time")[:Util.book_show_max_item]
+
+    def GetPopularBooks(self, books):
+        return books.annotate(comment_num=Count('comment')).order_by('-comment_num')[:Util.book_show_max_item]
+
+    def GetCheapBooks(self, books):
+        return books.order_by("sell_price")[:Util.book_show_max_item]
+
     def get(self, request):
         if request.user.is_authenticated:
             books = Book.objects.all()
@@ -44,6 +54,9 @@ class IndexView(BaseView):
             user = User.objects.filter(id=request.user.id)[0]
             return render(request, 'index.html', {
                 'books' : books,
+                'newest_books' : self.GetNewestBooks(books),
+                'popular_books' : self.GetPopularBooks(books),
+                'cheap_books' : self.GetCheapBooks(books),
                 'num_dict' : category_num_dict,
                 'user' : user
             })

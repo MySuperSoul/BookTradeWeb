@@ -8,8 +8,6 @@ services:
       - "3000:3306"
     environment:
        MYSQL_DATABASE: 'booktrade'
-       MYSQL_USER: 'root'
-       MYSQL_PASSWORD: 'Rothyu980908'
        MYSQL_ROOT_PASSWORD: 'Rothyu980908'
   web:
     build: .

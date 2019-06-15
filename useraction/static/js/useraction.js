@@ -4,6 +4,12 @@ function csrfSafeMethod(method) {
 }
 
 var csrftoken = Cookies.get('csrftoken');
+
+if (typeof(csrftoken) === "undefined" || typeof (csrftoken) === null){
+    csrftoken = $("input:hidden[name=csrfmiddlewaretoken]").val();
+    Cookies.set('csrftoken', csrftoken);
+}
+
 console.log(csrftoken);
 $.ajaxSetup({
     beforeSend: function(xhr, settings) {

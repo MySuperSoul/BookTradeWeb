@@ -70,6 +70,7 @@ body{
                 <div class="border bg-white">
                     <h3 class="bg-gray p-4">旧书交易网站登录</h3>
                         <fieldset class="p-4">
+                            {% csrf_token %}
                             <input type="text" placeholder="用户名" class="border p-3 w-100 my-2 rounded" id="username_login">
                             <input type="password" placeholder="密码" class="border p-3 w-100 my-2 rounded" id="password_login">
                             <div class="loggedin-forgot">
@@ -138,6 +139,7 @@ body{
 <script src="{% static 'plugins/google-map/gmap.js' %}"></script>
 <script src="{% static 'js/script.js' %}"></script>
 <script src="{% static 'js/js.cookie-2.2.0.min.js' %}"></script>
+
 <script src="{% static 'js/useraction.js' %}"></script>
 </body>
 

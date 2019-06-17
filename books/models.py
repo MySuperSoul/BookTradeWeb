@@ -20,11 +20,12 @@ class Book(models.Model):
     category = models.CharField(max_length=100, blank=False)
     book_introduction = models.TextField(default='', blank=True)
     book_image = models.ImageField(upload_to=RenameBookImagePath, storage=OverWriteStorage(), default='/headers/default.jpg')
-    ISBN = models.CharField(max_length=100, blank=False)
-    book_url = models.URLField(max_length=100, blank=True)
+    ISBN = models.CharField(max_length=100, blank=True, default='')
+    book_url = models.URLField(max_length=100, blank=True, default='')
     store_remain_num = models.IntegerField(default=0)
-    trade_way = models.CharField(max_length=100, default='', blank=False)
+    trade_way = models.CharField(max_length=100, default='', blank=True)
     publish_time = models.DateTimeField(auto_now_add=True)
+    book_status = models.IntegerField(blank=False, default=0) # 0 for sell, 1 for buy
 
     def __str__(self):
         return self.book_name
@@ -93,4 +94,9 @@ class CreditAccount(models.Model):
     def __str__(self):
         return self.account_owner.username + "_credit_account"
 
+class BookNeed(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='book_need')
+    message = models.TextField(default='', blank=True)
 
+    def __str__(self):
+        return self.book.book_name + "_need_" + self.book.publisher_name.username

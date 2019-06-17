@@ -56,6 +56,9 @@
                             <li class="nav-item">
 								<a class="nav-link" href="{% url 'books:show_books_by_category' 'all' %}">旧书市场</a>
 							</li>
+                            <li class="nav-item">
+								<a class="nav-link" href="{% url 'books:show_books_by_category' 'all' %}">求购市场</a>
+							</li>
 							<li class="nav-item dropdown dropdown-slide">
 								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="">{{ user.username }}<span><i class="fa fa-angle-down"></i></span>
 								</a>
@@ -119,7 +122,7 @@
             <fieldset class="border bg-white border-gray p-4 mb-5">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h3>发布旧书</h3>
+                            <h3>{% if option == 'sell' %}发布旧书{% else %}发布求购书籍📚{% endif %}</h3>
                         </div>
                         <div class="col-lg-6">
                             <h6 class="font-weight-bold pt-4 pb-1">旧书书名</h6>
@@ -151,13 +154,15 @@
                                             id="origin_price">
                                     </div>
                                     <div class="col-lg-3 mr-lg-4 rounded border border-gray my-2 ">
-                                        <input type="number" name="current_price" class="border-0 py-2 w-100 price" placeholder="卖价"
+                                        <input type="number" name="current_price" class="border-0 py-2 w-100 price" placeholder="{% if option == 'sell' %}卖价{% else %}期望价{% endif %}"
                                                id="current_price">
                                     </div>
-                                    <div class="col-lg-3 mr-lg-4 rounded border border-gray my-2 ">
-                                        <input type="number" name="store_num" class="border-0 py-2 w-100 price" placeholder="库存"
-                                               id="store_num">
-                                    </div>
+                                    {% if option == 'sell' %}
+                                        <div class="col-lg-3 mr-lg-4 rounded border border-gray my-2 ">
+                                            <input type="number" name="store_num" class="border-0 py-2 w-100 price" placeholder="库存"
+                                                   id="store_num">
+                                        </div>
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="url">
@@ -180,25 +185,27 @@
             <fieldset class="border p-4 my-5 seller-information bg-white">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h3>卖家信息确认</h3>
+                        <h3>信息确认</h3>
                     </div>
                     <div class="col-lg-6">
                         <h6 class="font-weight-bold rounded pt-4 pb-1">用户名</h6>
-                        <input type="text" value="{{ user.username }}" class="border rounded w-100 p-2">
+                        <input type="text" value="{{ user.username }}" class="border rounded w-100 p-2" disabled="disabled">
                         <h6 class="font-weight-bold rounded pt-4 pb-1">电话</h6>
-                        <input type="text" value="{{ user.telephone }}" class="border rounded w-100 p-2">
+                        <input type="text" value="{{ user.telephone }}" class="border rounded w-100 p-2" disabled="disabled">
                     </div>
                     <div class="col-lg-6">
                         <h6 class="font-weight-bold rounded pt-4 pb-1">邮箱</h6>
-                        <input type="email" value="{{ user.email }}" class="border rounded w-100 p-2">
+                        <input type="email" value="{{ user.email }}" class="border rounded w-100 p-2 disabled" disabled="disabled">
                         <h6 class="font-weight-bold rounded pt-4 pb-1">地址</h6>
-                        <input type="text" value="{{ user.address }}" class="border rounded w-100 p-2">
+                        <input type="text" value="{{ user.address }}" class="border rounded w-100 p-2 disabled" disabled="disabled">
                     </div>
                 </div>
             </fieldset>
             <!-- seller-information end-->
 
             <!-- ad-feature start -->
+            {% if option == 'sell' %}
+
             <fieldset class="border bg-white p-4 my-5 ad-feature bg-gray">
                 <div class="row">
                     <div class="col-lg-12">
@@ -220,16 +227,25 @@
                     </div>
                 </div>
             </fieldset>
+        {% else %}
             <!-- ad-feature start -->
-
+            <fieldset class="border bg-white p-4 my-5 ad-feature bg-gray">
+                <div class="row">
+                    <div class="col-lg-6 my-3">
+                        <span class="mb-3 d-block">相关留言</span>
+                        <input type="text" name="message" id="message" class="border rounded p-2 w-100 bg-white" placeholder="你的留言">
+                    </div>
+                </div>
+            </fieldset>
+        {% endif %}
             <!-- submit button -->
             <div class="checkbox d-inline-flex">
                 <input type="checkbox" id="terms-&-condition" class="mt-1">
                 <label for="terms-&-condition" class="ml-2">点击代表你必须遵循
-                    <span> <a class="text-success" href="">我们的条款和相关的发货规则</a></span>
+                    <span> <a class="text-success" href="">我们的条款和相关的规则</a></span>
                 </label>
             </div>
-            <button type="submit" class="btn btn-primary d-block mt-2">添加待交易书籍</button>
+            <button type="submit" class="btn btn-primary d-block mt-2">{% if option == 'sell' %}添加待交易书籍{% else %}添加要求购的书籍{% endif %}</button>
         </form>
     </div>
 </section>

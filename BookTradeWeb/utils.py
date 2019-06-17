@@ -70,11 +70,11 @@ class Category():
         return cls.category_dict.get(key)
 
     @classmethod
-    def GetCategoryBookNumberDict(cls):
+    def GetCategoryBookNumberDict(cls, book_status):
         number_dict = defaultdict(lambda : 0)
         for (category, dbcategory) in cls.category_dict.items():
-            number_dict[category] = Book.objects.filter(category=dbcategory).count()
-        number_dict['all'] = Book.objects.all().count()
+            number_dict[category] = Book.objects.filter(category=dbcategory, book_status=book_status).count()
+        number_dict['all'] = Book.objects.all().filter(book_status=book_status).count()
         return number_dict
 
 class SortingUtil():

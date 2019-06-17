@@ -56,6 +56,9 @@
                             <li class="nav-item">
 								<a class="nav-link" href="{% url 'books:show_books_by_category' 'all' %}">旧书市场</a>
 							</li>
+                            <li class="nav-item">
+								<a class="nav-link" href="{% url 'books:show_books_by_category' 'all' %}">求购市场</a>
+							</li>
 							<li class="nav-item dropdown dropdown-slide">
 								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="">{{ user.username }}<span><i class="fa fa-angle-down"></i></span>
 								</a>
@@ -134,7 +137,8 @@
 							<li><a class="my-1 d-inline-block" href="{% url 'books:user_books' %}">发布的旧书<span>({{ user.book_set.count }})</span></a></li>
 							<li><a class="my-1 d-inline-block" href="{% url 'books:shopping_car' %}">完成订单 <span>({{ user.buy_book_side.count }})</span></a></li>
                             <li><a class="my-1 d-inline-block" href="">账户余额： <span>{{ user.account.first.account_money }} ¥</span></a></li>
-                            <li><a class="my-1 d-inline-block" href="{% url 'books:add_list' %}">添加旧书</a> </li>
+                            <li><a class="my-1 d-inline-block" href="{% url 'books:add_list' %}?option=sell">添加出售旧书</a> </li>
+                            <li><a class="my-1 d-inline-block" href="{% url 'books:add_list'%}?option=buy"> <span>添加求购旧书</span></a></li>
 						</ul>
 					</div>
 				</div>

@@ -5,7 +5,7 @@ from django.urls import reverse
 from useraction.views import User
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .models import Book, Comment, ShoppingCar, BookOffer, CreditAccount
+from .models import Book, Comment, ShoppingCar, BookOffer, CreditAccount, BookNeed
 from django.db.models import Count
 from django.contrib.auth import authenticate, login
 from bs4 import BeautifulSoup
@@ -16,6 +16,26 @@ class Util():
     max_page_item = 3
     category_max_page_item = 9
     book_show_max_item = 8
+    user_show_max_item = 10
+
+    @classmethod
+    def GetPopularUsers(cls):
+        return User.objects.annotate(sell_num=Count("sell_book_side")).order_by("-sell_num")[:cls.user_show_max_item]
+
+    @classmethod
+    def GetSortingBooks(cls, books, sorting):
+        if sorting == 0:
+            return books
+        elif sorting == 1:
+            return books.order_by('-publish_time')
+        elif sorting == 2:
+            return books.annotate(comment_num=Count('comment')).order_by('comment_num')
+        elif sorting == 3:
+            return books.annotate(comment_num=Count('comment')).order_by('-comment_num')
+        elif sorting == 4:
+            return books.order_by('sell_price')
+        else:
+            return books.order_by('-sell_price')
 
 def GetISBNLink(request, ISBN):
     search_url = 'http://search.dangdang.com/?key={0}&act=input'.format(ISBN)
@@ -49,8 +69,8 @@ class IndexView(BaseView):
 
     def get(self, request):
         if request.user.is_authenticated:
-            books = Book.objects.all()
-            category_num_dict = dict(Category.GetCategoryBookNumberDict())
+            books = Book.objects.all().filter(book_status=0)
+            category_num_dict = dict(Category.GetCategoryBookNumberDict(0))
             user = User.objects.filter(id=request.user.id)[0]
             return render(request, 'index.html', {
                 'books' : books,
@@ -100,21 +120,41 @@ class UserUpdateHeaderView(BaseView):
 
 class AddListView(BaseView):
     def get(self, request):
-        return render(request, 'add_list.html', {'user' : request.user})
+        return render(request, 'add_list.html', {
+            'user' : request.user,
+            'option' : request.data.get('option')
+        })
 
     def post(self, request):
+        if request.data.get('trade_way') == None:
+            trade_way = ''
+            store_remain_num = 0
+            book_status = 1
+        else:
+            trade_way = request.data.get('trade_way')
+            store_remain_num = int(request.data.get('store_num'))
+            book_status = 0
+
         book = Book.objects.create(book_name=request.data.get('book_name'),
                                    ISBN=request.data.get('ISBN'),
                                    book_introduction=request.data.get('book_description'),
                                    category=request.data.get('book_category'),
                                    origin_price=int(request.data.get('origin_price')),
                                    sell_price=int(request.data.get('current_price')),
-                                   store_remain_num=int(request.data.get('store_num')),
+                                   store_remain_num=store_remain_num,
                                    book_url=request.data.get('link'),
                                    publisher_name=request.user,
-                                   trade_way=request.data.get('trade_way'))
+                                   trade_way=trade_way,
+                                   book_status=book_status)
         book.book_image = request.data.get('file')
         book.save()
+
+        if book_status == 1:
+            book_need = BookNeed.objects.create(
+                book=book,
+                message=request.data.get('message')
+            )
+            book_need.save()
 
 class UserBooksView(BaseView):
     def get(self, request):
@@ -197,9 +237,6 @@ class AddToShoppingCarView(BaseView):
         }
 
 class ShowBooksByCategoryView(BaseView):
-    def GetSortBooks(self, books, sorting):
-        pass
-
     def get(self, request, category=''):
         origin = category
         if category == 'all':
@@ -215,20 +252,10 @@ class ShowBooksByCategoryView(BaseView):
             books = books | Book.objects.filter(ISBN__contains=search)
             books = books | Book.objects.filter(publisher_name__username__contains=search)
 
+        books = books.filter(book_status=0)
         if request.data.get('sort') != None:
             sorting = int(request.data.get('sort'))
-            if sorting == 0:
-                pass
-            elif sorting == 1:
-                books = books.order_by('-publish_time')
-            elif sorting == 2:
-                books = books.annotate(comment_num=Count('comment')).order_by('comment_num')
-            elif sorting == 3:
-                books = books.annotate(comment_num=Count('comment')).order_by('-comment_num')
-            elif sorting == 4:
-                books = books.order_by('sell_price')
-            else:
-                books = books.order_by('-sell_price')
+            books = Util.GetSortingBooks(books, sorting)
         else: sorting = 0
 
         if request.data.get('min') != None and request.data.get('max') != None:
@@ -248,6 +275,9 @@ class ShowBooksByCategoryView(BaseView):
 
         total_pages = 1 + (int(books.count() - 1) // Util.category_max_page_item)
         pages_list = [i for i in range(1, total_pages + 1)]
+
+        # filter popular users
+        popular_users = Util.GetPopularUsers()
         return render(request, 'category.html', {
             'books' : books,
             'category' : category,
@@ -255,7 +285,8 @@ class ShowBooksByCategoryView(BaseView):
             'pages' : pages_list,
             'current_page' : page,
             'sorting' : SortingUtil.GetSortingDescription(sorting),
-            'category_dict' : dict(Category.GetCategoryBookNumberDict())
+            'category_dict' : dict(Category.GetCategoryBookNumberDict(0)),
+            'popular_users' : popular_users
         })
 
 class MakeOfferView(BaseView):
@@ -324,3 +355,36 @@ class CreditAddCountMoney(BaseView):
         return {
             'number' : account.account_money
         }
+
+class BookNeedView(BaseView):
+    def get(self, request):
+        popular_users = Util.GetPopularUsers()
+        books = Book.objects.filter(book_status=1)
+
+        if request.data.get('sort') != None:
+            sorting = int(request.data.get('sort'))
+            books = Util.GetSortingBooks(books, sorting)
+        else: sorting = 0
+
+        if request.data.get('page') == None:
+            page = 1
+        else: page = int(request.data.get('page'))
+
+        start_pos = (page - 1) * Util.category_max_page_item
+        end_pos = min(page * Util.category_max_page_item, int(books.count()))
+        books = books[start_pos:end_pos]
+
+        total_pages = 1 + (int(books.count() - 1) // Util.category_max_page_item)
+        pages_list = [i for i in range(1, total_pages + 1)]
+
+        return render(request, 'book_need.html', {
+            'popular_users' : popular_users,
+            'books' : books,
+            'pages': pages_list,
+            'current_page': page,
+            'sorting': SortingUtil.GetSortingDescription(sorting),
+        })
+
+
+    def post(self, request):
+        pass

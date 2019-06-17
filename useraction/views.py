@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from .models import User
+from books.models import CreditAccount
 from django.http import HttpResponseRedirect
 from BookTradeWeb.utils import BaseView
 from django.contrib.auth import logout, authenticate, login
-import json
 
 # Create your views here.
 def index(request):
@@ -38,6 +38,14 @@ class UserRegisterView(BaseView):
             email=request.data.get('email'),
         )
         user.save()
+
+        # Then create one account according
+        account = CreditAccount.objects.create(
+            account_owner=user,
+            account_money=100
+        )
+        account.save()
+
         return {
             'message' : 'Success Register, Goto Login!'
         }

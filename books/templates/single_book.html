@@ -80,7 +80,7 @@
 								<a class="nav-link" href="{% url 'books:show_books_by_category' 'all' %}">旧书市场</a>
 							</li>
                             <li class="nav-item">
-								<a class="nav-link" href="{% url 'books:show_books_by_category' 'all' %}">求购市场</a>
+								<a class="nav-link" href="{% url 'books:book_need' %}">求购市场</a>
 							</li>
 							<li class="nav-item dropdown dropdown-slide">
 								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="">{{ user.username }}<span><i class="fa fa-angle-down"></i></span>
@@ -118,7 +118,7 @@
                             </div>
 							</li>
 							<li class="nav-item dropdown dropdown-slide">
-								<a class="nav-link dropdown-toggle" href="{% url 'books:user_books' %}">
+								<a class="nav-link dropdown-toggle" href="{% url 'books:user_books' request.user.id %}">
 									我发布的旧书
 								</a>
 							</li>
@@ -216,12 +216,14 @@
 											<td>书籍类型</td>
 											<td>{{ single_book.category }}</td>
 										</tr>
+                                        {% if not option %}
 										<tr>
 											<td>当前库存</td>
 											<td>{{ single_book.store_remain_num }}</td>
 										</tr>
+                                        {% endif %}
 										<tr>
-											<td>出售人</td>
+											<td>{% if not option %}出售人{% else %}求购者{% endif %}</td>
 											<td>{{ single_book.publisher_name.username }}</td>
 										</tr>
 									</tbody>
@@ -245,7 +247,7 @@
 												<h5>{{ comment.commenter.username }}</h5>
 											</div>
 											<div class="date">
-												<p>{{ comment.time }}</p>
+												<p>{{ comment.time|date:"Y-m-d H:i:s" }}</p>
 											</div>
 											<div class="review-comment">
 												<p>
@@ -289,26 +291,22 @@
 			<div class="col-md-5">
 				<div class="sidebar">
 					<div class="widget price text-center">
-						<h4>Price</h4>
-						<p style="font-size: 20px">原价：¥{{ single_book.origin_price }} 售价：¥{{ single_book.sell_price }}</p>
+						<h4>发布者信息</h4>
+						<p style="font-size: 20px">原价：¥{{ single_book.origin_price }} {% if not option %}售价{% else %}期望价{% endif %}：¥{{ single_book.sell_price }}</p>
 					</div>
 					<!-- User Profile widget -->
 					<div class="widget user text-center">
-                        <img class="rounded-circle mb-5 px-sm-5" width="70%" src="{{ single_book.publisher_name.header_image.url }}" alt="">
-						<h4><a href="">{{ single_book.publisher_name.username }}</a></h4>
-						<p class="member-time">上次登录时间：{{ single_book.publisher_name.last_login }}</p>
+                        <img class="rounded-circle mb-5 px-sm-5" width="60%" src="{{ single_book.publisher_name.header_image.url }}" alt="">
+						<h4><a href="{% url 'books:user_books' single_book.publisher_name_id %}">{{ single_book.publisher_name.username }}</a></h4>
+						<p class="member-time">上次登录时间：{{ single_book.publisher_name.last_login|date:"Y-m-d H:i:s" }}</p>
                         <p class="member-time">联系方式：{{ single_book.publisher_name.telephone }}</p>
                         <p class="member-time">地址：{{ single_book.publisher_name.address }}</p>
-                        {% if not User %}
-                            <a href="{% url 'books:user_books' %}" target="_blank">所有发布旧书</a>
-                        {% else %}
-                            <a href="">所有发布旧书</a>
-                        {% endif %}
+                        {% if option %}<p class="member-time"><strong>发布人说：</strong>{{ single_book.book_need.first.message }}</p>{% endif %}
 
                         {% if User %}
 						<ul class="list-inline mt-20">
 							<li class="list-inline-item"><a href="" class="btn btn-contact d-inline-block  btn-primary px-lg-5 my-1 px-md-3">联系他</a></li>
-                            <li class="list-inline-item"><button data-toggle="modal" data-target="#shop_add_modal" class="btn btn-offer d-inline-block btn-primary ml-n1 my-1 px-lg-4 px-md-3">添加购物车🛒</button></li>
+                            {% if not option %}<li class="list-inline-item"><button data-toggle="modal" data-target="#shop_add_modal" class="btn btn-offer d-inline-block btn-primary ml-n1 my-1 px-lg-4 px-md-3">添加购物车🛒</button></li>{% endif %}
 						</ul>
                         <div class="modal fade" id="shop_add_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                              <div class="modal-dialog">
@@ -323,7 +321,7 @@
                                         <p class="member-time text-left"><strong>库存：</strong>{{ single_book.store_remain_num }}</p>
                                         <p class="member-time text-left"><strong>服务：</strong>由“{{ single_book.publisher_name.username }}”发货.明日09:15前完成下单，预计明天可送达</p>
                                         <div class="input-group">
-                                            <input type="number" class="form-control rounded" id="buy_number" name="buy_number" placeholder="购买数量">
+                                            <input type="number" class="form-control rounded" id="buy_book_number" name="buy_number" placeholder="购买数量">
                                         </div><br>
                                         <div class="input-group">
                                             <input type="text" class="form-control rounded" id="buy_address" name="buy_address" placeholder="{% if single_book.trade_way == 'online' %}收货地址{% else %}线下交易地址{% endif %}">
@@ -349,6 +347,7 @@
 					</div>
 					<!-- Map Widget -->
 					<div class="widget map">
+                        <h4>您当前地址：</h4>
 						<div class="map">
 							<div id="map_canvas"></div>
 						</div>

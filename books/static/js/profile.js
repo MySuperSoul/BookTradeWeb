@@ -78,7 +78,7 @@ $("#addlist_form").submit(function (evt) {
                 alert(data.error);
             }else {
                 $('html,body').animate({ scrollTop: 0 }, 500);
-                $("#message_field").html(GetSuccessMessage(data.success));
+                $("#message_field").html(GetSuccessMessage(data.data.message));
             }
         }
     });
@@ -102,10 +102,11 @@ $("#ISBN_link_search_btn").click(function (evt) {
 
 $("#add_shopping_btn").click(function () {
    var book_id = $("#book_id_hidden").val();
-   var number = $("#buy_number").val();
+   var number = document.getElementById('buy_book_number').value;
    var address = $("#buy_address").val();
    var phone = $("#buy_phone").val();
    var user_id = $("#user_id_hidden").val();
+   // alert(number);
    var url = "/books/api/add_to_shopping_car/";
    $.ajax({
        type : "post",

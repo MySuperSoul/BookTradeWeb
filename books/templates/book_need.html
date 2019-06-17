@@ -57,7 +57,7 @@
 								<a class="nav-link" href="{% url 'books:show_books_by_category' 'all' %}">旧书市场</a>
 							</li>
                             <li class="nav-item">
-								<a class="nav-link" href="{% url 'books:show_books_by_category' 'all' %}">求购市场</a>
+								<a class="nav-link" href="{% url 'books:book_need' %}">求购市场</a>
 							</li>
 							<li class="nav-item dropdown dropdown-slide">
 								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="">{{ user.username }}<span><i class="fa fa-angle-down"></i></span>
@@ -94,7 +94,7 @@
                             </div>
 							</li>
 							<li class="nav-item dropdown dropdown-slide">
-								<a class="nav-link dropdown-toggle" href="{% url 'books:user_books' %}">
+								<a class="nav-link dropdown-toggle" href="{% url 'books:user_books' request.user.id %}">
 									我发布的旧书
 								</a>
 							</li>
@@ -167,15 +167,15 @@
 	<div class="card">
 		<div class="thumb-content">
 			<!-- <div class="price">$200</div> -->
-			<a href="{% url 'books:sell_single_book' book.id %}">
+			<a href="{% url 'books:buy_single_book' book.id %}">
 				<img class="card-img-top img-fluid" src="{{ book.book_image.url }}" alt="Card image cap">
 			</a>
 		</div>
 		<div class="card-body">
-		    <h4 class="card-title"><a href="{% url 'books:sell_single_book' book.id %}">{{ book.book_name }}</a></h4>
+		    <h4 class="card-title"><a href="{% url 'books:buy_single_book' book.id %}">{{ book.book_name }}</a></h4>
 		    <ul class="list-inline product-meta">
 		    	<li class="list-inline-item">
-		    		<a href="{% url 'books:sell_single_book' book.id %}"><i class="fa fa-folder-open-o"></i>{{ book.category }}</a>
+		    		<a href="{% url 'books:buy_single_book' book.id %}"><i class="fa fa-folder-open-o"></i>{{ book.category }}</a>
 		    	</li>
 		    	<li class="list-inline-item">
 		    		<a href="#"><i class="fa fa-calendar"></i>{{ book.publish_time|date:"Y-m-d" }}</a>

@@ -57,7 +57,7 @@
 								<a class="nav-link" href="{% url 'books:show_books_by_category' 'all' %}">旧书市场</a>
 							</li>
                             <li class="nav-item">
-								<a class="nav-link" href="{% url 'books:show_books_by_category' 'all' %}">求购市场</a>
+								<a class="nav-link" href="{% url 'books:book_need' %}">求购市场</a>
 							</li>
 							<li class="nav-item dropdown dropdown-slide">
 								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="">{{ user.username }}<span><i class="fa fa-angle-down"></i></span>
@@ -94,7 +94,7 @@
                             </div>
 							</li>
 							<li class="nav-item dropdown dropdown-slide">
-								<a class="nav-link dropdown-toggle" href="{% url 'books:user_books' %}">
+								<a class="nav-link dropdown-toggle" href="{% url 'books:user_books' request.user.id %}">
 									我发布的旧书
 								</a>
 							</li>
@@ -164,7 +164,7 @@
                     <h4 class="widget-header">热门书店📖</h4>
                     <ul class="category-list">
                         {% for popular_user in popular_users %}
-                            <li><a href=""><img src="{{ popular_user.header_image.url }}" alt="" style="width: 50px">&nbsp;&nbsp;&nbsp;{{ popular_user.username }} <span>{{ popular_user.sell_book_side.count }}</span></a> </li>
+                            <li><a href="{% url 'books:user_books' popular_user.id %}"><img src="{{ popular_user.header_image.url }}" alt="" style="width: 50px">&nbsp;&nbsp;&nbsp;{{ popular_user.username }} <span>{{ popular_user.sell_book_side.count }}</span></a> </li>
                         {% endfor %}
                     </ul>
                 </div>

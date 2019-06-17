@@ -56,7 +56,7 @@
 								<a class="nav-link" href="{% url 'books:show_books_by_category' 'all' %}">旧书市场</a>
 							</li>
                             <li class="nav-item">
-								<a class="nav-link" href="{% url 'books:show_books_by_category' 'all' %}">求购市场</a>
+								<a class="nav-link" href="{% url 'books:book_need' %}">求购市场</a>
 							</li>
 							<li class="nav-item dropdown dropdown-slide">
 								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="">{{ user.username }}<span><i class="fa fa-angle-down"></i></span>
@@ -93,7 +93,7 @@
                             </div>
 							</li>
 							<li class="nav-item dropdown dropdown-slide">
-								<a class="nav-link dropdown-toggle" href="{% url 'books:user_books' %}">
+								<a class="nav-link dropdown-toggle" href="{% url 'books:user_books' request.user.id %}">
 									我发布的旧书
 								</a>
 							</li>

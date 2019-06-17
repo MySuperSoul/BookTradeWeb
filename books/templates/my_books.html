@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load books_filter %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,15 +57,15 @@
 								<a class="nav-link" href="{% url 'books:show_books_by_category' 'all' %}">旧书市场</a>
 							</li>
                             <li class="nav-item">
-								<a class="nav-link" href="{% url 'books:show_books_by_category' 'all' %}">求购市场</a>
+								<a class="nav-link" href="{% url 'books:book_need' %}">求购市场</a>
 							</li>
 							<li class="nav-item dropdown dropdown-slide">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="">{{ user.username }}<span><i class="fa fa-angle-down"></i></span>
+								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="">{{ request.user.username }}<span><i class="fa fa-angle-down"></i></span>
 								</a>
 
 								<!-- Dropdown list -->
 								<div class="dropdown-menu">
-                                    <a class="dropdown-item" href="{% url 'books:profile' %}">个人中心<img src="{{ user.header_image.url }}" alt="" style="width: 45px;height: 45px;border-radius: 70px;">  </a>
+                                    <a class="dropdown-item" href="{% url 'books:profile' %}">个人中心<img src="{{ request.user.header_image.url }}" alt="" style="width: 45px;height: 45px;border-radius: 70px;">  </a>
 									<a class="dropdown-item" href="{% url 'useraction:logout' %}">退出</a>
 								</div>
                                 <div class="modal fade" id="account_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -93,7 +94,7 @@
                             </div>
 							</li>
 							<li class="nav-item dropdown dropdown-slide">
-								<a class="nav-link dropdown-toggle" href="{% url 'books:user_books' %}">
+								<a class="nav-link dropdown-toggle" href="{% url 'books:user_books' request.user.id %}">
 									我发布的旧书
 								</a>
 							</li>
@@ -134,16 +135,19 @@
                         <p><i class="fa fa-mail-reply"></i> {{ user.email }}</p>
                         <p><i class="fa fa-address-card"></i> {{ user.address }}</p>
                         <p><i class="fa fa-info"></i> {{ user.introduction }}</p>
-						<a href="{% url 'books:profile' %}" class="btn btn-main-sm">修改个人简历</a>
+						{% if not option %}<a href="{% url 'books:profile' %}" class="btn btn-main-sm">修改个人简历</a>{% endif %}
 					</div>
 					<!-- Dashboard Links -->
 					<div class="widget user-dashboard-menu">
 						<ul>
 							<li>
-								<a href=""><i class="fa fa-user"></i> 在售的旧书 <span>{{ books.count }}</span></a>
+								<a href="{% url 'books:user_books' user.id %}?mode=sell"><i class="fa fa-user"></i> 在售的旧书 <span>{{ user | GetBookCountByTags:0 }}</span></a>
+                            </li>
+                            <li>
+								<a href="{% url 'books:user_books' user.id %}?mode=buy"><i class="fa fa-bed"></i> 求购的旧书 <span>{{ user | GetBookCountByTags:1 }}</span></a>
                             </li>
 							<li>
-								<a href="{% url 'useraction:logout' %}"><i class="fa fa-cog"></i> 注销</a>
+								{% if not option %}<a href="{% url 'useraction:logout' %}"><i class="fa fa-cog"></i> 注销</a>{% endif %}
 							</li>
 						</ul>
 					</div>
@@ -178,7 +182,7 @@
 									<h3 class="title">{{ book.book_name }}</h3>
 									<span class="add-id"><strong>ISBN:</strong>{{ book.ISBN }}</span>
 									<span><strong>Price:</strong><time>{{ book.sell_price }}¥</time> </span>
-									<span class="status active"><strong>Remain:</strong>{{ book.store_remain_num }}</span>
+									{% if mode == 0 %}<span class="status active"><strong>Remain:</strong>{{ book.store_remain_num }}</span>{% endif %}
 									<span class="location"><strong>Link</strong><a href="{{ book.book_url }}" target="_blank" class="-link">{{ book.book_name }}</a> </span>
 								</td>
 								<td class="product-category"><span class="categories">{{ book.category }}</span></td>
@@ -186,10 +190,11 @@
 									<div class="">
 										<ul class="list-inline justify-content-center">
 											<li class="list-inline-item">
-												<a data-toggle="tooltip" data-placement="top" title="View" class="view" href="{% url 'books:sell_single_book' book.id %}">
+												<a data-toggle="tooltip" data-placement="top" title="View" class="view" href={% if mode == 0%}"{% url 'books:sell_single_book' book.id %}"{% else %}{% url 'books:buy_single_book' book.id %}{% endif %}>
 													<i class="fa fa-eye"></i>
 												</a>
 											</li>
+                                            {% if not option %}
 											<li class="list-inline-item">
 												<a data-toggle="tooltip" data-placement="top" title="Edit" class="edit" href="">
 													<i class="fa fa-pencil"></i>
@@ -200,6 +205,7 @@
 													<i class="fa fa-trash"></i>
 												</a>
 											</li>
+                                            {% endif %}
 										</ul>
 									</div>
 								</td>
@@ -222,9 +228,9 @@
 							</li>
                             {% for i in pages %}
                                 {% if current_page == i %}
-                                    <li class="page-item active"><a class="page-link" href="{% url 'books:user_books' %}?page={{ i }}">{{ i }}</a></li>
+                                    <li class="page-item active"><a class="page-link" href="javascript:GetPageUrl({{ i }})">{{ i }}</a></li>
                                 {% else %}
-                                    <li class="page-item"><a class="page-link" href="{% url 'books:user_books' %}?page={{ i }}">{{ i }}</a></li>
+                                    <li class="page-item"><a class="page-link" href="javascript:GetPageUrl({{ i }})">{{ i }}</a></li>
                                 {% endif %}
                             {% endfor %}
 
@@ -332,7 +338,27 @@
 <script src="{% static 'plugins/google-map/gmap.js' %}"></script>
 <script src="{% static 'js/script.js' %}"></script>
 <script src="{% static 'js/js.cookie-2.2.0.min.js' %}"></script>
-
+<script type="text/javascript">
+    function GetPageUrl(page) {
+        var p = Number(page);
+        var current_url = window.location.href;
+        if(current_url.indexOf('?') !== -1){
+            if(current_url.indexOf('?page=') !== -1) {
+                current_url = current_url.substring(0, current_url.indexOf('?page='));
+                current_url += ('?page=' + p.toString());
+            }else if(current_url.indexOf('&page=') !== -1) {
+                current_url = current_url.substring(0, current_url.indexOf('&page='));
+                current_url += ('&page=' + p.toString());
+            }
+            else{
+                current_url += ('&page=' + p.toString());
+            }
+        }else {
+            current_url += ('?page=' + p.toString());
+        }
+        window.location.href = current_url;
+    }
+</script>
 </body>
 
 </html>

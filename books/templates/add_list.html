@@ -57,7 +57,7 @@
 								<a class="nav-link" href="{% url 'books:show_books_by_category' 'all' %}">旧书市场</a>
 							</li>
                             <li class="nav-item">
-								<a class="nav-link" href="{% url 'books:show_books_by_category' 'all' %}">求购市场</a>
+								<a class="nav-link" href="{% url 'books:book_need' %}">求购市场</a>
 							</li>
 							<li class="nav-item dropdown dropdown-slide">
 								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="">{{ user.username }}<span><i class="fa fa-angle-down"></i></span>
@@ -94,7 +94,7 @@
                             </div>
 							</li>
 							<li class="nav-item dropdown dropdown-slide">
-								<a class="nav-link dropdown-toggle" href="{% url 'books:user_books' %}">
+								<a class="nav-link dropdown-toggle" href="{% url 'books:user_books' request.user.id %}">
 									我发布的旧书
 								</a>
 							</li>
@@ -167,7 +167,7 @@
                             </div>
                             <div class="url">
                                 <h6 class="font-weight-bold pt-4 pb-1">当当网链接</h6>
-                                <span><input type="text" name="link" id="link" class="border rounded p-2 w-75 bg-white" placeholder="可不填">
+                                <span><input type="text" name="link" id="link" class="border rounded p-2 w-75 bg-white" placeholder="可不填,可通过ISBN搜索">
                                 <button class="btn btn-success mt-0 p-2" style="width: 20%" id="ISBN_link_search_btn">Search</button></span>
                             </div>
                             <div class="image">

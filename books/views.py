@@ -50,6 +50,10 @@ def GetISBNLink(request, ISBN):
     try:
         first_hit_book = soup.find_all('li', class_='line1')[0]
         book_link = first_hit_book.a.get('href')
+        res = requests.get(book_link, headers=headers)
+        html = res.text
+        soup = BeautifulSoup(html, 'html.parser')
+
         return JsonResponse({'link' : book_link})
     except Exception as e:
         return JsonResponse({
@@ -156,26 +160,40 @@ class AddListView(BaseView):
             )
             book_need.save()
 
+        return {'message' : '书籍添加成功'}
+
 class UserBooksView(BaseView):
-    def get(self, request):
-        user = request.user
+    def get(self, request, user_id):
+        user = User.objects.filter(id=int(user_id))[0]
+
         if request.data.get('page') == None:
             page = 1
         else: page = int(request.data.get('page'))
 
-        books = user.book_set.all()
+        if request.data.get('mode') == None:
+            book_status = 0
+        elif request.data.get('mode') == 'sell':
+            book_status = 0
+        else: book_status = 1
+        books = user.book_set.all().filter(book_status=book_status)
+        count_num = books.count()
         start_pos = (page - 1) * Util.max_page_item
-        end_pos = min(page * Util.max_page_item, int(user.book_set.count()))
+        end_pos = min(page * Util.max_page_item, int(books.count()))
         books = books[start_pos:end_pos]
 
-        total_pages = 1 + (int(user.book_set.count() - 1) // Util.max_page_item)
+        total_pages = 1 + (int(count_num) - 1) // Util.max_page_item
         pages_list = [i for i in range(1, total_pages + 1)]
-        return render(request, 'my_books.html', {
+        data = {
             'user' : user,
             'books' : books,
             'pages' :  pages_list,
             'current_page' : page,
-        })
+            'mode' : book_status
+        }
+
+        if user.id != request.user.id:
+            data['option'] = 'not'
+        return render(request, 'my_books.html', data)
 
     def post(self, request):
         pass
@@ -193,6 +211,9 @@ class SellSingleBookView(BaseView):
         }
         if request.user.id == book.publisher_name_id:
             data.pop('User')
+
+        if book.book_status == 1:
+            data['option'] = 'buy'
 
         return render(request, 'single_book.html', data)
 

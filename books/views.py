@@ -53,8 +53,16 @@ def GetISBNLink(request, ISBN):
         res = requests.get(book_link, headers=headers)
         html = res.text
         soup = BeautifulSoup(html, 'html.parser')
+        desc = soup.find_all('span', class_='head_title_name')[0].text
+        isbn = soup.find_all('ul', class_='key clearfix')[0]
+        isbn_info = str(isbn.contents[5].text)
+        isbn_info = isbn_info[isbn_info.index('ISBN') + 5:]
 
-        return JsonResponse({'link' : book_link})
+        return JsonResponse({
+            'link' : book_link,
+            'description' : desc.strip(),
+            'ISBN' : isbn_info
+        })
     except Exception as e:
         return JsonResponse({
             'error' : '暂无商品信息',
@@ -241,6 +249,10 @@ class AddToShoppingCarView(BaseView):
         address = request.data.get('address')
         phone = request.data.get('phone')
 
+        # if number > the current store remain, exception
+        if number > book.store_remain_num:
+            raise Exception('库存不足，添加失败')
+
         if ShoppingCar.objects.filter(book_id=book_id).count() != 0:
             shop = ShoppingCar.objects.filter(book_id=book_id)[0]
             shop.added_number += number
@@ -406,6 +418,13 @@ class BookNeedView(BaseView):
             'sorting': SortingUtil.GetSortingDescription(sorting),
         })
 
-
     def post(self, request):
         pass
+
+class DeletePublishBookView(BaseView):
+    def post(self, request, book_id):
+        book = Book.objects.filter(id=int(book_id))
+        book.delete()
+        return {
+            'message' : 'delete success.'
+        }

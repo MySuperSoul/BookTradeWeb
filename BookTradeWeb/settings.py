@@ -36,6 +36,7 @@ ALLOWED_HOSTS = ['*',]
 INSTALLED_APPS = [
     'useraction.apps.UseractionConfig',
     'books.apps.BooksConfig',
+    'chatting.apps.ChattingConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

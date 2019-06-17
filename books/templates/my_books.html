@@ -201,7 +201,7 @@
 												</a>
 											</li>
 											<li class="list-inline-item">
-												<a data-toggle="tooltip" data-placement="top" title="Delete" class="delete" href="">
+												<a data-toggle="tooltip" data-placement="top" title="Delete" class="delete" href="javascript:DeleteBook({{ book.id }})">
 													<i class="fa fa-trash"></i>
 												</a>
 											</li>
@@ -357,6 +357,20 @@
             current_url += ('?page=' + p.toString());
         }
         window.location.href = current_url;
+    }
+
+    function DeleteBook(book_id) {
+        console.log(book_id);
+        var url = "/books/api/delete_publish_book/" + book_id.toString() + "/";
+        $.ajax({
+            type : "post",
+            url : url,
+            async : true,
+            dataType : "json",
+            success : function (response) {
+                window.location.reload();
+            }
+        })
     }
 </script>
 </body>

@@ -14,6 +14,13 @@ $.ajaxSetup({
 });
 
 /** * @returns {string}*/
+function GetErrorMessage(message) {
+    return "<div class=\"alert alert-danger alert-dismissible fade show\">\n" +
+        "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>\n"+
+        message + "</div>";
+}
+
+/** * @returns {string}*/
 function GetSuccessMessage(message) {
     return "<div class=\"alert alert-success alert-dismissible fade show\">\n" +
         "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>\n"+
@@ -86,7 +93,7 @@ $("#addlist_form").submit(function (evt) {
 });
 
 $("#ISBN_link_search_btn").click(function (evt) {
-    var ISBN = $("#ISBN").val();
+    var ISBN = $("#book_name").val();
     var url = "/books/api/search_link_ISBN/" + ISBN + "/";
     $.ajax({
        type : "post",
@@ -94,7 +101,11 @@ $("#ISBN_link_search_btn").click(function (evt) {
         dataType : "json",
         success: function (data) {
            if (data.code === 1)  $("#link").val(data.error);
-           else $("#link").val(data.link);
+           else {
+               $("#link").val(data.link);
+               $("#ISBN").val(data.ISBN);
+               $("#book_desc").val(data.description);
+           }
         }
     });
     evt.preventDefault();
@@ -121,9 +132,13 @@ $("#add_shopping_btn").click(function () {
            phone : phone
        },
        success : function (Respon) {
-           $("#shop_add_modal").modal('hide');
-           alert(Respon.data.message);
-           window.location.reload();
+           if (Respon.code === 0){
+               $("#message-field").html(GetSuccessMessage(Respon.data.message));
+               $("#shop_add_modal").modal('hide');
+               window.location.reload();
+           }else{
+                $("#message-field").html(GetErrorMessage(Respon.error));
+           }
        }
    })
 });

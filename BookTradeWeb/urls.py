@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^auth/', include('useraction.urls')),
     url(r'^books/', include('books.urls')),
+    url(r'^chatting/', include('chatting.urls')),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     url(r'^$', TemplateView.as_view(template_name="login.html")),
 ]

@@ -5,6 +5,5 @@ from . import views
 app_name = 'chatting'
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^(?P<room_name>[^/]+)/$', views.room, name='room'),
+    url(r'^(?P<room_name>.*)/$', views.ChatRoomView.as_view(), name='room'),
 ]

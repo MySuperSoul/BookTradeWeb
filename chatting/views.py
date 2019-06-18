@@ -1,11 +1,13 @@
 from django.shortcuts import render
-from django.utils.safestring import mark_safe
-import json
+from BookTradeWeb.utils import BaseView
 
-def index(request):
-    return render(request, 'chat/index.html', {})
+class ChatRoomView(BaseView):
+    def get(self, request, room_name):
+        room_name = str(room_name)
+        send_side = int(room_name.split('_')[1])
+        recv_side = int(room_name.split('_')[-1])
 
-def room(request, room_name):
-    return render(request, 'chat/room.html', {
-        'room_name_json': mark_safe(json.dumps(room_name))
-    })
+        return render(request, 'chat/room.html', {
+            'send_side': send_side,
+            'recv_side': recv_side
+        })

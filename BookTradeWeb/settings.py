@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['*',]
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'useraction.apps.UseractionConfig',
     'books.apps.BooksConfig',
     'chatting.apps.ChattingConfig',
@@ -138,3 +139,12 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 LOGIN_URL = '/auth/login/'
+ASGI_APPLICATION = "BookTradeWeb.routing.application"
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [(CONFIGS['REDIS_HOST'], CONFIGS['REDIS_PORT'])],
+        },
+    },
+}

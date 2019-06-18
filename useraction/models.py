@@ -16,6 +16,7 @@ class User(AbstractUser):
     telephone = models.CharField(default='', max_length=20)
     introduction = models.TextField(default='', blank=True)
     address = models.TextField(default='', blank=True)
+    channel_name = models.TextField(default='', blank=True)
     header_image = models.ImageField(
         upload_to=RenameHeaderPath,
         storage=OverWriteStorage(),

@@ -9,6 +9,11 @@ services:
     environment:
        MYSQL_DATABASE: 'booktrade'
        MYSQL_ROOT_PASSWORD: 'Rothyu980908'
+  redis:
+    image: redis:latest
+    restart: always
+    expose:
+      - "6379"
   web:
     build: .
     command: ./scripts/start_server.sh
@@ -18,3 +23,4 @@ services:
       - "8000:8000"
     depends_on:
       - db
+      - redis

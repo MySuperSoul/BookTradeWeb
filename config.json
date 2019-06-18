@@ -3,5 +3,7 @@
   "DB_USER": "root",
   "DB_PASS": "Rothyu980908",
   "DB_PORT": "3306",
-  "DB_NAME": "booktrade"
+  "DB_NAME": "booktrade",
+  "REDIS_HOST": "localhost",
+  "REDIS_PORT" : "6379"
 }

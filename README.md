@@ -14,7 +14,8 @@ BookTrade是一个用于旧书交易的网站，BS课程项目设计。
 **后端架构：**
 
 - 后端采用的是python Django框架
-- 在根目录下执行`python manage.py runserver` 启动Django生产服务器，然后通过`localhost:8000`访问，默认开启在`8000`  端口
+- 首先安装redis，可以通过`docker run -d -p 6379:6379 redis:latest`开启redis服务，并监听在6379端口
+- 在根目录下执行`python manage.py runserver 8000` 启动Django生产服务器，然后通过`localhost:8000`访问，默认开启在`8000`  端口
 
 <br>
 
@@ -30,8 +31,18 @@ BookTrade是一个用于旧书交易的网站，BS课程项目设计。
 ```
 
 - 部署方法: `./scripts/start_docker.sh`.可能需要等待20-30秒等待container中的MySQL和server开启。
-- 访问: `Your IP : 8000`,需要保证`8000`和`3000`两个端口不被占用，因为这是两个docker container映射到本机的端口
+- 访问: `Your IP : 8000`,需要保证`8000`、`3000`、`6379`这几个端口不被占用，因为这是docker containers映射到本机的端口
 - 移除container: `./scripts/stop_docker.sh`.
+
+<br>
+
+**服务端口配置**
+
+| Port | Service|
+| :--: | :----: |
+| 3000 | MySQL |
+| 6379 | Redis |
+| 8000 | Website |
 
 <br>
 

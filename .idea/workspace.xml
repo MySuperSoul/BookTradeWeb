@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="07c73b7b-d374-4f00-ad46-5271753f8f1c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/chatting/static/css/chat.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chatting/templates/chat/room.html" beforeDir="false" afterPath="$PROJECT_DIR$/chatting/templates/chat/room.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chatting/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/chatting/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chatting/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/chatting/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +27,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/chatting/templates/chat/room.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="263">
@@ -42,6 +38,18 @@
                 <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#textarea#0;n#span#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="503">
+                <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -102,18 +110,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="182">
               <caret line="7" column="60" selection-start-line="7" selection-start-column="60" selection-end-line="7" selection-end-column="60" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chatting/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
-              <caret line="2" column="26" lean-forward="true" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -193,7 +189,6 @@
         <option value="$PROJECT_DIR$/BookTradeWeb/static/css/style.css" />
         <option value="$PROJECT_DIR$/books/static/js/category.js" />
         <option value="$PROJECT_DIR$/start_docker.sh" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/stop_docker.sh" />
         <option value="$PROJECT_DIR$/useraction/static/js/useraction.js" />
         <option value="$PROJECT_DIR$/useraction/templates/login.html" />
@@ -235,6 +230,7 @@
         <option value="$PROJECT_DIR$/chatting/views.py" />
         <option value="$PROJECT_DIR$/chatting/static/css/chat.css" />
         <option value="$PROJECT_DIR$/chatting/templates/chat/room.html" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -276,12 +272,6 @@
               <item name="BookTradeWeb" type="b2602c69:ProjectViewProjectNode" />
               <item name="BookTradeWeb" type="462c0819:PsiDirectoryNode" />
               <item name="chatting" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BookTradeWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BookTradeWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="chatting" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BookTradeWeb" type="b2602c69:ProjectViewProjectNode" />
@@ -379,12 +369,12 @@
       <workItem from="1560520284442" duration="865000" />
       <workItem from="1560521751722" duration="7798000" />
       <workItem from="1560700274420" duration="24237000" />
-      <workItem from="1560839069313" duration="8676000" />
+      <workItem from="1560839069313" duration="9170000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="210866000" />
+    <option name="totallyTimeSpent" value="211360000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -399,12 +389,12 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.105150215" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.105150215" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.21686748" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.21686748" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.5" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -460,7 +450,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/stop_docker.sh" />
     <entry file="file://$PROJECT_DIR$/useraction/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="467">
@@ -849,6 +838,16 @@
             <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#textarea#0;n#span#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="503">
+            <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

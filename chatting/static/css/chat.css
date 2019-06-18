@@ -145,8 +145,8 @@
 .chat-users .contact-list li {
     border-color: #dddddd;
     border-style: none none solid;
-    border-width: 0 0 1px;
-    padding: 1px;
+    border-width: 0 0 3px;
+    padding: 5px;
     position: relative;
 }
 

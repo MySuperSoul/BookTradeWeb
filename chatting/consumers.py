@@ -20,6 +20,7 @@ class ChatConsumer(WebsocketConsumer):
     def receive(self, text_data=None, bytes_data=None):
         text_data = json.loads(text_data)
         message = text_data['message']
+        send_side = text_data['send_side']
         recv_side = text_data['recv_side']
         channel_layer = get_channel_layer()
         channel_name = Util.user_channel_dic[int(recv_side)]
@@ -27,15 +28,18 @@ class ChatConsumer(WebsocketConsumer):
             channel_name,
             {
                 "type" : "chat.message",
-                "message" : message
+                "message" : message,
+                "send_side" : send_side
             }
         )
 
 
     def chat_message(self, event):
         message = event['message']
+        send_side = event['send_side']
 
         # Send message to WebSocket
         self.send(text_data=json.dumps({
-            'message': message
+            'message': message,
+            'send_side' : send_side
         }))

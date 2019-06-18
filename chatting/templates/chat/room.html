@@ -53,7 +53,7 @@
                     <div class="chat-content panel-left">
                         <div class="chat-messages" id="chat-messages">
                             <div id="chat-messages-inner">
-                                <p id="msg-1" style="display: block">
+                                <p id="msg" style="display: block">
                                     <img src="{% static 'images/logo.jpg' %}" alt="">
                                     <span class="msg-block">
                                         <strong>huangyifei</strong>
@@ -68,6 +68,19 @@
                                 <textarea  class="rounded form-control bg-white" name="msg-box" id="msg-box" autocapitalize="on" style="width: 117%; height: 150px;margin-left: -10px;"></textarea>
                             </span><br>
                             <button class="btn btn-success">点击发送</button>
+                        </div>
+                    </div>
+                    <div class="chat-users panel-right">
+                        <div class="panel-title"><h5>对方信息</h5></div>
+                        <div class="panel-content nopadding">
+                            <ul class="contact-list">
+                                <li>
+                                    <a href=""><img src="{{ recv_side_user.header_image.url }}" alt="" style="border-radius: 50px; width: 20%"><span>&nbsp;&nbsp;&nbsp;{{ recv_side_user.username }}</span></a>
+                                </li>
+                                <li><span>电话：{{ recv_side_user.telephone }}</span></li>
+                                <li><span>邮箱📮：{{ recv_side_user.email }}</span></li>
+                                <li><span>个人介绍：{{ recv_side_user.introduction }}</span></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -160,42 +173,86 @@
 <script src="{% static 'plugins/google-map/gmap.js' %}"></script>
 <script src="{% static 'js/script.js' %}"></script>
 <script src="{% static 'js/js.cookie-2.2.0.min.js' %}"></script>
-<script src="{% static 'js/profile.js' %}"></script>
 </body>
 <script>
-    {#var send_side = {{ send_side }};#}
-    {#var recv_side = {{ recv_side }};#}
-    {##}
-    {#var chatSocket = new WebSocket(#}
-    {#    'ws://' + window.location.host +#}
-    {#    '/ws/chat/' + send_side + '/');#}
-    {##}
-    {#chatSocket.onmessage = function(e) {#}
-    {#    var data = JSON.parse(e.data);#}
-    {#    var message = data['message'];#}
-    {#    document.querySelector('#chat-log').value += (message + '\n');#}
-    {#}#}
-    {##}
-    {#chatSocket.onclose = function(e) {#}
-    {#    console.error('Chat socket closed unexpectedly');#}
-    {#}#}
-    {##}
-    {#document.querySelector('#chat-message-input').focus();#}
-    {#document.querySelector('#chat-message-input').onkeyup = function(e) {#}
-    {#    if (e.keyCode === 13) {  // enter, return#}
-    {#        document.querySelector('#chat-message-submit').click();#}
-    {#    }#}
-    {#}#}
-    {##}
-    {#document.querySelector('#chat-message-submit').onclick = function(e) {#}
-    {#    var messageInputDom = document.querySelector('#chat-message-input');#}
-    {#    var message = messageInputDom.value;#}
-    {#    chatSocket.send(JSON.stringify({#}
-    {#        'message': message,#}
-    {#        'recv_side' : recv_side#}
-    {#    }));#}
-    {##}
-    {#    messageInputDom.value = '';#}
-    {#}#}
+    $(document).ready(function(){
+	var send_side = {{ send_side }};
+    var recv_side = {{ recv_side }};
+
+    var chatSocket = new WebSocket(
+        'ws://' + window.location.host +
+        '/ws/chat/' + send_side.toString() + '/');
+
+    chatSocket.onmessage = function(e) {
+        var data = JSON.parse(e.data);
+        var message = data['message'];
+        var message_send_side = Number(data['send_side']);
+        $.ajax({
+            type: "post",
+            url: "/chatting/api/search_user_info/" + message_send_side.toString() + "/",
+            dataType: "json",
+            success : function (data) {
+                console.log(data);
+                var image_url = data.data.image_url;
+                var username = data.data.username;
+                add_message(username.toString(), image_url.toString(), message.toString(), true);
+            }
+        })
+    };
+
+    chatSocket.onclose = function(e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+
+	$('.chat-message button').click(function(){
+		var input = $(this).siblings('span').children('input[type=text]').val();
+		if(input !== ''){
+			add_message('You',"{{ send_side_user.header_image.url }}",input.val(),true);
+			var message = {
+			    send_side : send_side,
+                recv_side : recv_side,
+                message : input
+            };
+            chatSocket.send(JSON.stringify(message));
+		}
+	});
+
+	$('.chat-message textarea').keypress(function(e){
+		if(e.which === 13) {
+			if($(this).val() !== ''){
+			    var message = {
+			        send_side : send_side,
+                    recv_side : recv_side,
+                    message : $(this).val()
+                };
+				add_message('You',"{{ send_side_user.header_image.url }}",$(this).val(),true);
+                chatSocket.send(JSON.stringify(message));
+			}
+		}
+	});
+
+   	var i = 0;
+	function add_message(name,img,msg,clear) {
+		i = i + 1;
+		var  inner = $('#chat-messages-inner');
+		var time = new Date();
+		var hours = time.getHours();
+		var minutes = time.getMinutes();
+		if(hours < 10) hours = '0' + hours;
+		if(minutes < 10) minutes = '0' + minutes;
+		var id = 'msg-'+i;
+        var idname = name.replace(' ','-').toLowerCase();
+		inner.append('<p id="'+id+'" class="user-'+idname+'"><img src="'+img+'" alt="" />'
+										+'<span class="msg-block"><strong>'+name+'</strong> <span class="time">- '+hours+':'+minutes+'</span>'
+										+'<span class="msg">'+msg+'</span></span></p>');
+		$('#'+id).hide().fadeIn(800);
+		if(clear) {
+			$('.chat-message textarea').val('').focus();
+		}
+		$('#chat-messages').animate({ scrollTop: inner.height() },1000);
+	}
+});
+
+
 </script>
 </html>

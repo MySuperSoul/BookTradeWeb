@@ -305,7 +305,7 @@
 
                         {% if User %}
 						<ul class="list-inline mt-20">
-							<li class="list-inline-item"><a href="" class="btn btn-contact d-inline-block  btn-primary px-lg-5 my-1 px-md-3">联系他</a></li>
+							<li class="list-inline-item"><a href="javascript:GetChattingUrl()" class="btn btn-contact d-inline-block  btn-primary px-lg-5 my-1 px-md-3">联系他</a></li>
                             {% if not option %}<li class="list-inline-item"><button data-toggle="modal" data-target="#shop_add_modal" class="btn btn-offer d-inline-block btn-primary ml-n1 my-1 px-lg-4 px-md-3">添加购物车🛒</button></li>{% endif %}
 						</ul>
                         <div class="modal fade" id="shop_add_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -485,6 +485,13 @@
            })
        }
     });
+
+    function GetChattingUrl() {
+        var send_side = {{ request.user.id }};
+        var recv_side = {{ single_book.publisher_name_id }};
+        var url = "/chatting/room_" + send_side.toString() + "_" + recv_side.toString() + "/";
+        window.open(url, "_blank");
+    }
 </script>
 </body>
 

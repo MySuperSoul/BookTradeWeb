@@ -1,6 +1,8 @@
 from channels.generic.websocket import AsyncWebsocketConsumer
 from channels.layers import get_channel_layer
+from channels.db import database_sync_to_async
 from collections import defaultdict
+from useraction.models import User
 import json
 
 class Util():
@@ -53,15 +55,23 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 }
             )
         else:
+            username = await self.GetName(send_side)
+
             await channel_layer.send(
                 channel_name,
                 {
                     "type" : "chat.message",
                     "message" : message,
                     "send_side" : send_side,
+                    "send_side_name" : username,
                     "option" : "notice"
                 }
             )
+
+    @database_sync_to_async
+    def GetName(self, user_id):
+        user_id = int(user_id)
+        return User.objects.filter(id=user_id)[0].username
 
     async def chat_message(self, event):
         message = event['message']

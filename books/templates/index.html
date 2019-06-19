@@ -596,6 +596,16 @@
 <script src="{% static 'js/script.js' %}"></script>
 <script src="{% static 'js/js.cookie-2.2.0.min.js' %}"></script>
 <script type="text/javascript">
+    var chatSocket = new WebSocket(
+        'ws://' + window.location.host +
+        '/ws/chat/' + {{ request.user.id }} + '/');
+
+    chatSocket.onmessage = function(e) {
+        var data = JSON.parse(e.data);
+        var message = data['message'];
+        console.log(message);
+     };
+
     $("#add_account_btn").click(function (e) {
        var add_number = $("#buy_number").val();
        if (add_number === ''){

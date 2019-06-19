@@ -53,14 +53,6 @@
                     <div class="chat-content panel-left">
                         <div class="chat-messages" id="chat-messages">
                             <div id="chat-messages-inner">
-                                <p id="msg" style="display: block">
-                                    <img src="{% static 'images/logo.jpg' %}" alt="">
-                                    <span class="msg-block">
-                                        <strong>huangyifei</strong>
-                                        <span class="time">- 16.19</span>
-                                        <span class="msg">I have a problem</span>
-                                    </span>
-                                </p>
                             </div>
                         </div>
                         <div class="chat-message well">
@@ -174,14 +166,41 @@
 <script src="{% static 'js/script.js' %}"></script>
 <script src="{% static 'js/js.cookie-2.2.0.min.js' %}"></script>
 </body>
+<script type="text/javascript">
+
+Date.prototype.format = function(fmt) {
+     var o = {
+        "M+" : this.getMonth()+1,                 //月份
+        "d+" : this.getDate(),                    //日
+        "h+" : this.getHours(),                   //小时
+        "m+" : this.getMinutes(),                 //分
+        "s+" : this.getSeconds(),                 //秒
+        "q+" : Math.floor((this.getMonth()+3)/3), //季度
+        "S"  : this.getMilliseconds()             //毫秒
+    };
+    if(/(y+)/.test(fmt)) {
+            fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+    }
+     for(var k in o) {
+        if(new RegExp("("+ k +")").test(fmt)){
+             fmt = fmt.replace(RegExp.$1, (RegExp.$1.length===1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+         }
+     }
+    return fmt;
+};
+</script>
 <script>
     $(document).ready(function(){
 	var send_side = {{ send_side }};
     var recv_side = {{ recv_side }};
+    var room_number = '';
+
+    if(Number(send_side) < Number(recv_side)) room_number = send_side + "_" + recv_side + "_1";
+    else room_number = recv_side + "_" + send_side + "_2";
 
     var chatSocket = new WebSocket(
         'ws://' + window.location.host +
-        '/ws/chat/' + send_side.toString() + '/');
+        '/ws/chat/' + room_number.toString() + '/');
 
     chatSocket.onmessage = function(e) {
         var data = JSON.parse(e.data);
@@ -198,11 +217,11 @@
                 add_message(username.toString(), image_url.toString(), message.toString(), true);
             }
         })
-    };
+     };
 
     chatSocket.onclose = function(e) {
         console.error('Chat socket closed unexpectedly');
-    };
+     };
 
 	$('.chat-message button').click(function(){
 		var input = $(this).siblings('span').children('input[type=text]').val();
@@ -225,7 +244,7 @@
                     recv_side : recv_side,
                     message : $(this).val()
                 };
-				add_message('You',"{{ send_side_user.header_image.url }}",$(this).val(),true);
+				add_message('我',"{{ send_side_user.header_image.url }}",$(this).val(),true);
                 chatSocket.send(JSON.stringify(message));
 			}
 		}
@@ -236,14 +255,11 @@
 		i = i + 1;
 		var  inner = $('#chat-messages-inner');
 		var time = new Date();
-		var hours = time.getHours();
-		var minutes = time.getMinutes();
-		if(hours < 10) hours = '0' + hours;
-		if(minutes < 10) minutes = '0' + minutes;
+        time = time.format("yyyy-MM-dd hh:mm:ss");
 		var id = 'msg-'+i;
         var idname = name.replace(' ','-').toLowerCase();
 		inner.append('<p id="'+id+'" class="user-'+idname+'"><img src="'+img+'" alt="" />'
-										+'<span class="msg-block"><strong>'+name+'</strong> <span class="time">- '+hours+':'+minutes+'</span>'
+										+'<span class="msg-block"><strong>'+name+'</strong> <span class="time">- '+time+'</span>'
 										+'<span class="msg">'+msg+'</span></span></p>');
 		$('#'+id).hide().fadeIn(800);
 		if(clear) {

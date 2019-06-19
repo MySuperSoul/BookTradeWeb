@@ -214,7 +214,7 @@ Date.prototype.format = function(fmt) {
                 console.log(data);
                 var image_url = data.data.image_url;
                 var username = data.data.username;
-                add_message(username.toString(), image_url.toString(), message.toString(), true);
+                add_message(username.toString(), image_url.toString(), message.toString(), true, '');
             }
         })
      };
@@ -226,7 +226,7 @@ Date.prototype.format = function(fmt) {
 	$('.chat-message button').click(function(){
 		var input = $(this).siblings('span').children('input[type=text]').val();
 		if(input !== ''){
-			add_message('You',"{{ send_side_user.header_image.url }}",input.val(),true);
+			add_message('我',"{{ send_side_user.header_image.url }}",input.val(),true, '');
 			var message = {
 			    send_side : send_side,
                 recv_side : recv_side,
@@ -244,18 +244,24 @@ Date.prototype.format = function(fmt) {
                     recv_side : recv_side,
                     message : $(this).val()
                 };
-				add_message('我',"{{ send_side_user.header_image.url }}",$(this).val(),true);
+				add_message('我',"{{ send_side_user.header_image.url }}",$(this).val(),true,'');
                 chatSocket.send(JSON.stringify(message));
 			}
 		}
 	});
 
    	var i = 0;
-	function add_message(name,img,msg,clear) {
+	function add_message(name,img,msg,clear,message_time) {
 		i = i + 1;
+		var time = null;
 		var  inner = $('#chat-messages-inner');
-		var time = new Date();
-        time = time.format("yyyy-MM-dd hh:mm:ss");
+		if(message_time === ''){
+		    time = new Date();
+            time = time.format("yyyy-MM-dd hh:mm:ss");
+        }else {
+		    time = message_time;
+        }
+
 		var id = 'msg-'+i;
         var idname = name.replace(' ','-').toLowerCase();
 		inner.append('<p id="'+id+'" class="user-'+idname+'"><img src="'+img+'" alt="" />'
@@ -267,6 +273,15 @@ Date.prototype.format = function(fmt) {
 		}
 		$('#chat-messages').animate({ scrollTop: inner.height() },1000);
 	}
+
+    {% for message in messages %}
+    {% if message.send_side_id == send_side %}
+        add_message('我', "{{ message.send_side.header_image.url }}", "{{ message.message }}", true, "{{ message.create_time|date:'Y-m-d H:i:s' }}");
+        {% else %}
+        add_message('{{ message.send_side.username }}', "{{ message.send_side.header_image.url }}", "{{ message.message }}", true, "{{ message.create_time|date:'Y-m-d H:i:s' }}");
+    {% endif %}
+    {% endfor %}
+    $('#chat-messages').animate({ scrollTop: inner.height() },1000);
 });
 
 

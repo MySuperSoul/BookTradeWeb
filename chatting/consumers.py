@@ -3,6 +3,7 @@ from channels.layers import get_channel_layer
 from channels.db import database_sync_to_async
 from collections import defaultdict
 from useraction.models import User
+from chatting.models import ChattingMessage
 import json
 
 class Util():
@@ -42,6 +43,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
         message = text_data['message']
         send_side = text_data['send_side']
         recv_side = text_data['recv_side']
+        await self.CreateNewMessage(send_side, recv_side, message)
+
         channel_layer = get_channel_layer()
         channel_name = Util.user_channel_dic[str(recv_side)]
         if len(Util.chats_dic[self.room_name].items()) == 2:
@@ -72,6 +75,16 @@ class ChatConsumer(AsyncWebsocketConsumer):
     def GetName(self, user_id):
         user_id = int(user_id)
         return User.objects.filter(id=user_id)[0].username
+
+    @database_sync_to_async
+    def CreateNewMessage(self, send_side, recv_side, message):
+        mess = ChattingMessage.objects.create(
+            send_side_id=int(send_side),
+            recv_side_id=int(recv_side),
+            message=message
+        )
+        mess.save()
+
 
     async def chat_message(self, event):
         message = event['message']

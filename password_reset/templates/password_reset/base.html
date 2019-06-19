@@ -8,8 +8,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>登录</title>
-  
+  <title>修改密码</title>
+
   <!-- FAVICON -->
   <link href="{% static 'images/favicon.png' %}" rel="shortcut icon">
   <!-- PLUGINS CSS STYLE -->
@@ -35,11 +35,7 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-<style>
-body{
-    background-image: url({% static 'images/logo.jpg' %});
-}
-</style>
+
 </head>
 
 <body class="body-wrapper">
@@ -66,24 +62,14 @@ body{
 <section class="login py-5 border-top-1">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-5 col-md-8 align-item-center">
-                <div class="border bg-white">
-                    <h3 class="bg-gray p-4">旧书交易网站登录</h3>
-                        <fieldset class="p-4">
-                            {% csrf_token %}
-                            <input type="text" placeholder="用户名" class="border p-3 w-100 my-2 rounded" id="username_login">
-                            <input type="password" placeholder="密码" class="border p-3 w-100 my-2 rounded" id="password_login">
-                            <div class="loggedin-forgot">
-                                    <input type="checkbox" id="keep-me-logged-in">
-                                    <label for="keep-me-logged-in" class="pt-3 pb-2">保持登录</label>
-                            </div>
-                            <div id="message_login_field"></div>
-                            <button type="submit" onclick="Login()" class="d-block py-3 px-5 bg-primary text-white border-0 rounded font-weight-bold mt-3 btn-block">Log in</button>
-                            <center><a class="mt-3 d-block  text-primary" href="{% url "password_reset_recover" %}">忘记密码?</a></center>
-                            <center><a class="mt-3 d-inline-block text-primary" href="{% url 'useraction:register' %}">没有账号？注册一个吧</a></center>
-                        </fieldset>
+        <div class="col-lg-5 col-md-8 align-item-center">
+            <div class="bg-white">
+                {% block content %}
+                 {% endblock %}
                 </div>
+                <center><a class="mt-3 d-block  text-primary" href="{% url 'useraction:login' %}">返回🔙登录页</a></center>
             </div>
+
         </div>
     </div>
 </section>

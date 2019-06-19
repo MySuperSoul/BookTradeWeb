@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ['*',]
 
 INSTALLED_APPS = [
     'channels',
+    'password_reset',
     'useraction.apps.UseractionConfig',
     'books.apps.BooksConfig',
     'chatting.apps.ChattingConfig',
@@ -148,3 +149,15 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+EMAIL_HOST = 'smtp.163.com'
+# 邮箱名
+EMAIL_HOST_USER = 'mysupersoul@163.com'
+# 邮箱密码
+EMAIL_HOST_PASSWORD = '123456qazwsx'
+# 发送邮件的端口
+EMAIL_PORT = 25
+# 是否使用 TLS
+EMAIL_USE_TLS = True
+# 默认的发件人
+DEFAULT_FROM_EMAIL = 'Huang的个人网站 <mysupersoul@163.com>'

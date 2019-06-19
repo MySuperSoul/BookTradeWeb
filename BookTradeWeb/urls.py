@@ -22,6 +22,7 @@ from django.views.static import serve
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^password-reset/', include('password_reset.urls')),
     url(r'^auth/', include('useraction.urls')),
     url(r'^books/', include('books.urls')),
     url(r'^chatting/', include('chatting.urls')),

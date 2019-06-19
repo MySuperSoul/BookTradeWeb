@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="07c73b7b-d374-4f00-ad46-5271753f8f1c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookTradeWeb/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/BookTradeWeb/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookTradeWeb/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/BookTradeWeb/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chatting/consumers.py" beforeDir="false" afterPath="$PROJECT_DIR$/chatting/consumers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chatting/templates/chat/room.html" beforeDir="false" afterPath="$PROJECT_DIR$/chatting/templates/chat/room.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chatting/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/chatting/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/useraction/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/useraction/templates/login.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,114 +21,96 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chatting/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/chatting/templates/chat/room.html">
+        <entry file="file://$PROJECT_DIR$/password_reset/templates/password_reset/recovery_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="276" column="33" lean-forward="true" selection-start-line="276" selection-start-column="33" selection-end-line="276" selection-end-column="33" />
+            <state relative-caret-position="234">
+              <caret line="9" column="106" selection-start-line="9" selection-start-column="106" selection-end-line="9" selection-end-column="115" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/books/templates/index.html">
+        <entry file="file://$PROJECT_DIR$/password_reset/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="643" column="33" lean-forward="true" selection-start-line="643" selection-start-column="33" selection-end-line="643" selection-end-column="33" />
+            <state relative-caret-position="2850">
+              <caret line="116" column="34" selection-start-line="116" selection-start-column="17" selection-end-line="116" selection-end-column="34" />
               <folding>
-                <element signature="n#style#0;n#span#2;n#a#0;n#li#6;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#0#15#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/books/views.py">
+        <entry file="file://$PROJECT_DIR$/password_reset/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1146">
-              <caret line="59" selection-start-line="59" selection-end-line="59" />
+            <state relative-caret-position="-2357">
               <folding>
-                <element signature="e#0#35#0" expanded="true" />
+                <element signature="e#0#24#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chatting/static/css/chat.css">
+        <entry file="file://$PROJECT_DIR$/password_reset/tests/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="96" lean-forward="true" selection-start-line="96" selection-end-line="96" />
-            </state>
+            <state relative-caret-position="-225" />
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chatting/consumers.py">
+        <entry file="file://$PROJECT_DIR$/BookTradeWeb/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="46" selection-start-line="46" selection-end-line="46" />
+            <state relative-caret-position="249">
+              <caret line="156" column="36" lean-forward="true" selection-start-line="156" selection-start-column="36" selection-end-line="156" selection-end-column="36" />
               <folding>
-                <element signature="e#0#61#0" expanded="true" />
+                <element signature="e#313#322#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/books/models.py">
+        <entry file="file://$PROJECT_DIR$/password_reset/templates/password_reset/reset.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-41">
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="286">
+              <caret line="11" column="68" selection-start-line="11" selection-start-column="68" selection-end-line="11" selection-end-column="68" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chatting/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="8" column="15" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="15" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/books/templates/single_book.html">
+        <entry file="file://$PROJECT_DIR$/useraction/templates/login.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="290">
-              <caret line="300" column="112" selection-start-line="300" selection-start-column="101" selection-end-line="300" selection-end-column="112" />
+              <caret line="81" column="134" lean-forward="true" selection-start-line="81" selection-start-column="28" selection-end-line="81" selection-end-column="134" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chatting/routing.py">
+        <entry file="file://$PROJECT_DIR$/password_reset/templates/password_reset/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
-              <folding>
-                <element signature="e#0#32#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="172">
+              <caret line="65" column="39" selection-start-line="65" selection-start-column="39" selection-end-line="65" selection-end-column="39" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/password_reset/templates/password_reset/reset_sent.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/password_reset/templates/password_reset/recovery_done.html">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -178,18 +164,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/books/static/js/shopping_car.js" />
-        <option value="$PROJECT_DIR$/mycustom.cnf" />
-        <option value="$PROJECT_DIR$/BookTradeWeb/static/css/style.css" />
         <option value="$PROJECT_DIR$/books/static/js/category.js" />
         <option value="$PROJECT_DIR$/start_docker.sh" />
         <option value="$PROJECT_DIR$/stop_docker.sh" />
         <option value="$PROJECT_DIR$/useraction/static/js/useraction.js" />
-        <option value="$PROJECT_DIR$/useraction/templates/login.html" />
         <option value="$PROJECT_DIR$/useraction/templates/register.html" />
         <option value="$PROJECT_DIR$/scripts/start_server.sh" />
         <option value="$PROJECT_DIR$/scripts/stop_docker.sh" />
-        <option value="$PROJECT_DIR$/useraction/views.py" />
         <option value="$PROJECT_DIR$/BookTradeWeb/utils.py" />
         <option value="$PROJECT_DIR$/books/models.py" />
         <option value="$PROJECT_DIR$/books/templatetags/books_filter.py" />
@@ -197,20 +178,16 @@
         <option value="$PROJECT_DIR$/books/templates/category.html" />
         <option value="$PROJECT_DIR$/books/templates/shopping_car.html" />
         <option value="$PROJECT_DIR$/books/templates/user-profile.html" />
-        <option value="$PROJECT_DIR$/BookTradeWeb/urls.py" />
         <option value="$PROJECT_DIR$/books/templates/my_books.html" />
         <option value="$PROJECT_DIR$/books/templates/add_list.html" />
         <option value="$PROJECT_DIR$/books/static/js/profile.js" />
         <option value="$PROJECT_DIR$/books/urls.py" />
-        <option value="$PROJECT_DIR$/books/views.py" />
-        <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/chatting/comsumers.py" />
         <option value="$PROJECT_DIR$/chatting/routing.py" />
         <option value="$PROJECT_DIR$/BookTradeWeb/routing.py" />
         <option value="$PROJECT_DIR$/chatting/templates/chat/index.html" />
         <option value="$PROJECT_DIR$/useraction/models.py" />
         <option value="$PROJECT_DIR$/chatting/models.py" />
-        <option value="$PROJECT_DIR$/BookTradeWeb/settings.py" />
         <option value="$PROJECT_DIR$/config.json" />
         <option value="$PROJECT_DIR$/Dockerfile" />
         <option value="$PROJECT_DIR$/scripts/check_containers.sh" />
@@ -226,15 +203,24 @@
         <option value="$PROJECT_DIR$/chatting/urls.py" />
         <option value="$PROJECT_DIR$/chatting/static/js/shared_worker.js" />
         <option value="$PROJECT_DIR$/books/templates/index.html" />
-        <option value="$PROJECT_DIR$/chatting/consumers.py" />
-        <option value="$PROJECT_DIR$/chatting/templates/chat/room.html" />
         <option value="$PROJECT_DIR$/chatting/views.py" />
+        <option value="$PROJECT_DIR$/useraction/views.py" />
+        <option value="$PROJECT_DIR$/books/views.py" />
+        <option value="$PROJECT_DIR$/chatting/templates/chat/room.html" />
+        <option value="$PROJECT_DIR$/chatting/consumers.py" />
+        <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/BookTradeWeb/urls.py" />
+        <option value="$PROJECT_DIR$/useraction/templates/login.html" />
+        <option value="$PROJECT_DIR$/BookTradeWeb/settings.py" />
+        <option value="$PROJECT_DIR$/password_reset/templates/password_reset/reset.html" />
+        <option value="$PROJECT_DIR$/password_reset/templates/password_reset/base.html" />
+        <option value="$PROJECT_DIR$/password_reset/templates/password_reset/recovery_form.html" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="width" value="1440" />
-    <option name="height" value="900" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1280" />
+    <option name="height" value="800" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -253,75 +239,42 @@
             <path>
               <item name="BookTradeWeb" type="b2602c69:ProjectViewProjectNode" />
               <item name="BookTradeWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="books" type="462c0819:PsiDirectoryNode" />
+              <item name="BookTradeWeb" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BookTradeWeb" type="b2602c69:ProjectViewProjectNode" />
               <item name="BookTradeWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="books" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="password_reset" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BookTradeWeb" type="b2602c69:ProjectViewProjectNode" />
               <item name="BookTradeWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="books" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BookTradeWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BookTradeWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="books" type="462c0819:PsiDirectoryNode" />
+              <item name="password_reset" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BookTradeWeb" type="b2602c69:ProjectViewProjectNode" />
               <item name="BookTradeWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="books" type="462c0819:PsiDirectoryNode" />
-              <item name="templatetags" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BookTradeWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BookTradeWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="BookTradeWeb" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BookTradeWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BookTradeWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="chatting" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BookTradeWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BookTradeWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="chatting" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BookTradeWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BookTradeWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="chatting" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BookTradeWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BookTradeWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="chatting" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BookTradeWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BookTradeWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="chatting" type="462c0819:PsiDirectoryNode" />
+              <item name="password_reset" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="password_reset" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BookTradeWeb" type="b2602c69:ProjectViewProjectNode" />
               <item name="BookTradeWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="chatting" type="462c0819:PsiDirectoryNode" />
+              <item name="password_reset" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BookTradeWeb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BookTradeWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="useraction" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BookTradeWeb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BookTradeWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="useraction" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="chat" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -416,12 +369,13 @@
       <workItem from="1560839069313" duration="9308000" />
       <workItem from="1560858337590" duration="35000" />
       <workItem from="1560858463682" duration="5153000" />
-      <workItem from="1560872609951" duration="15000000" />
+      <workItem from="1560872609951" duration="15346000" />
+      <workItem from="1560939883547" duration="11312000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="231686000" />
+    <option name="totallyTimeSpent" value="243344000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -433,16 +387,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13161659" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15105008" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26024097" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.33734939" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2931507" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3219178" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32876712" />
@@ -493,124 +447,20 @@
           <line>56</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/chatting/consumers.py</url>
+          <line>48</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/books/views.py</url>
+          <line>212</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/useraction/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="10" column="1" lean-forward="true" selection-end-line="10" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chatting/apps.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chatting/admin.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/useraction/static/js/useraction.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="38" selection-end-column="1" />
-          <folding>
-            <element signature="e#127#134#1" expanded="true" />
-            <element signature="e#128#135#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/books/static/js/shopping_car.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="58" column="37" selection-start-line="58" selection-start-column="37" selection-end-line="58" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chatting/comsumers.py" />
-    <entry file="file://$PROJECT_DIR$/chatting/templates/chat/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/useraction/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="16" column="59" lean-forward="true" selection-start-line="16" selection-start-column="59" selection-end-line="16" selection-end-column="59" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BookTradeWeb/routing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="7" column="18" lean-forward="true" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chatting/tests.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BookTradeWeb/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
-          <caret line="147" column="10" lean-forward="true" selection-start-line="147" selection-start-column="10" selection-end-line="147" selection-end-column="10" />
-          <folding>
-            <element signature="e#313#322#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/check_containers.sh" />
-    <entry file="file://$PROJECT_DIR$/scripts/docker_entry.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/start_docker.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/stop_docker.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/start_server.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="2" column="39" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="477">
-            <caret line="46" column="4" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BookTradeWeb/static/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-12474">
@@ -669,16 +519,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BookTradeWeb/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-          <folding>
-            <element signature="e#636#668#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/books/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
@@ -717,30 +557,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="10" column="15" lean-forward="true" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chatting/static/js/chat.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BookTradeWeb/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-222">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/chatting/static/js/chat.js" />
     <entry file="file://$PROJECT_DIR$/chatting/static/js/shared_worker.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
@@ -790,19 +607,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/books/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="643" column="33" lean-forward="true" selection-start-line="643" selection-start-column="33" selection-end-line="643" selection-end-column="33" />
-          <folding>
-            <element signature="n#style#0;n#span#2;n#a#0;n#li#6;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/chatting/routing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
+        <state relative-caret-position="26">
           <caret line="3" selection-start-line="3" selection-end-line="3" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
@@ -810,26 +617,97 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/books/models.py">
+    <entry file="file://$PROJECT_DIR$/books/templates/single_book.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-41">
+        <state relative-caret-position="-4584">
+          <caret line="300" column="112" selection-start-line="300" selection-start-column="101" selection-end-line="300" selection-end-column="112" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chatting/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="4" column="36" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/books/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/useraction/static/js/useraction.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="109" column="25" selection-start-line="109" selection-start-column="25" selection-end-line="109" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BookTradeWeb/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.7/site-packages/django/contrib/sessions/backends/signed_cookies.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="61" column="8" selection-start-line="61" selection-start-column="8" selection-end-line="61" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.7/site-packages/django/contrib/auth/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-948">
+          <caret line="55" column="4" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chatting/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/chatting/static/css/chat.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="96" lean-forward="true" selection-start-line="96" selection-end-line="96" />
+        <state relative-caret-position="3796">
+          <caret line="146" column="34" selection-start-line="146" selection-start-column="34" selection-end-line="146" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/books/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1146">
-          <caret line="59" selection-start-line="59" selection-end-line="59" />
+        <state relative-caret-position="164">
+          <caret line="116" column="27" selection-start-line="116" selection-start-column="27" selection-end-line="116" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/useraction/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="15" column="32" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
@@ -838,45 +716,130 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/chatting/consumers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        <state relative-caret-position="241">
+          <caret line="34" column="37" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
           <folding>
             <element signature="e#0#61#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/chatting/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="8" column="15" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/books/templates/single_book.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="300" column="112" selection-start-line="300" selection-start-column="101" selection-end-line="300" selection-end-column="112" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chatting/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/chatting/templates/chat/room.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="276" column="33" lean-forward="true" selection-start-line="276" selection-start-column="33" selection-end-line="276" selection-end-column="33" />
+        <state relative-caret-position="227">
+          <caret line="277" column="76" selection-start-line="277" selection-start-column="76" selection-end-line="277" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BookTradeWeb/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="26" column="43" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="43" />
+          <folding>
+            <element signature="e#636#668#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/books/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8341">
+          <caret line="646" column="17" selection-start-line="646" selection-start-column="17" selection-end-line="646" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/password_reset/templates/password_reset/recovery_email_subject.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/password_reset/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="8" column="69" lean-forward="true" selection-start-line="8" selection-start-column="69" selection-end-line="8" selection-end-column="69" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/password_reset/templates/password_reset/recovery_email.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BookTradeWeb/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="156" column="36" lean-forward="true" selection-start-line="156" selection-start-column="36" selection-end-line="156" selection-end-column="36" />
+          <folding>
+            <element signature="e#313#322#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/password_reset/tests/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-225" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/password_reset/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2357">
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/password_reset/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2850">
+          <caret line="116" column="34" selection-start-line="116" selection-start-column="17" selection-end-line="116" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/useraction/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="81" column="134" lean-forward="true" selection-start-line="81" selection-start-column="28" selection-end-line="81" selection-end-column="134" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/password_reset/templates/password_reset/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="65" column="39" selection-start-line="65" selection-start-column="39" selection-end-line="65" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/password_reset/templates/password_reset/reset_sent.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/password_reset/templates/password_reset/recovery_done.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/password_reset/templates/password_reset/reset.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="11" column="68" selection-start-line="11" selection-start-column="68" selection-end-line="11" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/password_reset/templates/password_reset/recovery_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="9" column="106" selection-start-line="9" selection-start-column="106" selection-end-line="9" selection-end-column="115" />
         </state>
       </provider>
     </entry>

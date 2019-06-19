@@ -255,9 +255,13 @@ Date.prototype.format = function(fmt) {
 		i = i + 1;
 		var time = null;
 		var  inner = $('#chat-messages-inner');
+		var flag = true;
+		var slide_time = 100;
 		if(message_time === ''){
 		    time = new Date();
             time = time.format("yyyy-MM-dd hh:mm:ss");
+            flag = false;
+            slide_time = 1000;
         }else {
 		    time = message_time;
         }
@@ -267,11 +271,11 @@ Date.prototype.format = function(fmt) {
 		inner.append('<p id="'+id+'" class="user-'+idname+'"><img src="'+img+'" alt="" />'
 										+'<span class="msg-block"><strong>'+name+'</strong> <span class="time">- '+time+'</span>'
 										+'<span class="msg">'+msg+'</span></span></p>');
-		$('#'+id).hide().fadeIn(800);
+		if(flag === true) $('#'+id).hide().fadeIn(800);
 		if(clear) {
 			$('.chat-message textarea').val('').focus();
 		}
-		$('#chat-messages').animate({ scrollTop: inner.height() },1000);
+		$('#chat-messages').animate({ scrollTop: inner.height() },slide_time);
 	}
 
     {% for message in messages %}

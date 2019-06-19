@@ -33,7 +33,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
         await self.accept()
 
     async def disconnect(self, code):
-        Util.user_channel_dic.pop(self.send_side)
         if self.in_room:
             Util.chats_dic[self.room_name].pop(self.send_side)
         await self.close()

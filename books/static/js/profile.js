@@ -105,6 +105,7 @@ $("#ISBN_link_search_btn").click(function (evt) {
                $("#link").val(data.link);
                $("#ISBN").val(data.ISBN);
                $("#book_desc").val(data.description);
+               $("#origin_price").val(data.sell_price);
            }
         }
     });

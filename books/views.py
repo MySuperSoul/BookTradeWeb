@@ -10,6 +10,7 @@ from django.db.models import Count
 from django.contrib.auth import authenticate, login
 from bs4 import BeautifulSoup
 import requests, json
+import math
 
 # Create your views here.
 class Util():
@@ -58,10 +59,14 @@ def GetISBNLink(request, ISBN):
         isbn_info = str(isbn.contents[5].text)
         isbn_info = isbn_info[isbn_info.index('ISBN') + 5:]
 
+        sell_price = soup.find_all('p', id='dd-price')
+        sell_price = str(sell_price[0].text).strip().split('¥')[-1]
+        sell_price = round(float(sell_price))
         return JsonResponse({
             'link' : book_link,
             'description' : desc.strip(),
-            'ISBN' : isbn_info
+            'ISBN' : isbn_info,
+            'sell_price' : sell_price
         })
     except Exception as e:
         return JsonResponse({

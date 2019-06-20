@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^api/add_credit_account/$', views.CreditAddCountMoney.as_view(), name='add_credit_account'),
     url(r'^api/delete_publish_book/(?P<book_id>[0-9]+)/$', views.DeletePublishBookView.as_view(), name='delete_publish_book'),
     url(r'^api/modify_book_info/$', views.ModifyBookInfoView.as_view(), name='modify_book_info'),
+    url(r'^api/verify_order/$', views.VerifyOrderView.as_view(), name='verify_order'),
     url(r'^shopping_car/$', views.MakeOfferView.as_view(), name='shopping_car'),
     url(r'^book_need/$', views.BookNeedView.as_view(), name='book_need'),
     url(r'^search/$', views.ShowBooksByCategoryView.as_view(), name='search_books')

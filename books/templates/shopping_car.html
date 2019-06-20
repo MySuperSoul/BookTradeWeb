@@ -135,11 +135,19 @@
             <ul class="nav nav-pills  justify-content-center" id="pills-tab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home"
-                     aria-selected="true">🛒待交易</a>
+                     aria-selected="true">待交易购买订单</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile"
-                     aria-selected="false">已完成订单</a>
+                     aria-selected="false">购买订单</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-sell" role="tab" aria-controls="pills-sell"
+                     aria-selected="false">待确认的销售订单</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-verify" role="tab" aria-controls="pills-verify"
+                     aria-selected="false">已确认的销售订单</a>
                 </li>
             </ul>
             <div class="tab-content">
@@ -233,7 +241,7 @@
                                 <td class="product-details text-center">
                                     <span class="text-center">卖家: {{ order.sell_side.username }}</span>
                                     <span class="text-center">成交时间: {{ order.complete_time|date:"Y-m-d H:i:s" }}</span>
-                                    <span class="text-center">订单状态: {{ order.status }}</span>
+                                    <span class="text-center">订单状态: {% if order.status == 'complete' %}商家已确认，订单完成✅{% else %}待商家确认{% endif %}</span>
                                     <span class="text-center">{% if order.book.trade_way == 'online' %}邮寄地址{% else %}线下实地交易地址{% endif %}: {{ order.post_address }}</span>
                                     <span class="text-center">本人联系电话: {{ order.contact_phone }}</span>
                                 </td>
@@ -242,6 +250,109 @@
 										<ul class="list-inline justify-content-center">
 											<li class="list-inline-item">
 												<a data-toggle="tooltip" data-placement="top" title="查看订单详情" class="view" href="{% url 'books:sell_single_book' order.book.id %}">
+													<i class="fa fa-android"></i>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</td>
+                            </tr>
+                            {% endfor %}
+						</tbody>
+					</table>
+
+				</div>
+                <div class="widget dashboard-container my-adslist tab-pane fade" id="pills-sell" role="tabpanel" aria-labelledby="pills-sell-tab">
+					<h3 class="widget-header">待确认销售订单</h3>
+					<table class="table table-responsive product-dashboard-table">
+						<thead>
+							<tr>
+								<th class="text-center">产品图片</th>
+								<th class="text-center">订单详情</th>
+								<th class="text-center">订单详情</th>
+								<th class="text-center">动作</th>
+							</tr>
+						</thead>
+						<tbody>
+                            {% for order in remain_verify_orders %}
+                            <tr>
+                                <td class="product-thumb">
+                                    <img width="150px" height="auto" src="{{ order.book.book_image.url }}" alt="image description">
+                                </td>
+                                <td class="product-details text-center">
+                                    <h3 class="title text-center">{{ order.book.book_name }}</h3>
+                                    <span class="text-center"><strong>订单号:  {{ order.id }}</strong> </span>
+                                    <span class="text-center"><strong>出售价格:  {{ order.book.sell_price }}¥</strong> </span>
+                                    <span class="text-center"><strong>购买数量:  {{ order.complete_book_num }}</strong> </span>
+                                    <span class="text-center"><strong>总价:  {{ order.complete_price }}¥</strong></span>
+                                    <span class="status active text-center"><strong>配送方式:  {% if order.book.trade_way == 'online' %}邮寄{% else %}线下交易{% endif %}</strong></span>
+                                </td>
+                                <td class="product-details text-center">
+                                    <span class="text-center">买家: {{ order.buy_side.username }}</span>
+                                    <span class="text-center">提交时间: {{ order.complete_time|date:"Y-m-d H:i:s" }}</span>
+                                    <span class="text-center">订单状态: 待确认</span>
+                                    <span class="text-center">{% if order.book.trade_way == 'online' %}邮寄地址{% else %}线下实地交易地址{% endif %}: {{ order.post_address }}</span>
+                                    <span class="text-center">买家联系电话: {{ order.contact_phone }}</span>
+                                </td>
+                            <td class="action" data-title="Action">
+									<div class="">
+										<ul class="list-inline justify-content-center">
+											<li class="list-inline-item">
+												<a data-toggle="tooltip" data-placement="top" title="查看书籍详情" class="view" href="{% url 'books:sell_single_book' order.book.id %}">
+													<i class="fa fa-android"></i>
+												</a>
+											</li>
+                                            <li class="list-inline-item">
+												<a data-toggle="tooltip" data-placement="top" title="确认该订单" class="edit" href="javascript:VerifyOrder({{ order.id }})">
+													<i class="fa fa-money"></i>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</td>
+                            </tr>
+                            {% endfor %}
+						</tbody>
+					</table>
+
+				</div>
+                <div class="widget dashboard-container my-adslist tab-pane fade" id="pills-verify" role="tabpanel" aria-labelledby="pills-verify-tab">
+					<h3 class="widget-header">已确认的销售订单✅</h3>
+					<table class="table table-responsive product-dashboard-table">
+						<thead>
+							<tr>
+								<th class="text-center">产品图片</th>
+								<th class="text-center">订单详情</th>
+								<th class="text-center">订单详情</th>
+								<th class="text-center">动作</th>
+							</tr>
+						</thead>
+						<tbody>
+                            {% for order in verified_orders %}
+                            <tr>
+                                <td class="product-thumb">
+                                    <img width="150px" height="auto" src="{{ order.book.book_image.url }}" alt="image description">
+                                </td>
+                                <td class="product-details text-center">
+                                    <h3 class="title text-center">{{ order.book.book_name }}</h3>
+                                    <span class="text-center"><strong>订单号:  {{ order.id }}</strong> </span>
+                                    <span class="text-center"><strong>出售价格:  {{ order.book.sell_price }}¥</strong> </span>
+                                    <span class="text-center"><strong>购买数量:  {{ order.complete_book_num }}</strong> </span>
+                                    <span class="text-center"><strong>总价:  {{ order.complete_price }}¥</strong></span>
+                                    <span class="status active text-center"><strong>配送方式:  {% if order.book.trade_way == 'online' %}邮寄{% else %}线下交易{% endif %}</strong></span>
+                                </td>
+                                <td class="product-details text-center">
+                                    <span class="text-center">买家: {{ order.buy_side.username }}</span>
+                                    <span class="text-center">订单完成时间: {{ order.complete_time|date:"Y-m-d H:i:s" }}</span>
+                                    <span class="text-center">订单状态: 您已经确认该订单啦✅</span>
+                                    <span class="text-center">{% if order.book.trade_way == 'online' %}邮寄地址{% else %}线下实地交易地址{% endif %}: {{ order.post_address }}</span>
+                                    <span class="text-center">买家联系电话: {{ order.contact_phone }}</span>
+                                </td>
+                            <td class="action" data-title="Action">
+									<div class="">
+										<ul class="list-inline justify-content-center">
+											<li class="list-inline-item">
+												<a data-toggle="tooltip" data-placement="top" title="查看书籍详情" class="view" href="{% url 'books:sell_single_book' order.book.id %}">
 													<i class="fa fa-android"></i>
 												</a>
 											</li>

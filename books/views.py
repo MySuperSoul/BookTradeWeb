@@ -339,9 +339,13 @@ class MakeOfferView(BaseView):
         user = request.user
         shopping_car_set = ShoppingCar.objects.filter(book_owner_id=user.id)
         completed_orders = BookOffer.objects.filter(buy_side_id=user.id)
+        remain_verify_orders = BookOffer.objects.filter(status='remain', sell_side_id=user.id)
+        verified_orders = BookOffer.objects.filter(status='complete', sell_side_id=user.id)
         data = {
             'shopping' : shopping_car_set,
-            'completed_orders' : completed_orders
+            'completed_orders' : completed_orders,
+            'remain_verify_orders' : remain_verify_orders,
+            'verified_orders' : verified_orders
         }
         return render(request, 'shopping_car.html', data)
 
@@ -361,7 +365,7 @@ class MakeOfferView(BaseView):
                     book=shopping_item.book,
                     sell_option=shopping_item.book.trade_way,
                     post_address=shopping_item.address,
-                    status='complete',
+                    status='remain',
                     complete_book_num=shopping_item.added_number,
                     complete_price=shopping_item.added_number * shopping_item.book.sell_price,
                     contact_phone=shopping_item.contact_phone,
@@ -453,4 +457,14 @@ class ModifyBookInfoView(BaseView):
 
         return {
             'message' : '修改成功'
+        }
+
+class VerifyOrderView(BaseView):
+    def post(self, request):
+        order_id = int(request.data.get('order_id'))
+        order = BookOffer.objects.get(id=order_id)
+        order.status = 'complete'
+        order.save()
+        return {
+            'message' : '订单确认成功'
         }

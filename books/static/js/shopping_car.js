@@ -78,3 +78,20 @@ function DeleteView(id) {
         }
     });
 }
+
+function VerifyOrder(order_id) {
+    order_id = Number(order_id);
+    $.ajax({
+        type: "post",
+        url: "/books/api/verify_order/",
+        async: true,
+        dataType: "json",
+        data: {
+            order_id: order_id
+        },
+        success : function (data) {
+           window.location.reload();
+           alert(data.data.message);
+        }
+    })
+}

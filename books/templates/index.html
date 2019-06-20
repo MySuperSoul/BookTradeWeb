@@ -626,7 +626,7 @@
      };
 
     function AddNotice(message, username, send_side){
-        var room_name = "/chatting/room_" + {{ user.id }} + "_" + send_side + "/";
+        var room_name = "/chatting/room_" + {{ request.user.id }} + "_" + send_side + "/";
         var notice = '<a class="dropdown-item" ' + 'href="' + room_name + '" target="_blank">' + username + " talk to you." + '</a>';
         $("#message-info").html('New');
         $("#message-dropdown").append(notice);

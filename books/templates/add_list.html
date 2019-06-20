@@ -98,6 +98,16 @@
 									我发布的旧书
 								</a>
 							</li>
+                            <li class="nav-item dropdown dropdown-slide">
+                                <a class="nav-link dropdown-toggle" href="">
+                                    <span class="text">我的消息</span>
+                                    <span><i class="fa fa-angle-down"></i></span>
+                                    <span id="message-info" class="label label-success" style="height: 40%;vertical-align: middle;padding: 0 4px 0;margin: -2px 2px 0;display: inline-block;background-color: red;"></span>
+                                </a>
+                                <div class="dropdown-menu" id="message-dropdown">
+{#                                    <a class="dropdown-item" href="{% url 'books:profile' %}">个人中心<img src="{{ user.header_image.url }}" alt="" style="width: 45px;height: 45px;border-radius: 70px;">  </a>#}
+								</div>
+                            </li>
 						</ul>
 						<ul class="navbar-nav ml-auto mt-10">
                             <li class="nav-item">
@@ -338,7 +348,33 @@
 <script src="{% static 'js/script.js' %}"></script>
 <script src="{% static 'js/js.cookie-2.2.0.min.js' %}"></script>
 <script src="{% static 'js/profile.js' %}"></script>
+<script type="text/javascript">
+    var chatSocket = new WebSocket(
+        'ws://' + window.location.host +
+        '/ws/chat/' + {{ request.user.id }} + '/');
 
+    chatSocket.onmessage = function(e) {
+        var data = JSON.parse(e.data);
+        var message = data['message'];
+        var send_message_side = data['send_side'];
+        $.ajax({
+            type: "post",
+            url: "/chatting/api/search_user_info/" + send_message_side.toString() + "/",
+            dataType: "json",
+            success : function (data) {
+                var username = data.data.username;
+                AddNotice(message, username, send_message_side);
+            }
+        })
+     };
+
+    function AddNotice(message, username, send_side){
+        var room_name = "/chatting/room_" + {{ request.user.id }} + "_" + send_side + "/";
+        var notice = '<a class="dropdown-item" ' + 'href="' + room_name + '" target="_blank">' + username + " talk to you." + '</a>';
+        $("#message-info").html('New');
+        $("#message-dropdown").append(notice);
+    }
+</script>
 </body>
 
 </html>

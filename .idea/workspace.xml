@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="07c73b7b-d374-4f00-ad46-5271753f8f1c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/books/templates/add_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/books/templates/add_list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/books/templates/book_need.html" beforeDir="false" afterPath="$PROJECT_DIR$/books/templates/book_need.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/templates/category.html" beforeDir="false" afterPath="$PROJECT_DIR$/books/templates/category.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/books/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/books/templates/my_books.html" beforeDir="false" afterPath="$PROJECT_DIR$/books/templates/my_books.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/books/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/books/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/templates/shopping_car.html" beforeDir="false" afterPath="$PROJECT_DIR$/books/templates/shopping_car.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/templates/single_book.html" beforeDir="false" afterPath="$PROJECT_DIR$/books/templates/single_book.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/templates/user-profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/books/templates/user-profile.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,8 +25,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/books/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="83" column="151" lean-forward="true" selection-start-line="82" selection-start-column="48" selection-end-line="83" selection-end-column="151" />
+            <state relative-caret-position="192">
+              <caret line="107" column="28" selection-start-line="107" selection-start-column="28" selection-end-line="116" selection-end-column="33" />
               <folding>
                 <element signature="n#style#0;n#span#2;n#a#0;n#li#6;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -45,19 +49,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/books/templates/book_need.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="137" column="59" selection-start-line="137" selection-start-column="59" selection-end-line="137" selection-end-column="59" />
+            <state relative-caret-position="448">
+              <caret line="109" column="33" selection-start-line="109" selection-start-column="33" selection-end-line="109" selection-end-column="33" />
+              <folding>
+                <element signature="n#style#0;n#span#2;n#a#0;n#li#5;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/books/templates/my_books.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2355">
-              <caret line="388" column="29" lean-forward="true" selection-start-line="388" selection-start-column="29" selection-end-line="388" selection-end-column="29" />
+            <state relative-caret-position="429">
+              <caret line="85" column="33" selection-start-line="85" selection-start-column="33" selection-end-line="85" selection-end-column="33" />
               <folding>
+                <element signature="n#style#0;n#span#2;n#a#0;n#li#5;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="e#11189#11196#1#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/books/templates/shopping_car.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="448">
+              <caret line="108" column="33" selection-start-line="108" selection-start-column="33" selection-end-line="108" selection-end-column="33" />
+              <folding>
+                <element signature="n#style#0;n#span#2;n#a#0;n#li#5;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -66,8 +86,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/books/templates/category.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="166" column="85" lean-forward="true" selection-start-line="166" selection-start-column="41" selection-end-line="166" selection-end-column="85" />
+            <state relative-caret-position="448">
+              <caret line="109" column="33" selection-start-line="109" selection-start-column="33" selection-end-line="109" selection-end-column="33" />
+              <folding>
+                <element signature="n#style#0;n#span#2;n#a#0;n#li#5;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -75,29 +98,36 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/books/templates/add_list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="152" column="81" selection-start-line="152" selection-start-column="81" selection-end-line="152" selection-end-column="81" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/books/static/js/profile.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1792">
-              <caret line="104" column="41" lean-forward="true" selection-start-line="104" selection-start-column="41" selection-end-line="104" selection-end-column="41" />
+            <state relative-caret-position="448">
+              <caret line="109" column="33" selection-start-line="109" selection-start-column="33" selection-end-line="109" selection-end-column="33" />
               <folding>
-                <element signature="e#127#134#1" expanded="true" />
-                <element signature="e#128#135#1" expanded="true" />
+                <element signature="n#style#0;n#span#2;n#a#0;n#li#5;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/books/static/js/shopping_car.js">
+        <entry file="file://$PROJECT_DIR$/books/templates/single_book.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1542" />
+            <state relative-caret-position="448">
+              <caret line="133" column="33" selection-start-line="133" selection-start-column="33" selection-end-line="133" selection-end-column="33" />
+              <folding>
+                <element signature="n#style#0;n#span#2;n#a#0;n#li#5;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/books/templates/user-profile.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="47">
+              <caret line="109" column="33" selection-start-line="109" selection-start-column="33" selection-end-line="109" selection-end-column="33" />
+              <folding>
+                <element signature="n#style#0;n#span#2;n#a#0;n#li#5;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
           </provider>
         </entry>
       </file>
@@ -109,15 +139,6 @@
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/password_reset/templates/password_reset/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1429">
-              <caret line="65" column="34" lean-forward="true" selection-start-line="65" selection-start-column="34" selection-end-line="65" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -183,9 +204,6 @@
         <option value="$PROJECT_DIR$/BookTradeWeb/utils.py" />
         <option value="$PROJECT_DIR$/books/models.py" />
         <option value="$PROJECT_DIR$/books/templatetags/books_filter.py" />
-        <option value="$PROJECT_DIR$/books/templates/category.html" />
-        <option value="$PROJECT_DIR$/books/templates/shopping_car.html" />
-        <option value="$PROJECT_DIR$/books/templates/user-profile.html" />
         <option value="$PROJECT_DIR$/chatting/comsumers.py" />
         <option value="$PROJECT_DIR$/chatting/routing.py" />
         <option value="$PROJECT_DIR$/BookTradeWeb/routing.py" />
@@ -201,12 +219,10 @@
         <option value="$PROJECT_DIR$/docker-compose.yml" />
         <option value="$PROJECT_DIR$/chatting/static/js/chat.js" />
         <option value="$PROJECT_DIR$/chatting/static/css/chat.css" />
-        <option value="$PROJECT_DIR$/books/templates/single_book.html" />
         <option value="$PROJECT_DIR$/chatting/templatetags/__init__.py" />
         <option value="$PROJECT_DIR$/chatting/templatetags/chat_user_filter.py" />
         <option value="$PROJECT_DIR$/chatting/urls.py" />
         <option value="$PROJECT_DIR$/chatting/static/js/shared_worker.js" />
-        <option value="$PROJECT_DIR$/books/templates/index.html" />
         <option value="$PROJECT_DIR$/chatting/views.py" />
         <option value="$PROJECT_DIR$/useraction/views.py" />
         <option value="$PROJECT_DIR$/chatting/templates/chat/room.html" />
@@ -218,12 +234,17 @@
         <option value="$PROJECT_DIR$/password_reset/templates/password_reset/reset.html" />
         <option value="$PROJECT_DIR$/password_reset/templates/password_reset/recovery_form.html" />
         <option value="$PROJECT_DIR$/password_reset/templates/password_reset/base.html" />
-        <option value="$PROJECT_DIR$/books/templates/add_list.html" />
         <option value="$PROJECT_DIR$/books/static/js/profile.js" />
-        <option value="$PROJECT_DIR$/books/templates/book_need.html" />
         <option value="$PROJECT_DIR$/books/urls.py" />
         <option value="$PROJECT_DIR$/books/views.py" />
+        <option value="$PROJECT_DIR$/books/templates/index.html" />
+        <option value="$PROJECT_DIR$/books/templates/add_list.html" />
+        <option value="$PROJECT_DIR$/books/templates/book_need.html" />
+        <option value="$PROJECT_DIR$/books/templates/category.html" />
         <option value="$PROJECT_DIR$/books/templates/my_books.html" />
+        <option value="$PROJECT_DIR$/books/templates/shopping_car.html" />
+        <option value="$PROJECT_DIR$/books/templates/single_book.html" />
+        <option value="$PROJECT_DIR$/books/templates/user-profile.html" />
       </list>
     </option>
   </component>
@@ -363,12 +384,12 @@
       <workItem from="1560858337590" duration="35000" />
       <workItem from="1560858463682" duration="5153000" />
       <workItem from="1560872609951" duration="15346000" />
-      <workItem from="1560939883547" duration="15005000" />
+      <workItem from="1560939883547" duration="15426000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="247037000" />
+    <option name="totallyTimeSpent" value="247458000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -381,14 +402,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13166398" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13166398" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.18219177" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.5082192" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.25205478" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -444,23 +464,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/local/lib/python3.7/site-packages/asgiref/sync.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="170" selection-start-line="170" selection-end-line="170" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chatting/templatetags/chat_user_filter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="4" column="33" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/chatting/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -546,13 +549,6 @@
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/books/templates/single_book.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4584">
-          <caret line="300" column="112" selection-start-line="300" selection-start-column="101" selection-end-line="300" selection-end-column="112" />
         </state>
       </provider>
     </entry>
@@ -758,27 +754,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/books/templates/add_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="152" column="81" selection-start-line="152" selection-start-column="81" selection-end-line="152" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/books/templates/category.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="166" column="85" lean-forward="true" selection-start-line="166" selection-start-column="41" selection-end-line="166" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/books/templates/book_need.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="137" column="59" selection-start-line="137" selection-start-column="59" selection-end-line="137" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/books/static/js/profile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1792">
@@ -793,16 +768,6 @@
     <entry file="file://$PROJECT_DIR$/books/static/js/shopping_car.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1542" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/books/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="83" column="151" lean-forward="true" selection-start-line="82" selection-start-column="48" selection-end-line="83" selection-end-column="151" />
-          <folding>
-            <element signature="n#style#0;n#span#2;n#a#0;n#li#6;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/books/urls.py">
@@ -825,12 +790,83 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/books/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="107" column="28" selection-start-line="107" selection-start-column="28" selection-end-line="116" selection-end-column="33" />
+          <folding>
+            <element signature="n#style#0;n#span#2;n#a#0;n#li#6;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/books/templates/add_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="109" column="33" selection-start-line="109" selection-start-column="33" selection-end-line="109" selection-end-column="33" />
+          <folding>
+            <element signature="n#style#0;n#span#2;n#a#0;n#li#5;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/books/templates/book_need.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="109" column="33" selection-start-line="109" selection-start-column="33" selection-end-line="109" selection-end-column="33" />
+          <folding>
+            <element signature="n#style#0;n#span#2;n#a#0;n#li#5;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/books/templates/category.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="109" column="33" selection-start-line="109" selection-start-column="33" selection-end-line="109" selection-end-column="33" />
+          <folding>
+            <element signature="n#style#0;n#span#2;n#a#0;n#li#5;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/books/templates/my_books.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2355">
-          <caret line="388" column="29" lean-forward="true" selection-start-line="388" selection-start-column="29" selection-end-line="388" selection-end-column="29" />
+        <state relative-caret-position="429">
+          <caret line="85" column="33" selection-start-line="85" selection-start-column="33" selection-end-line="85" selection-end-column="33" />
           <folding>
+            <element signature="n#style#0;n#span#2;n#a#0;n#li#5;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="e#11189#11196#1#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/books/templates/shopping_car.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="108" column="33" selection-start-line="108" selection-start-column="33" selection-end-line="108" selection-end-column="33" />
+          <folding>
+            <element signature="n#style#0;n#span#2;n#a#0;n#li#5;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/books/templates/single_book.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="133" column="33" selection-start-line="133" selection-start-column="33" selection-end-line="133" selection-end-column="33" />
+          <folding>
+            <element signature="n#style#0;n#span#2;n#a#0;n#li#5;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/books/templates/user-profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="47">
+          <caret line="109" column="33" selection-start-line="109" selection-start-column="33" selection-end-line="109" selection-end-column="33" />
+          <folding>
+            <element signature="n#style#0;n#span#2;n#a#0;n#li#5;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

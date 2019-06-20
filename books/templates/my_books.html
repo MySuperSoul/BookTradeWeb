@@ -68,30 +68,6 @@
                                     <a class="dropdown-item" href="{% url 'books:profile' %}">个人中心<img src="{{ request.user.header_image.url }}" alt="" style="width: 45px;height: 45px;border-radius: 70px;">  </a>
 									<a class="dropdown-item" href="{% url 'useraction:logout' %}">退出</a>
 								</div>
-                                <div class="modal fade" id="account_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                 <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title" id="myModalLabel">
-                                                我的资金账户
-                                            </h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p class="member-time text-left" id="account-text"><strong>当前余额为：</strong>{{ user.account.first.account_money }} ¥</p>
-                                                <p class="member-time text-left">账户充值：</p>
-                                                <input type="number" class="form-control rounded" id="buy_number" name="buy_number" placeholder="充值金额">
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-warning"
-                                                    data-dismiss="modal">关闭
-                                            </button>
-                                            <button type="button" class="btn btn-primary" id="add_account_btn">
-                                                确认充值
-                                            </button>
-                                        </div>
-                                    </div><!-- /.modal-content -->
-                                </div><!-- /.modal-dialog -->
-                            </div>
 							</li>
 							<li class="nav-item dropdown dropdown-slide">
 								<a class="nav-link dropdown-toggle" href="{% url 'books:user_books' request.user.id %}">
@@ -195,11 +171,38 @@
 												</a>
 											</li>
                                             {% if not option %}
+                                                {% if mode == 0%}
 											<li class="list-inline-item">
-												<a data-toggle="tooltip" data-placement="top" title="Edit" class="edit" href="">
+												<a data-placement="top" title="Edit" class="edit" data-toggle="modal" data-target="#account_modal">
 													<i class="fa fa-pencil"></i>
 												</a>
+                                                <div class="modal fade" id="account_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                 <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="myModalLabel">
+                                                                {{ book.book_name }}
+                                                            </h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p class="member-time text-left">修改库存余额：</p>
+                                                            <input type="number" class="form-control rounded" id="book-modify-num-{{ book.id }}" name="buy_number" placeholder="{{ book.store_remain_num }}">
+                                                            <p class="member-time text-left">修改当前售价：</p>
+                                                            <input type="number" class="form-control rounded" id="book-modify-price-{{ book.id }}" name="buy_number" placeholder="{{ book.sell_price }} ¥">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-warning"
+                                                                    data-dismiss="modal">关闭
+                                                            </button>
+                                                            <button type="button" class="btn btn-primary" onclick="ModifyBookInfo({{ book.id }})">
+                                                                确认修改
+                                                            </button>
+                                                        </div>
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                                </div>
 											</li>
+                                                    {% endif %}
 											<li class="list-inline-item">
 												<a data-toggle="tooltip" data-placement="top" title="Delete" class="delete" href="javascript:DeleteBook({{ book.id }})">
 													<i class="fa fa-trash"></i>
@@ -369,6 +372,29 @@
             dataType : "json",
             success : function (response) {
                 window.location.reload();
+            }
+        })
+    }
+
+    function ModifyBookInfo(book_id) {
+        num_item = "book-modify-num-" + book_id.toString();
+        var num = document.getElementById(num_item).value;
+        price_item = "book-modify-price-" + book_id.toString();
+        var price = document.getElementById(price_item).value;
+
+        $.ajax({
+            type: "post",
+            url: "/books/api/modify_book_info/",
+            async: true,
+            dataType: "json",
+            data: {
+                num: num,
+                price: price,
+                book_id: book_id
+            },
+            success : function (data) {
+               alert(data.data.message);
+               window.location.reload();
             }
         })
     }

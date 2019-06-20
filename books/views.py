@@ -38,6 +38,13 @@ class Util():
         else:
             return books.order_by('-sell_price')
 
+    @classmethod
+    def JudgeEmptyInput(cls, input_list):
+        for item in input_list:
+            if item == '':
+                return False
+        return True
+
 def GetISBNLink(request, ISBN):
     search_url = 'http://search.dangdang.com/?key={0}&act=input'.format(ISBN)
     Agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36'
@@ -432,4 +439,18 @@ class DeletePublishBookView(BaseView):
         book.delete()
         return {
             'message' : 'delete success.'
+        }
+
+class ModifyBookInfoView(BaseView):
+    def post(self, request):
+        num = int(request.data.get('num'))
+        price = int(request.data.get('price'))
+        book_id = int(request.data.get('book_id'))
+        book = Book.objects.get(id=book_id)
+        book.store_remain_num = num
+        book.sell_price = price
+        book.save()
+
+        return {
+            'message' : '修改成功'
         }

@@ -15,6 +15,8 @@ BookTrade是一个用于旧书交易的网站，BS课程项目设计。
 
 - 后端采用的是python Django框架
 - 首先安装redis，可以通过`docker run -d -p 6379:6379 redis:latest`开启redis服务，并监听在6379端口
+- clone项目, `git clone https://github.com/MySuperSoul/BookTradeWeb.git && cd BookTradeWeb`
+- 安装项目依赖packages：`pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt`
 - 在根目录下执行`python manage.py runserver 8000` 启动Django生产服务器，然后通过`localhost:8000`访问，默认开启在`8000`  端口
 
 <br>
@@ -22,7 +24,7 @@ BookTrade是一个用于旧书交易的网站，BS课程项目设计。
 **部署方法：**
 
 - 支持使用docker进行部署
-- clone项目, `git clone https://github.com/MySuperSoul/BookTradeWeb && cd BookTradeWeb`
+- clone项目, `git clone https://github.com/MySuperSoul/BookTradeWeb.git && cd BookTradeWeb`
 - 需要先安装`docker-compose`, 安装步骤为：
 ```bash
     sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose

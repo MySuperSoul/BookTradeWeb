@@ -117,6 +117,11 @@ class UserUpdatePasswordView(BaseView):
     def post(self, request):
         old = request.data.get('old-password')
         new = request.data.get('new-password')
+        confirm = request.data.get('confirm-password')
+        if new != confirm:
+            raise Exception('两次输入的密码不一致')
+        if new == '' or confirm == '':
+            raise Exception('输入不能为空')
         user = authenticate(username=request.user.username, password=old)
         if not user:
             raise Exception('原始密码错误')
@@ -306,7 +311,7 @@ class ShowBooksByCategoryView(BaseView):
         if request.data.get('min') != None and request.data.get('max') != None:
             min_price = int(request.data.get('min'))
             max_price = int(request.data.get('max'))
-            books = Book.objects.filter(sell_price__gte=min_price)
+            books = books.filter(sell_price__gte=min_price)
             books = books & Book.objects.filter(sell_price__lte=max_price)
 
         # page is always the last step to filter
@@ -314,12 +319,13 @@ class ShowBooksByCategoryView(BaseView):
             page = 1
         else: page = int(request.data.get('page'))
 
+        total_pages = 1 + (int(books.count() - 1) // Util.category_max_page_item)
+        pages_list = [i for i in range(1, total_pages + 1)]
+
+        result_num = books.count()
         start_pos = (page - 1) * Util.category_max_page_item
         end_pos = min(page * Util.category_max_page_item, int(books.count()))
         books = books[start_pos:end_pos]
-
-        total_pages = 1 + (int(books.count() - 1) // Util.category_max_page_item)
-        pages_list = [i for i in range(1, total_pages + 1)]
 
         # filter popular users
         popular_users = Util.GetPopularUsers()
@@ -331,7 +337,8 @@ class ShowBooksByCategoryView(BaseView):
             'current_page' : page,
             'sorting' : SortingUtil.GetSortingDescription(sorting),
             'category_dict' : dict(Category.GetCategoryBookNumberDict(0)),
-            'popular_users' : popular_users
+            'popular_users' : popular_users,
+            'result_num' : result_num
         })
 
 class MakeOfferView(BaseView):
@@ -375,9 +382,6 @@ class MakeOfferView(BaseView):
                 book = shopping_item.book
                 book.store_remain_num -= shopping_item.added_number
                 book.save()
-
-                account.account_money -= price
-                account.save()
 
         return {
             'message' : '交易完成'
@@ -465,6 +469,12 @@ class VerifyOrderView(BaseView):
         order = BookOffer.objects.get(id=order_id)
         order.status = 'complete'
         order.save()
+
+        buy_side_user = order.buy_side
+        account = buy_side_user.account.first()
+        account.account_money -= order.complete_price
+        account.save()
+
         return {
             'message' : '订单确认成功'
         }

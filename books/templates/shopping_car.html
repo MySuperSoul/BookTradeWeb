@@ -65,6 +65,7 @@
 								<!-- Dropdown list -->
 								<div class="dropdown-menu">
                                     <a class="dropdown-item" href="{% url 'books:profile' %}">个人中心<img src="{{ user.header_image.url }}" alt="" style="width: 45px;height: 45px;border-radius: 70px;">  </a>
+                                    <button class="dropdown-item" data-toggle="modal" data-target="#account_modal">我的资金账户</button>
 									<a class="dropdown-item" href="{% url 'useraction:logout' %}">退出</a>
 								</div>
                                 <div class="modal fade" id="account_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

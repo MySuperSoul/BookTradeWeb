@@ -95,3 +95,25 @@ function VerifyOrder(order_id) {
         }
     })
 }
+
+$("#add_account_btn").click(function (e) {
+       var add_number = $("#buy_number").val();
+       if (add_number === ''){
+           alert('充值金额不能为空');
+       } else {
+           $.ajax({
+               type : "post",
+               url : "/books/api/add_credit_account/",
+               async : true,
+               dataType : "json",
+               data : {
+                   'number' : Number(add_number)
+               },
+               success : function (data) {
+                   var html = "<strong>当前余额为：</strong>" + data.data.number + " ¥";
+                   $("#account-text").html(html);
+                   $("#buy_number").val('充值成功');
+               }
+           })
+       }
+});

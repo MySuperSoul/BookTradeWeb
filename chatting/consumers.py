@@ -45,30 +45,31 @@ class ChatConsumer(AsyncWebsocketConsumer):
         await self.CreateNewMessage(send_side, recv_side, message)
 
         channel_layer = get_channel_layer()
-        channel_name = Util.user_channel_dic[str(recv_side)]
-        if len(Util.chats_dic[self.room_name].items()) == 2:
-            await channel_layer.send(
-                channel_name,
-                {
-                    "type" : "chat.message",
-                    "message" : message,
-                    "send_side" : send_side,
-                    "option" : "chat"
-                }
-            )
-        else:
-            username = await self.GetName(send_side)
+        channel_name = Util.user_channel_dic.get(str(recv_side))
+        if channel_name != None:
+            if len(Util.chats_dic[self.room_name].items()) == 2:
+                await channel_layer.send(
+                    channel_name,
+                    {
+                        "type" : "chat.message",
+                        "message" : message,
+                        "send_side" : send_side,
+                        "option" : "chat"
+                    }
+                )
+            else:
+                username = await self.GetName(send_side)
 
-            await channel_layer.send(
-                channel_name,
-                {
-                    "type" : "chat.message",
-                    "message" : message,
-                    "send_side" : send_side,
-                    "send_side_name" : username,
-                    "option" : "notice"
-                }
-            )
+                await channel_layer.send(
+                    channel_name,
+                    {
+                        "type" : "chat.message",
+                        "message" : message,
+                        "send_side" : send_side,
+                        "send_side_name" : username,
+                        "option" : "notice"
+                    }
+                )
 
     @database_sync_to_async
     def GetName(self, user_id):

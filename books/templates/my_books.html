@@ -183,10 +183,10 @@
                                             {% if not option %}
                                                 {% if mode == 0%}
 											<li class="list-inline-item">
-												<a data-placement="top" title="Edit" class="edit" data-toggle="modal" data-target="#account_modal">
+												<a data-placement="top" title="Edit" class="edit" data-toggle="modal" data-target="#account_modal_{{ book.id }}">
 													<i class="fa fa-pencil"></i>
 												</a>
-                                                <div class="modal fade" id="account_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div class="modal fade" id="account_modal_{{ book.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                  <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -204,7 +204,7 @@
                                                             <button type="button" class="btn btn-warning"
                                                                     data-dismiss="modal">关闭
                                                             </button>
-                                                            <button type="button" class="btn btn-primary" onclick="ModifyBookInfo({{ book.id }})">
+                                                            <button type="button" class="btn btn-primary" id="book-modify-btn-{{ book.id }}" onclick="ModifyBookInfo({{ book.id }})">
                                                                 确认修改
                                                             </button>
                                                         </div>
@@ -233,12 +233,6 @@
 				<div class="pagination justify-content-center">
 					<nav aria-label="Page navigation example">
 						<ul class="pagination">
-							<li class="page-item">
-								<a class="page-link" href="#" aria-label="Previous">
-									<span aria-hidden="true">&laquo;</span>
-									<span class="sr-only">Previous</span>
-								</a>
-							</li>
                             {% for i in pages %}
                                 {% if current_page == i %}
                                     <li class="page-item active"><a class="page-link" href="javascript:GetPageUrl({{ i }})">{{ i }}</a></li>
@@ -246,13 +240,6 @@
                                     <li class="page-item"><a class="page-link" href="javascript:GetPageUrl({{ i }})">{{ i }}</a></li>
                                 {% endif %}
                             {% endfor %}
-
-							<li class="page-item">
-								<a class="page-link" href="#" aria-label="Next">
-									<span aria-hidden="true">&raquo;</span>
-									<span class="sr-only">Next</span>
-								</a>
-							</li>
 						</ul>
 					</nav>
 				</div>

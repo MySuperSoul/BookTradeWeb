@@ -31,6 +31,9 @@ class UserRegisterView(BaseView):
             raise Exception('用户已经存在')
         if User.objects.filter(email=request.data.get('email')):
             raise Exception('当前邮箱已经被注册')
+        if len(request.data.get('username')) < 6 or len(request.data.get('password')) < 6:
+            raise Exception('用户名/密码过短，长度不得小于6')
+
         # all check passed
         user = User.objects.create_user(
             username=request.data.get('username'),

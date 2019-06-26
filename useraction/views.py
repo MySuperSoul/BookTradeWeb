@@ -11,7 +11,8 @@ def index(request):
 
 class UserLoginView(BaseView):
     def post(self, request):
-        user = authenticate(username = request.data.get('username'), password = request.data.get('password'))
+        user = authenticate(username = request.data.get('username'),
+                            password = request.data.get('password'))
         if user and user.is_active:
             login(request, user)
             return user.to_dict()

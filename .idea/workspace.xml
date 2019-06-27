@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="07c73b7b-d374-4f00-ad46-5271753f8f1c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/static/js/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/books/static/js/profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/static/js/shopping_car.js" beforeDir="false" afterPath="$PROJECT_DIR$/books/static/js/shopping_car.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/books/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/templates/my_books.html" beforeDir="false" afterPath="$PROJECT_DIR$/books/templates/my_books.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/templates/single_book.html" beforeDir="false" afterPath="$PROJECT_DIR$/books/templates/single_book.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/books/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/useraction/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/useraction/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/headers/header_huangyifei.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/media/headers/header_huangyifei.jpg" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,8 +31,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/books/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="249" column="25" selection-start-line="249" selection-start-column="25" selection-end-line="249" selection-end-column="25" />
+            <state relative-caret-position="103">
+              <caret line="245" column="37" selection-start-line="245" selection-start-column="37" selection-end-line="245" selection-end-column="37" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -51,7 +44,7 @@
         <entry file="file://$PROJECT_DIR$/books/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="313">
-              <caret line="49" column="54" lean-forward="true" selection-start-line="49" selection-start-column="54" selection-end-line="49" selection-end-column="54" />
+              <caret line="49" column="54" selection-start-line="49" selection-start-column="54" selection-end-line="49" selection-end-column="54" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -63,7 +56,7 @@
         <entry file="file://$PROJECT_DIR$/books/static/js/category.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-748">
-              <caret line="28" column="36" lean-forward="true" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
+              <caret line="28" column="36" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -72,7 +65,7 @@
         <entry file="file://$PROJECT_DIR$/books/static/js/shopping_car.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="128">
-              <caret line="112" column="35" lean-forward="true" selection-start-line="112" selection-start-column="35" selection-end-line="112" selection-end-column="35" />
+              <caret line="112" column="35" selection-start-line="112" selection-start-column="35" selection-end-line="112" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -108,7 +101,7 @@
         <entry file="file://$PROJECT_DIR$/books/templates/user-profile.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="224">
-              <caret line="355" lean-forward="true" selection-start-line="355" selection-end-line="355" />
+              <caret line="355" selection-start-line="355" selection-end-line="355" />
             </state>
           </provider>
         </entry>
@@ -246,30 +239,6 @@
               <item name="BookTradeWeb" type="b2602c69:ProjectViewProjectNode" />
               <item name="BookTradeWeb" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="BookTradeWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BookTradeWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="books" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BookTradeWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BookTradeWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="books" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BookTradeWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BookTradeWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="books" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BookTradeWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BookTradeWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="books" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -366,12 +335,12 @@
       <workItem from="1560872609951" duration="15346000" />
       <workItem from="1560939883547" duration="23911000" />
       <workItem from="1561196682638" duration="5337000" />
-      <workItem from="1561617077446" duration="5499000" />
+      <workItem from="1561617077446" duration="6579000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="266779000" />
+    <option name="totallyTimeSpent" value="267859000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -386,12 +355,12 @@
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15266559" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15266559" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.37945205" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.37945205" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.37951806" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -783,7 +752,7 @@
     <entry file="file://$PROJECT_DIR$/books/templates/user-profile.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
-          <caret line="355" lean-forward="true" selection-start-line="355" selection-end-line="355" />
+          <caret line="355" selection-start-line="355" selection-end-line="355" />
         </state>
       </provider>
     </entry>
@@ -797,14 +766,14 @@
     <entry file="file://$PROJECT_DIR$/books/static/js/category.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-748">
-          <caret line="28" column="36" lean-forward="true" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
+          <caret line="28" column="36" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/books/static/js/shopping_car.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
-          <caret line="112" column="35" lean-forward="true" selection-start-line="112" selection-start-column="35" selection-end-line="112" selection-end-column="35" />
+          <caret line="112" column="35" selection-start-line="112" selection-start-column="35" selection-end-line="112" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -822,7 +791,7 @@
     <entry file="file://$PROJECT_DIR$/books/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="313">
-          <caret line="49" column="54" lean-forward="true" selection-start-line="49" selection-start-column="54" selection-end-line="49" selection-end-column="54" />
+          <caret line="49" column="54" selection-start-line="49" selection-start-column="54" selection-end-line="49" selection-end-column="54" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
@@ -831,8 +800,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/books/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="249" column="25" selection-start-line="249" selection-start-column="25" selection-end-line="249" selection-end-column="25" />
+        <state relative-caret-position="103">
+          <caret line="245" column="37" selection-start-line="245" selection-start-column="37" selection-end-line="245" selection-end-column="37" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>

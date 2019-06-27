@@ -61,8 +61,12 @@ $("#comment_submit_form").submit(function (evt) {
         data : form.serialize(),
         dataType : "json",
         success : function (data) {
-            console.log('success');
-            window.location.href = url;
+            if(data.code === 1){
+                alert(data.error);
+            }else{
+                console.log('success');
+                window.location.href = url;
+            }
         }
     });
     evt.preventDefault();

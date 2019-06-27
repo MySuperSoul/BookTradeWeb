@@ -390,8 +390,12 @@
                 book_id: book_id
             },
             success : function (data) {
-               alert(data.data.message);
-               window.location.reload();
+               if(data.code === 1) {
+                   alert(data.error);
+               }else{
+                   alert(data.data.message);
+                   window.location.reload();
+               }
             }
         })
     }

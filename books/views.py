@@ -122,6 +122,8 @@ class UserUpdatePasswordView(BaseView):
             raise Exception('两次输入的密码不一致')
         if new == '' or confirm == '':
             raise Exception('输入不能为空')
+        if len(new) < 6:
+            raise Exception('密码过短')
         user = authenticate(username=request.user.username, password=old)
         if not user:
             raise Exception('原始密码错误')
@@ -132,10 +134,8 @@ class UserUpdatePasswordView(BaseView):
 class UserUpdateProfileView(BaseView):
     def post(self, request):
         user = request.user
-        user.username = request.data.get('name')
         user.telephone = request.data.get('phone')
         user.address = request.data.get('address')
-        user.email = request.data.get('mail')
         user.introduction = request.data.get('introduction')
         user.save()
         return HttpResponseRedirect('/books/profile/')
@@ -247,6 +247,11 @@ class SubmitCommentView(BaseView):
         user = request.user
         book = Book.objects.filter(id=int(book_id))[0]
         score = request.data.get('comment_score')
+        score = int(score)
+
+        if score <= 0 or score > 5:
+            raise Exception('输入评分不在范围内')
+
         comment = request.data.get('comment_review')
         comm = Comment.objects.create(
             commenter=user,
@@ -402,6 +407,9 @@ class CreditAddCountMoney(BaseView):
     def post(self, request):
         user = request.user
         add_number = int(request.data.get('number'))
+
+        if add_number < 0:
+            raise Exception('充值金额不能为负数')
         account = CreditAccount.objects.filter(account_owner_id=user.id)[0]
         account.account_money += add_number
         account.save()
@@ -454,6 +462,10 @@ class ModifyBookInfoView(BaseView):
         num = int(request.data.get('num'))
         price = int(request.data.get('price'))
         book_id = int(request.data.get('book_id'))
+
+        if price < 0 or num < 0:
+            raise Exception("输入不能为负数")
+
         book = Book.objects.get(id=book_id)
         book.store_remain_num = num
         book.sell_price = price

@@ -110,9 +110,13 @@ $("#add_account_btn").click(function (e) {
                    'number' : Number(add_number)
                },
                success : function (data) {
-                   var html = "<strong>当前余额为：</strong>" + data.data.number + " ¥";
-                   $("#account-text").html(html);
-                   $("#buy_number").val('充值成功');
+                   if(data.code === 1){
+                       alert(data.error);
+                   }else {
+                       var html = "<strong>当前余额为：</strong>" + data.data.number + " ¥";
+                      $("#account-text").html(html);
+                      $("#buy_number").val('充值成功');
+                   }
                }
            })
        }

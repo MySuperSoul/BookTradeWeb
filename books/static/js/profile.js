@@ -50,6 +50,7 @@ $("#password_form").submit(function (e) {
 
 $("#comment_submit_form").submit(function (evt) {
     var path_name = window.location.pathname;
+    var url = window.location.href;
     var book_id = path_name.split('/')[3];
     
     var form = $(this);
@@ -61,7 +62,7 @@ $("#comment_submit_form").submit(function (evt) {
         dataType : "json",
         success : function (data) {
             console.log('success');
-            window.location.reload();
+            window.location.href = url;
         }
     });
     evt.preventDefault();

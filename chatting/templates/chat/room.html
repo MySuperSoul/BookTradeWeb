@@ -224,9 +224,9 @@ Date.prototype.format = function(fmt) {
      };
 
 	$('.chat-message button').click(function(){
-		var input = $(this).siblings('span').children('input[type=text]').val();
+		var input = $("#msg-box").val();
 		if(input !== ''){
-			add_message('我',"{{ send_side_user.header_image.url }}",input.val(),true, '');
+			add_message('我',"{{ send_side_user.header_image.url }}",input,true, '');
 			var message = {
 			    send_side : send_side,
                 recv_side : recv_side,

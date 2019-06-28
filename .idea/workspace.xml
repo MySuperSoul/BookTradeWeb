@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="07c73b7b-d374-4f00-ad46-5271753f8f1c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/books/templates/book_need.html" beforeDir="false" afterPath="$PROJECT_DIR$/books/templates/book_need.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chatting/templates/chat/room.html" beforeDir="false" afterPath="$PROJECT_DIR$/chatting/templates/chat/room.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/books/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,13 +16,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/books/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="245" column="37" selection-start-line="245" selection-start-column="37" selection-end-line="245" selection-end-column="37" />
+            <state relative-caret-position="3164">
+              <caret line="189" column="33" selection-start-line="189" selection-start-column="33" selection-end-line="189" selection-end-column="33" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/books/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="256">
+              <caret line="16" column="93" lean-forward="true" selection-start-line="16" selection-start-column="93" selection-end-line="16" selection-end-column="93" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -37,20 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/chatting/templates/chat/room.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
+            <state relative-caret-position="-1466">
               <caret line="226" column="40" selection-start-line="226" selection-start-column="40" selection-end-line="226" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/books/templates/add_list.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2911">
-              <caret line="113" column="149" selection-start-line="113" selection-start-column="149" selection-end-line="113" selection-end-column="149" />
             </state>
           </provider>
         </entry>
@@ -209,9 +212,9 @@
         <option value="$PROJECT_DIR$/books/templates/index.html" />
         <option value="$PROJECT_DIR$/books/templates/single_book.html" />
         <option value="$PROJECT_DIR$/books/static/js/profile.js" />
-        <option value="$PROJECT_DIR$/books/views.py" />
         <option value="$PROJECT_DIR$/books/templates/book_need.html" />
         <option value="$PROJECT_DIR$/chatting/templates/chat/room.html" />
+        <option value="$PROJECT_DIR$/books/views.py" />
       </list>
     </option>
   </component>
@@ -236,20 +239,7 @@
             <path>
               <item name="BookTradeWeb" type="b2602c69:ProjectViewProjectNode" />
               <item name="BookTradeWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="chatting" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BookTradeWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BookTradeWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="chatting" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BookTradeWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BookTradeWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="chatting" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="chat" type="462c0819:PsiDirectoryNode" />
+              <item name="books" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -347,12 +337,12 @@
       <workItem from="1560872609951" duration="15346000" />
       <workItem from="1560939883547" duration="23911000" />
       <workItem from="1561196682638" duration="5337000" />
-      <workItem from="1561617077446" duration="7571000" />
+      <workItem from="1561617077446" duration="9984000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="268851000" />
+    <option name="totallyTimeSpent" value="271264000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -372,7 +362,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.37945205" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.44657534" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.37951806" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -675,16 +665,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/books/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/chatting/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="354">
@@ -747,16 +727,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/books/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="245" column="37" selection-start-line="245" selection-start-column="37" selection-end-line="245" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/books/templates/add_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2911">
@@ -815,8 +785,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/chatting/templates/chat/room.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
+        <state relative-caret-position="-1466">
           <caret line="226" column="40" selection-start-line="226" selection-start-column="40" selection-end-line="226" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/books/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="16" column="93" lean-forward="true" selection-start-line="16" selection-start-column="93" selection-end-line="16" selection-end-column="93" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/books/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3164">
+          <caret line="189" column="33" selection-start-line="189" selection-start-column="33" selection-end-line="189" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

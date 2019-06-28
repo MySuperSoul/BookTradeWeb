@@ -155,37 +155,39 @@ class AddListView(BaseView):
         })
 
     def post(self, request):
-        if request.data.get('trade_way') == None:
-            trade_way = ''
-            store_remain_num = 0
-            book_status = 1
-        else:
-            trade_way = request.data.get('trade_way')
-            store_remain_num = int(request.data.get('store_num'))
-            book_status = 0
+        try:
+            if request.data.get('trade_way') == None:
+                trade_way = ''
+                store_remain_num = 0
+                book_status = 1
+            else:
+                trade_way = request.data.get('trade_way')
+                store_remain_num = int(request.data.get('store_num'))
+                book_status = 0
+            book = Book.objects.create(book_name=request.data.get('book_name'),
+                                       ISBN=request.data.get('ISBN'),
+                                       book_introduction=request.data.get('book_description'),
+                                       category=request.data.get('book_category'),
+                                       origin_price=int(request.data.get('origin_price')),
+                                       sell_price=int(request.data.get('current_price')),
+                                       store_remain_num=store_remain_num,
+                                       book_url=request.data.get('link'),
+                                       publisher_name=request.user,
+                                       trade_way=trade_way,
+                                       book_status=book_status)
+            book.book_image = request.data.get('file')
+            book.save()
 
-        book = Book.objects.create(book_name=request.data.get('book_name'),
-                                   ISBN=request.data.get('ISBN'),
-                                   book_introduction=request.data.get('book_description'),
-                                   category=request.data.get('book_category'),
-                                   origin_price=int(request.data.get('origin_price')),
-                                   sell_price=int(request.data.get('current_price')),
-                                   store_remain_num=store_remain_num,
-                                   book_url=request.data.get('link'),
-                                   publisher_name=request.user,
-                                   trade_way=trade_way,
-                                   book_status=book_status)
-        book.book_image = request.data.get('file')
-        book.save()
+            if book_status == 1:
+                book_need = BookNeed.objects.create(
+                    book=book,
+                    message=request.data.get('message')
+                )
+                book_need.save()
 
-        if book_status == 1:
-            book_need = BookNeed.objects.create(
-                book=book,
-                message=request.data.get('message')
-            )
-            book_need.save()
-
-        return {'message' : '书籍添加成功'}
+            return {'message' : '书籍添加成功'}
+        except Exception as e:
+            raise Exception('输入异常')
 
 class UserBooksView(BaseView):
     def get(self, request, user_id):
@@ -270,6 +272,12 @@ class AddToShoppingCarView(BaseView):
         number = int(request.data.get('number'))
         address = request.data.get('address')
         phone = request.data.get('phone')
+
+        if address == '' or phone == '':
+            raise Exception('输入不能为空')
+
+        if number <= 0:
+            raise Exception('输入数量不在合理范围')
 
         # if number > the current store remain, exception
         if number > book.store_remain_num:

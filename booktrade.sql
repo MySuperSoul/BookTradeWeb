@@ -11,7 +11,7 @@
  Target Server Version : 80015
  File Encoding         : 65001
 
- Date: 27/06/2019 14:54:38
+ Date: 29/06/2019 00:35:12
 */
 
 SET NAMES utf8mb4;
@@ -137,7 +137,7 @@ CREATE TABLE `books_book` (
   PRIMARY KEY (`id`),
   KEY `books_book_publisher_name_id_c038a438_fk_useraction_user_id` (`publisher_name_id`),
   CONSTRAINT `books_book_publisher_name_id_c038a438_fk_useraction_user_id` FOREIGN KEY (`publisher_name_id`) REFERENCES `useraction_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of books_book
@@ -151,10 +151,12 @@ INSERT INTO `books_book` VALUES (7, '人生海海', 55, 20, '人文社科', '人
 INSERT INTO `books_book` VALUES (9, '菊与刀', 10, 5, '人文社科', '解读日本矛盾国民性格的经典读物，学术著作因流畅精彩的译文变得相当好看。它直接影响了战后美日关系格局，是社会研究直接运用于政治实际操作的杰出范例！就从这里开始了解日本！ ', 'books/book_9.jpg', '9787533945510', 'http://product.dangdang.com/23981714.html', 3, 0, '', '2019-06-17 11:41:47.795033', 1);
 INSERT INTO `books_book` VALUES (11, '人间失格', 15, 10, '教育', '超燃！“丧文化”流行，《人间失格》成了现象级畅销书，创当当3天销售50000+册的奇迹！收录作者绝笔之作《Good bye》。一个“丧失为人资格”少年的心灵独白，一个对村上春树影响至深的绝望凄美故事。', 'books/book_11.jpg', '9787506380263', 'http://product.dangdang.com/23761145.html', 4, 10, 'online', '2019-06-21 02:18:23.987233', 0);
 INSERT INTO `books_book` VALUES (12, '有一个地方叫夏', 85, 50, '励志', '忘记，是因为曾经记得。是否好好告别过，与那些你曾创造的，爱过的，又遗忘的一切？意大利天才画家力作，虚构遗忘物之城——夏城，探讨“告别”的哲学。', 'books/book_12.jpg', '9787559628091', 'http://product.dangdang.com/27870507.html', 4, 10, 'offline', '2019-06-21 02:20:32.615108', 0);
-INSERT INTO `books_book` VALUES (13, '和孩子聊艺术', 61, 30, '童书', '一本深深影响孩子成长的艺术启蒙书，一本让孩子了解世界艺术史的通识读本。让每个孩子喜欢艺术，懂得欣赏艺术，了解艺术的历史进程！（蒲公英童书馆出品）', 'books/book_13.jpg', '9787221144058', 'http://product.dangdang.com/26921711.html', 3, 6, 'online', '2019-06-21 02:33:56.856782', 0);
+INSERT INTO `books_book` VALUES (13, '和孩子聊艺术', 61, 30, '童书', '一本深深影响孩子成长的艺术启蒙书，一本让孩子了解世界艺术史的通识读本。让每个孩子喜欢艺术，懂得欣赏艺术，了解艺术的历史进程！（蒲公英童书馆出品）', 'books/book_13.jpg', '9787221144058', 'http://product.dangdang.com/26921711.html', 3, 4, 'online', '2019-06-21 02:33:56.856782', 0);
 INSERT INTO `books_book` VALUES (14, '孩子受益一生的思维力', 34, 20, '生活', '美国幼儿园和小学都在使用的学习工具。一看就懂、一学就能上手的八大思维导图，阅读、写作、演讲、课堂学习……处处都受用的思维方法，让摸不着看不见的思维过程直观呈现，帮助孩子学习力...', 'books/book_14.jpg', '9787554613122', 'http://product.dangdang.com/26445780.html', 3, 10, 'online', '2019-06-21 02:46:42.046019', 0);
 INSERT INTO `books_book` VALUES (15, '埃及四千年', 93, 50, '人文社科', '上市7天即告售罄！当当4.23书香节读者*爱的人文社科类榜首图书！BBC古埃及历史纪录片原著主宰世界历史进程的宏大史诗《出版人周刊》《科克斯书评》2016年度图书《华盛顿邮报》等30家知名媒体联名推荐', 'books/book_15.jpg', '9787533954482', 'http://product.dangdang.com/26917419.html', 5, 23, 'offline', '2019-06-21 02:50:32.239223', 0);
 INSERT INTO `books_book` VALUES (16, '福尔摩斯探案全集', 74, 40, '教育', '《福尔摩斯探案全集》被称为推理小说中的“圣经”，一百多年来被译成57种文字，畅销世界各地。福尔摩斯更是成了名侦探的代名词，他与华生的搭档组合，以及“神探”的典型等，都对后世的侦探小说有着极其深远的影响。英国著名小说家毛姆曾说：“和柯南道尔所写的《福尔摩斯探案全集》相比，没有任何侦探小说曾享有那么大的声誉。”', 'books/book_16.jpg', '9787530955574', 'http://product.dangdang.com/20531088.html', 5, 10, 'offline', '2019-06-27 06:50:14.941532', 0);
+INSERT INTO `books_book` VALUES (18, '少年读史记', 59, 30, '童书', '精巧32开本，当当独家定制版。荣获第六届中华优秀出版物奖 ；史学、文学、哲学、国学一次到位，台湾著名儿童文学作家张嘉骅倾力打造更适合孩子阅读的《史记》！', 'books/book_18.jpg', '23778791', 'http://product.dangdang.com/23778791.html', 1, 10, 'online', '2019-06-28 02:51:28.126401', 0);
+INSERT INTO `books_book` VALUES (19, '墨菲定律', 20, 10, '人文社科', '（受益一生的墨菲定律，一本好玩又实用的日常行为心理指南；突破思维界限，认识真正的自我；揭示那些无处不在左右你生活的心理学秘密，原来，那些让人发笑却又令人深思的行为的背后，都藏着好玩又古怪的心理效应。）', 'books/book_19.jpg', '9787554609491', 'http://product.dangdang.com/25142121.html', 1, 0, '', '2019-06-28 02:57:36.595779', 1);
 COMMIT;
 
 -- ----------------------------
@@ -168,13 +170,14 @@ CREATE TABLE `books_bookneed` (
   PRIMARY KEY (`id`),
   KEY `books_bookneed_book_id_bd87ea9d_fk_books_book_id` (`book_id`),
   CONSTRAINT `books_bookneed_book_id_bd87ea9d_fk_books_book_id` FOREIGN KEY (`book_id`) REFERENCES `books_book` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of books_bookneed
 -- ----------------------------
 BEGIN;
 INSERT INTO `books_bookneed` VALUES (2, '八成新即可 有可联系我 17367078037', 9);
+INSERT INTO `books_bookneed` VALUES (3, '想看这本书学心理学，联系我：17367078037', 19);
 COMMIT;
 
 -- ----------------------------
@@ -201,7 +204,7 @@ CREATE TABLE `books_bookoffer` (
   CONSTRAINT `books_bookoffer_book_id_20740ab3_fk_books_book_id` FOREIGN KEY (`book_id`) REFERENCES `books_book` (`id`),
   CONSTRAINT `books_bookoffer_buy_side_id_75b10c8d_fk_useraction_user_id` FOREIGN KEY (`buy_side_id`) REFERENCES `useraction_user` (`id`),
   CONSTRAINT `books_bookoffer_sell_side_id_21f229ba_fk_useraction_user_id` FOREIGN KEY (`sell_side_id`) REFERENCES `useraction_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of books_bookoffer
@@ -213,6 +216,7 @@ INSERT INTO `books_bookoffer` VALUES (7, 'online', '杭州市', '', 'complete', 
 INSERT INTO `books_bookoffer` VALUES (8, 'online', 'campus yuquan', '', 'complete', '2019-06-15 04:26:52.578971', 3, 3, 1, 2, 200, '8818007');
 INSERT INTO `books_bookoffer` VALUES (9, 'offline', '之江校区', '', 'complete', '2019-06-17 14:21:45.360028', 6, 1, 3, 1, 15, '8818007');
 INSERT INTO `books_bookoffer` VALUES (10, 'online', 'yuquan', '', 'complete', '2019-06-21 03:38:40.048741', 7, 1, 3, 1, 20, '8818007');
+INSERT INTO `books_bookoffer` VALUES (11, 'online', '浙江大学玉泉校区5舍', '', 'complete', '2019-06-28 03:09:59.593275', 13, 1, 3, 2, 60, '17367078037');
 COMMIT;
 
 -- ----------------------------
@@ -231,7 +235,7 @@ CREATE TABLE `books_comment` (
   KEY `books_comment_commenter_id_91139e93_fk_useraction_user_id` (`commenter_id`),
   CONSTRAINT `books_comment_book_id_ac8af439_fk_books_book_id` FOREIGN KEY (`book_id`) REFERENCES `books_book` (`id`),
   CONSTRAINT `books_comment_commenter_id_91139e93_fk_useraction_user_id` FOREIGN KEY (`commenter_id`) REFERENCES `useraction_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of books_comment
@@ -244,6 +248,7 @@ INSERT INTO `books_comment` VALUES (4, '2019-06-12 04:19:12.705222', '很好的�
 INSERT INTO `books_comment` VALUES (5, '2019-06-17 12:37:30.946068', '有书的带带我！', 9, 1, 5);
 INSERT INTO `books_comment` VALUES (6, '2019-06-27 06:33:29.566204', '还行，想买', 12, 1, 4);
 INSERT INTO `books_comment` VALUES (7, '2019-06-27 06:35:54.288693', '真的挺好的一本书', 12, 1, 5);
+INSERT INTO `books_comment` VALUES (8, '2019-06-27 17:36:15.040758', '这本书真的非常不错的啊！！', 3, 1, 5);
 COMMIT;
 
 -- ----------------------------
@@ -264,7 +269,7 @@ CREATE TABLE `books_creditaccount` (
 -- Records of books_creditaccount
 -- ----------------------------
 BEGIN;
-INSERT INTO `books_creditaccount` VALUES (1, 180, '2019-06-15 13:30:05.000000', 1);
+INSERT INTO `books_creditaccount` VALUES (1, 140, '2019-06-15 13:30:05.000000', 1);
 INSERT INTO `books_creditaccount` VALUES (2, 100, '2019-06-15 13:30:49.000000', 2);
 INSERT INTO `books_creditaccount` VALUES (3, 105, '2019-06-15 13:31:03.000000', 3);
 INSERT INTO `books_creditaccount` VALUES (4, 100, '2019-06-15 13:31:20.000000', 4);
@@ -287,13 +292,14 @@ CREATE TABLE `books_shoppingcar` (
   KEY `books_shoppingcar_book_owner_id_b28066e9_fk_useraction_user_id` (`book_owner_id`),
   CONSTRAINT `books_shoppingcar_book_id_6b6f8506_fk_books_book_id` FOREIGN KEY (`book_id`) REFERENCES `books_book` (`id`),
   CONSTRAINT `books_shoppingcar_book_owner_id_b28066e9_fk_useraction_user_id` FOREIGN KEY (`book_owner_id`) REFERENCES `useraction_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of books_shoppingcar
 -- ----------------------------
 BEGIN;
 INSERT INTO `books_shoppingcar` VALUES (18, 3, 12, 3, '图书馆1楼', '15932955084');
+INSERT INTO `books_shoppingcar` VALUES (19, 2, 11, 1, '浙江大学玉泉校区5舍', '17367078037');
 COMMIT;
 
 -- ----------------------------
@@ -311,7 +317,7 @@ CREATE TABLE `chatting_chattingmessage` (
   KEY `chatting_chattingmes_send_side_id_d4dc148f_fk_useractio` (`send_side_id`),
   CONSTRAINT `chatting_chattingmes_recv_side_id_27b7fcf4_fk_useractio` FOREIGN KEY (`recv_side_id`) REFERENCES `useraction_user` (`id`),
   CONSTRAINT `chatting_chattingmes_send_side_id_d4dc148f_fk_useractio` FOREIGN KEY (`send_side_id`) REFERENCES `useraction_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of chatting_chattingmessage
@@ -333,6 +339,8 @@ INSERT INTO `chatting_chattingmessage` VALUES (13, '拜拜，下线了', '2019-0
 INSERT INTO `chatting_chattingmessage` VALUES (14, '早上好', '2019-06-20 04:19:57.235435', 3, 1);
 INSERT INTO `chatting_chattingmessage` VALUES (15, '你好', '2019-06-20 04:20:12.321973', 1, 3);
 INSERT INTO `chatting_chattingmessage` VALUES (16, '我要买书', '2019-06-21 02:35:49.990992', 4, 3);
+INSERT INTO `chatting_chattingmessage` VALUES (17, 'yifei中午好，马上要提交BS作业了，我想多买两本书可以嘛', '2019-06-28 03:44:45.177690', 3, 1);
+INSERT INTO `chatting_chattingmessage` VALUES (18, '吼啊吼啊，找我买就对了，稳的', '2019-06-28 03:50:37.935239', 1, 3);
 COMMIT;
 
 -- ----------------------------
@@ -452,14 +460,6 @@ CREATE TABLE `django_session` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of django_session
--- ----------------------------
-BEGIN;
-INSERT INTO `django_session` VALUES ('xndkkzh5ngzcgsfbf3a1u7zy6tb6b9nd', 'ZjAyZTQ4NDU0ZDgzODM5MjIzYWYwYjY2NTNkMDZhZDRiNGUzYmQwNzp7Il9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIyNjc0N2IwZjkwZDNlMTZjNzFlMzA3YzhhMDQ3Yjc3YzJjYmJhOGNkIn0=', '2019-07-05 03:59:18.091701');
-INSERT INTO `django_session` VALUES ('zd01c7mmpl8rzzwxuf53dfby7e64dq37', 'ZGNkOWI4YTU0ZWM4YTE3ZWJiNWY5MmNjYzdkNDY5YjZiY2Q5NzRiNjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJiMjJjMWQ4MjFlMDU4ZTM5NDIwMjA3MTBiYWRmMmE2NmNmN2VhMDFkIn0=', '2019-07-04 04:18:33.471938');
-COMMIT;
-
--- ----------------------------
 -- Table structure for useraction_user
 -- ----------------------------
 DROP TABLE IF EXISTS `useraction_user`;
@@ -488,9 +488,9 @@ CREATE TABLE `useraction_user` (
 -- Records of useraction_user
 -- ----------------------------
 BEGIN;
-INSERT INTO `useraction_user` VALUES (1, 'pbkdf2_sha256$150000$bjKxL48ZRBtV$hxCYNA/5lDtdDe5zZe8oSUyYsquWAwCTvYqjqk5QvsI=', '2019-06-27 06:31:38.962983', 0, 'huangyifei', '', '', 0, 1, '2019-05-22 05:26:06.709343', '1144358492@qq.com', '17367078037', 'zju major in SE', 'campus yuquan', 'headers/header_huangyifei.jpg', '');
+INSERT INTO `useraction_user` VALUES (1, 'pbkdf2_sha256$150000$xx1vRvMBAS9d$Bc41xkZEJtzlsqnw52Ia4+z5+4Lcou4JFgkvsXjhKHw=', '2019-06-28 15:36:25.107721', 0, 'huangyifei', '', '', 0, 1, '2019-05-22 05:26:06.709343', '1144358492@qq.com', '17367078037', 'zju major in SE', 'campus yuquan', 'headers/header_huangyifei.jpg', '');
 INSERT INTO `useraction_user` VALUES (2, 'pbkdf2_sha256$150000$DYh7N6gaHzef$r88HoRHa6z7joyZr2SlO8aREK/LD2vCSrj6+qMgurZk=', '2019-06-09 15:06:57.388478', 0, '城源', '', '', 0, 1, '2019-05-22 05:27:04.910208', '114435@fabu.ai', '', '', '', 'headers/default.jpg', '');
-INSERT INTO `useraction_user` VALUES (3, 'pbkdf2_sha256$150000$HdqibUueIMAS$4St/8wiCfRY9fDvuCWhe/6bQtj2Q4glTW9/k+ioesdY=', '2019-06-27 06:39:53.047297', 0, 'yifei', '', '', 0, 1, '2019-06-09 16:58:41.189589', '1144358492@163.com', '13807947768', '软件工程学生', '浙江大学玉泉校区', '/headers/default.jpg', '');
+INSERT INTO `useraction_user` VALUES (3, 'pbkdf2_sha256$150000$HdqibUueIMAS$4St/8wiCfRY9fDvuCWhe/6bQtj2Q4glTW9/k+ioesdY=', '2019-06-28 13:49:34.028763', 0, 'yifei', '', '', 0, 1, '2019-06-09 16:58:41.189589', '1144358492@163.com', '13807947768', '软件工程学生', '浙江大学玉泉校区', '/headers/default.jpg', '');
 INSERT INTO `useraction_user` VALUES (4, 'pbkdf2_sha256$150000$TybtAYtWxv5q$Trdzhnzt1Fx4a8AvOpaubwbcozpIoSsuoNa+G0NhEV8=', '2019-06-21 02:17:18.475427', 0, 'rothyu', '', '', 0, 1, '2019-06-14 16:08:24.396754', 'yifei@gmail.com', '17367078037', 'rothyu卖书了～', '浙江大学玉泉校区5舍226', '/headers/default.jpg', '');
 INSERT INTO `useraction_user` VALUES (5, 'pbkdf2_sha256$150000$DMkc0Hp2v9ye$vfxStoZSuMrCE/UDfLzqigiDY1H86XztOAScWpVhcTI=', '2019-06-27 06:47:24.038752', 0, 'zty', '', '', 0, 1, '2019-06-16 15:56:28.565218', '12345678@163.com', '15932955084', 'zty', '浙江省杭州市西溪谷国际商务中心', '/headers/default.jpg', '');
 COMMIT;

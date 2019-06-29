@@ -58,7 +58,7 @@ BookTrade是一个用于旧书交易的网站，BS课程项目设计。
 <br>
 
 **版权©️**
-> Copyright©️ 2019
-> Author: huangyifei
-> Email: [huangyifei0910@gmail.com](mailto:huangyifei0910@gmail.com)
+> Copyright©️ 2019 <br>
+> Author: huangyifei <br>
+> Email: [huangyifei0910@gmail.com](mailto:huangyifei0910@gmail.com) <br>
 > website: [Old-books](http://94.191.60.198:8000)
